@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //! Create that must return a promise
-const BASE_URL = 'http://localhost:5000/api/v1/posts';
+const BASE_URL = 'http://localhost:5000/api/v1/aaa';
 
 //! Create Post API
 export const createPostAPI = async postData => {

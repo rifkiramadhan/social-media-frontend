@@ -6,7 +6,7 @@ import PublicNavbar from './components/Navbar/PublicNavbar';
 import HomePage from './components/HomePage/HomePage';
 import UpdatePost from './components/UpdatePost/UpdatePost';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       {/* Navbar */}
@@ -19,6 +19,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
