@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { fetchPost, updatePostAPI } from '../../APIServices/posts/postsAPI';
+import { fetchPost, updatePostAPI } from '../../../APIServices/posts/postsAPI';
 
 const UpdatePost = () => {
   //! Get the post id
