@@ -6,6 +6,8 @@ import {
   fetchAllPosts,
 } from '../../../APIServices/posts/postsAPI';
 import { Link } from 'react-router-dom';
+import NoDataFound from '../../Alert/NoDataFound';
+import AlertMessage from '../../Alert/AllertMessage';
 
 const PostList = () => {
   //! User Query
@@ -21,15 +23,31 @@ const PostList = () => {
   });
 
   //! Delete Handler
-  const deleteHandler = async postId => {
-    postMutation
-      .mutateAsync(postId)
-      .then(() => {
-        //! refetch
-        refetch();
-      })
-      .catch(e => console.log(e));
-  };
+  // const deleteHandler = async postId => {
+  //   postMutation
+  //     .mutateAsync(postId)
+  //     .then(() => {
+  //       //! refetch
+  //       refetch();
+  //     })
+  //     .catch(e => console.log(e));
+  // };
+
+  //! Show messages to the user
+  //! isLoading
+  if (isLoading) {
+    return <AlertMessage type='loading' message='Loading please wait...' />;
+  }
+
+  //! isError
+  if (isError) {
+    return <AlertMessage type='error' message='Something happened!' />;
+  }
+
+  //! No Post Found
+  if (data?.posts?.length < 0) {
+    return <NoDataFound text='No Post Found' />;
+  }
 
   return (
     <section className='overflow-hidden'>
@@ -59,8 +77,8 @@ const PostList = () => {
                     <div className='absolute bottom-0 right-0 z-10'></div>
                     <img
                       className='absolute inset-0 w-full h-full object-cover rounded-2xl'
-                      src='https://cdn.pixabay.com/photo/2023/12/19/15/51/flowers-8457960_1280.jpg'
-                      alt
+                      src={post?.image?.path}
+                      alt={post?.description}
                     />
                   </div>
                   <div className='pt-6 pb-3 px-4'>

@@ -6,10 +6,7 @@ const BASE_URL = 'http://localhost:5000/api/v1/posts';
 //! Create Post API
 export const createPostAPI = async postData => {
   console.log(postData);
-  const response = await axios.post(`${BASE_URL}/create`, {
-    // title: postData.title,
-    description: postData.description,
-  });
+  const response = await axios.post(`${BASE_URL}/create`, postData);
   return response.data;
 };
 

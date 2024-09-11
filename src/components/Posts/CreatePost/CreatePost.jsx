@@ -5,10 +5,16 @@ import * as Yup from 'yup';
 import ReactQuill from 'react-quill';
 import { useMutation } from '@tanstack/react-query';
 import { createPostAPI } from '../../../APIServices/posts/postsAPI';
+import { FaTimesCircle } from 'react-icons/fa';
+import AlertMessage from '../../Alert/AllertMessage';
 
 const CreatePost = () => {
   //! State for wysiwyg
   const [description, setDescription] = useState('');
+
+  //! FIle upload state
+  const [imageError, setImageErr] = useState('');
+  const [imagePreview, setImagePreview] = useState(null);
 
   //! Post Mutation
   const postMutation = useMutation({
@@ -21,21 +27,50 @@ const CreatePost = () => {
     initialValues: {
       // title: '',
       description: '',
+      image: '',
     },
     //! Validation
     validationSchema: Yup.object({
       // title: Yup.string().required('Title is required!'),
       description: Yup.string().required('Description is required!'),
+      image: Yup.string().required('Image is required!'),
     }),
     //! Submit
     onSubmit: values => {
-      const postData = {
-        // title: values.title,
-        description: values.description,
-      };
-      postMutation.mutate(postData);
+      const formData = new FormData();
+      formData.append('description', values.description);
+      formData.append('image', values.image);
+      postMutation.mutate(formData);
     },
   });
+
+  //!---- File Upload Logics ----//
+  //! Handle fileChange
+  const handleFileChange = event => {
+    //! Get the file selected
+    const file = event.currentTarget.files[0];
+
+    //! Limit file size
+    if (file.size > 1048576) {
+      setImageErr('File size exced 1mb');
+      return;
+    }
+
+    //! Limit the file types
+    if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
+      setImageErr('Invalid file type! ');
+    }
+
+    //! Set the image preview
+    formik.setFieldValue('image', file);
+    setImagePreview(URL.createObjectURL(file));
+  };
+
+  //! Remove Image
+  const removeImage = () => {
+    formik.setFieldValue('image', null);
+    setImagePreview(null);
+  };
 
   //! Get Loading State
   const isLoading = postMutation.isPending;
@@ -47,43 +82,30 @@ const CreatePost = () => {
   const isSuccess = postMutation.isSuccess;
 
   //!  isError
-  const error = postMutation.error;
-
   const errorMsg = postMutation?.error?.response?.data?.message;
-  console.log(errorMsg);
+
+  //! Show messages to the user
+  //! isError
+  if (isError) {
+    return <AlertMessage type='error' message={errorMsg} />;
+  }
 
   return (
-    // <div>
-    //   {isLoading && <p>Loading...</p>}
-    //   {isSuccess && <p>Post created successfully</p>}
-    //   {isError && <p>{errorMsg}</p>}
-
-    //   <form onSubmit={formik.handleSubmit}>
-    //     <ReactQuill
-    //       value={formik.values.description}
-    //       onChange={value => {
-    //         setDescription(value);
-    //         formik.setFieldValue('description', value);
-    //       }}
-    //     />
-    //     {/* Display Error Message */}
-    //     {formik.touched.description && formik.errors.description && (
-    //       <span>{formik.errors.description}</span>
-    //     )}
-    //     <button type='submit'>Create</button>
-    //   </form>
-    // </div>
-
     <div className='flex items-center justify-center'>
       <div className='max-w-md w-full bg-white rounded-lg shadow-md p-8 m-4'>
         <h2 className='text-2xl font-bold text-center text-gray-800 mb-8'>
           Add New Post
         </h2>
         {/* show alert */}
-
+        {isLoading && (
+          <AlertMessage type='loading' message='Loading please wait...' />
+        )}
+        {isSuccess && (
+          <AlertMessage type='success' message='Post created successfully' />
+        )}
         <form onSubmit={formik.handleSubmit} className='space-y-6'>
           {/* Description Input - Using ReactQuill for rich text editing */}
-          <div>
+          <div className='mb-10'>
             <label
               htmlFor='description'
               className='block text-sm font-medium text-gray-700'
@@ -92,11 +114,13 @@ const CreatePost = () => {
             </label>
             {/* ReactQuill here */}
             <ReactQuill
+              theme='snow'
               value={formik.values.description}
               onChange={value => {
                 setDescription(value);
                 formik.setFieldValue('description', value);
               }}
+              className='h-40'
             />
             {/* Display Error Message */}
             {formik.touched.description && formik.errors.description && (
@@ -132,7 +156,7 @@ const CreatePost = () => {
                 type='file'
                 name='image'
                 accept='image/*'
-                // onChange={handleFileChange}
+                onChange={handleFileChange}
                 className='hidden'
               />
               <label
@@ -143,30 +167,30 @@ const CreatePost = () => {
               </label>
             </div>
             {/* Display error message */}
-            {/* {formik.touched.image && formik.errors.image && (
-              <p className="text-sm text-red-600">{formik.errors.image}</p>
-            )} */}
+            {formik.touched.image && formik.errors.image && (
+              <p className='text-sm text-red-600'>{formik.errors.image}</p>
+            )}
 
             {/* error message */}
-            {/* {imageError && <p className='text-sm text-red-600'>{imageError}</p>} */}
+            {imageError && <p className='text-sm text-red-600'>{imageError}</p>}
 
             {/* Preview image */}
 
-            {/* {imagePreview && (
-              <div className="mt-2 relative">
+            {imagePreview && (
+              <div className='mt-2 relative'>
                 <img
                   src={imagePreview}
-                  alt="Preview"
-                  className="mt-2 h-24 w-24 object-cover rounded-full"
+                  alt='Preview'
+                  className='mt-2 h-24 w-24 object-cover rounded-full'
                 />
                 <button
                   onClick={removeImage}
-                  className="absolute right-0 top-0 transform translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1"
+                  className='absolute right-0 top-0 transform translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1'
                 >
-                  <FaTimesCircle className="text-red-500" />
+                  <FaTimesCircle className='text-red-500' />
                 </button>
               </div>
-            )} */}
+            )}
           </div>
 
           {/* Submit Button - Button to submit the form */}
