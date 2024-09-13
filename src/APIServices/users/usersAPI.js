@@ -25,12 +25,22 @@ export const loginAPI = async userData => {
     {
       username: userData?.username,
       password: userData?.password,
-      email: userData?.email,
     },
     {
       withCredentials: true,
     }
   );
+
+  return response.data;
+};
+
+// http://localhost:5000/api/v1/users/checkAuthenticated
+
+//---- Check Auth Status User ----//
+export const checkAuthStatusAPI = async userData => {
+  const response = await axios.get(`${BASE_URL}/users/checkAuthenticated`, {
+    withCredentials: true,
+  });
 
   return response.data;
 };
