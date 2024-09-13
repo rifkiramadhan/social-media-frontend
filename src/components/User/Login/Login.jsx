@@ -12,7 +12,7 @@ const Register = () => {
 
   //! User Mutation
   const userMutation = useMutation({
-    mutationKey: ['user-registration'],
+    mutationKey: ['user-login'],
     mutationFn: loginAPI,
   });
 
