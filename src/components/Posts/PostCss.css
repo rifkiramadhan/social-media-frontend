@@ -3,6 +3,18 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.6em;
 }
 
 .rendered-html-content h2 {
@@ -10,6 +22,18 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.6em;
 }
 
 .rendered-html-content h3 {
@@ -17,6 +41,18 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.6em;
 }
 
 .rendered-html-content h4 {
@@ -24,6 +60,18 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.6em;
 }
 
 .rendered-html-content h5 {
@@ -31,6 +79,18 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.6em;
 }
 
 .rendered-html-content h6 {
@@ -38,12 +98,36 @@
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 2.6em;
 }
 
 .rendered-html-content p {
   font-size: 1em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-line-clamp: 4;
+  -moz-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 6.6em;
 }
 
 .rendered-html-content a {

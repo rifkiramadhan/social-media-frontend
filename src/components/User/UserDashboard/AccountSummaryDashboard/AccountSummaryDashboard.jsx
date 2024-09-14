@@ -110,7 +110,7 @@ const AccountSummaryDashboard = ({}) => {
        font-bold text-2xl text-gray-800 mb-4
       '
       >
-        Welcome Back:Masynctech
+        Welcome Back: Character Name
       </p>
       {/* display account verification status */}
       {/* {mutation.isPending ? (

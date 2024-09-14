@@ -41,39 +41,48 @@ export default function PrivateNavbar() {
         <>
           <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
             <div className='flex h-16 justify-start items-center'>
-              <div className='flex justify-center flex-row w-full'>
-                <div className='-ml-2 mr-2 flex items-left md:hidden'>
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
-                    <span className='absolute -inset-0.5' />
-                    <span className='sr-only'>Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className='block h-6 w-6' aria-hidden='true' />
-                    ) : (
-                      <Bars3Icon className='block h-6 w-6' aria-hidden='true' />
-                    )}
-                  </Disclosure.Button>
+              <div className='flex-row w-full'>
+                <div className='flex justify-start items-start flex-row'>
+                  <div className='-ml-2 mr-2 flex items-left md:hidden'>
+                    {/* Mobile menu button */}
+                    <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
+                      <span className='absolute -inset-0.5' />
+                      <span className='sr-only'>Open main menu</span>
+                      {open ? (
+                        <XMarkIcon
+                          className='block h-6 w-6'
+                          aria-hidden='true'
+                        />
+                      ) : (
+                        <Bars3Icon
+                          className='block h-6 w-6'
+                          aria-hidden='true'
+                        />
+                      )}
+                    </Disclosure.Button>
+                  </div>
                 </div>
-
-                <div className='hidden md:ml-6 md:flex md:space-x-8'>
-                  <Link
-                    to='/posts'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Latest Posts
-                  </Link>
-                  <Link
-                    to='/ranking'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Creators Ranking
-                  </Link>
-                  <Link
-                    to='/pricing'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Pricing
-                  </Link>
+                <div className='flex justify-center items-center'>
+                  <div className='hidden md:ml-6 md:flex md:space-x-8'>
+                    <Link
+                      to='/posts'
+                      className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    >
+                      Latest Posts
+                    </Link>
+                    <Link
+                      to='/ranking'
+                      className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    >
+                      Creators Ranking
+                    </Link>
+                    <Link
+                      to='/pricing'
+                      className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    >
+                      Pricing
+                    </Link>
+                  </div>
                 </div>
               </div>
               <div className='flex items-center'>
