@@ -8,6 +8,8 @@ import {
 import { Link } from 'react-router-dom';
 import NoDataFound from '../../Alert/NoDataFound';
 import AlertMessage from '../../Alert/AllertMessage';
+import CategoryList from '../../Category/CategoryList/CategoryList';
+import { fetchCategoriesAPI } from '../../../APIServices/categories/categoriesAPI';
 
 const PostList = () => {
   //! User Query
@@ -20,6 +22,12 @@ const PostList = () => {
   const postMutation = useMutation({
     mutationKey: ['delete-post'],
     mutationFn: deletePostAPI,
+  });
+
+  //! Fetch Categories
+  const { data: categoriesData } = useQuery({
+    queryKey: ['category-lists'],
+    queryFn: fetchCategoriesAPI,
   });
 
   //! Delete Handler
@@ -62,10 +70,10 @@ const PostList = () => {
           Latest articles
         </h2>
         {/* Post category */}
-        {/* <PostCategory
+        <CategoryList
           categories={categoriesData}
-          onCategorySelect={handleCategoryFilter}
-        /> */}
+          // onCategorySelect={handleCategoryFilter}
+        />
         <div className='flex flex-wrap mb-32 -mx-4'>
           {/* Posts */}
           {data?.posts?.map(post => (
@@ -102,7 +110,7 @@ const PostList = () => {
                         <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
                       </svg>
                       <div className='py-1 px-2 rounded-md border border-gray-100 text-xs font-medium text-gray-700 inline-block'>
-                        {/* {post?.category?.categoryName} */}
+                        {post?.category?.categoryName}
                       </div>
                     </div>
                   </div>

@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 import AuthRoute from './components/Auth/AuthRoute/AuthRoute';
 import UserDashbaord from './components/User/UserDashboard/userDashboard';
 import AccountSummaryDashboard from './components/User/UserDashboard/AccountSummaryDashboard/AccountSummaryDashboard';
+import AddCategory from './components/Category/AddCategory/AddCategory';
 
 const App = () => {
   //! User Query
@@ -40,6 +41,7 @@ const App = () => {
       {userAuth ? <PrivateNavbar /> : <PublicNavbar />}
       <Routes>
         <Route element={<Home />} path='/' />
+        {/* User Dashboard */}
         <Route element={<UserDashbaord />} path='/dashboard'>
           {/* Create Post */}
           <Route
@@ -49,6 +51,15 @@ const App = () => {
               </AuthRoute>
             }
             path='create-post'
+          />
+          {/* Create Category */}
+          <Route
+            element={
+              <AuthRoute>
+                <AddCategory />
+              </AuthRoute>
+            }
+            path='add-category'
           />
           {/* Account Summary Dashboard */}
           <Route
