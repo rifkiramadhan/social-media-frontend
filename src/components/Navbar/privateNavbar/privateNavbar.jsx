@@ -10,11 +10,11 @@ import { logoutAPI } from '../../../APIServices/users/usersAPI';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/slices/authSlices';
 
-function classNames(...classes) {
+const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
-}
+};
 
-export default function PrivateNavbar() {
+const PrivateNavbar = () => {
   //! Dispatch hook
   const dispatch = useDispatch();
 
@@ -258,4 +258,6 @@ export default function PrivateNavbar() {
       )}
     </Disclosure>
   );
-}
+};
+
+export default PrivateNavbar;

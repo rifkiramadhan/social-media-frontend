@@ -14,9 +14,11 @@ import { useQuery } from '@tanstack/react-query';
 import { isAuthenticated } from './redux/slices/authSlices';
 import { useEffect } from 'react';
 import AuthRoute from './components/Auth/AuthRoute/AuthRoute';
-import UserDashbaord from './components/User/UserDashboard/userDashboard';
+import UserDashbaord from './components/User/UserDashboard/UserDashboard';
 import AccountSummaryDashboard from './components/User/UserDashboard/AccountSummaryDashboard/AccountSummaryDashboard';
 import AddCategory from './components/Category/AddCategory/AddCategory';
+import CreatePlan from './components/Plans/CreatePlan/CreatePlan';
+import Pricing from './components/Plans/Pricing/Pricing';
 
 const App = () => {
   //! User Query
@@ -52,6 +54,15 @@ const App = () => {
             }
             path='create-post'
           />
+          {/* Create Plan */}
+          <Route
+            element={
+              <AuthRoute>
+                <CreatePlan />
+              </AuthRoute>
+            }
+            path='create-plan'
+          />
           {/* Create Category */}
           <Route
             element={
@@ -71,10 +82,12 @@ const App = () => {
             path=''
           />
         </Route>
+        {/* Public Links */}
         <Route element={<PostList />} path='/posts' />
         <Route element={<PostDetails />} path='/posts/:postId' />
         <Route element={<Login />} path='/login' />
         <Route element={<Register />} path='/register' />
+        <Route element={<Pricing />} path='/pricing' />
         <Route
           element={
             <AuthRoute>

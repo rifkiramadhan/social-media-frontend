@@ -34,11 +34,18 @@ export const loginAPI = async userData => {
   return response.data;
 };
 
-// http://localhost:5000/api/v1/users/checkAuthenticated
-
 //---- Check Auth Status User ----//
 export const checkAuthStatusAPI = async userData => {
   const response = await axios.get(`${BASE_URL}/users/checkAuthenticated`, {
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+//---- User Profile ----//
+export const userProfileAPI = async userData => {
+  const response = await axios.get(`${BASE_URL}/users/profile`, {
     withCredentials: true,
   });
 

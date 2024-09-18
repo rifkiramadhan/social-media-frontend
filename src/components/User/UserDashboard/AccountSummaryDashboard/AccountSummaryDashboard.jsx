@@ -8,49 +8,49 @@ import {
   FaFlag,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { userProfileAPI } from '../../../../APIServices/users/usersAPI';
 
-const AccountSummaryDashboard = ({}) => {
-  //check if user has email
+const AccountSummaryDashboard = () => {
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['profile'],
+    queryFn: userProfileAPI,
+  });
 
-  const hasEmail = false;
+  //! Check if user has email
+  const hasEmail = data?.user?.email;
+  console.log(hasEmail);
 
-  //check if user has plan
+  //! Check if user has plan
+  const hasPlan = data?.user?.hasSelectedPlan;
 
-  const hasPlan = false;
+  //! Check if user has verified account
+  const isEmailVerified = data?.user?.isEmailVerified;
 
-  //check if user has verified account
-  const isEmailVerified = false;
+  //! Total followers
+  const totalFollowers = data?.user?.followers?.length;
 
-  //total followers
-  const totalFollowers = 0;
+  //! Total following
+  const totalFollowing = data?.user?.following?.length;
 
-  //total following
-  const totalFollowing = 10;
+  //! Get user posts
+  const userPosts = data?.user?.posts?.length;
 
-  //get user posts
-
-  const userPosts = 0;
-
-  //there is a view count in the post object so calculate the total views
-
+  //! There is a view count in the post object so calculate the total views
   const totalViews = 0;
 
-  //calculate total likes but likes is an array
-
+  //! Calculate total likes but likes is an array
   const totalLikes = 0;
 
-  //total posts
+  //! Total posts
 
-  //calculate total comments
-
+  //! Calculate total comments
   const totalComments = 0;
 
-  //calculate total dislikes
-
+  //! Calculate total dislikes
   const totalDislikes = 0;
 
-  //total earnings
-
+  //! Total earnings
   const totalEarnings = 0;
   const stats = [
     {
@@ -110,7 +110,7 @@ const AccountSummaryDashboard = ({}) => {
        font-bold text-2xl text-gray-800 mb-4
       '
       >
-        Welcome Back: Character Name
+        Welcome Back: {data?.user?.username}
       </p>
       {/* display account verification status */}
       {/* {mutation.isPending ? (

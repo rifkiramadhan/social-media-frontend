@@ -18,7 +18,12 @@ import {
 } from 'react-icons/fa';
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  {
+    name: 'Dashboard',
+    href: '/dashboard',
+    icon: HomeIcon,
+    current: true,
+  },
   {
     name: 'Create New Post',
     href: '/dashboard/create-post',
@@ -45,7 +50,7 @@ const navigation = [
   },
   {
     name: 'Create Plan',
-    href: '/dashboard/add-plan',
+    href: '/dashboard/create-plan',
     icon: FaCalendarPlus,
     current: false,
   },
@@ -63,11 +68,11 @@ const navigation = [
   },
 ];
 
-function classNames(...classes) {
+const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
-}
+};
 
-export default function UserDashbaord() {
+const UserDashbaord = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   //Get the auth user from redux store
 
@@ -242,4 +247,6 @@ export default function UserDashbaord() {
       </div>
     </>
   );
-}
+};
+
+export default UserDashbaord;
