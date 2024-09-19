@@ -19,6 +19,9 @@ import AccountSummaryDashboard from './components/User/UserDashboard/AccountSumm
 import AddCategory from './components/Category/AddCategory/AddCategory';
 import CreatePlan from './components/Plans/CreatePlan/CreatePlan';
 import Pricing from './components/Plans/Pricing/Pricing';
+import CheckoutForm from './components/Plans/CheckoutForm/CheckoutForm';
+import PaymentSuccess from './components/Plans/PaymentSuccess/PaymentSuccess';
+import PayingFreePlan from './components/Plans/Playing/PlayingFreePlan/PlayingFreePlan';
 
 const App = () => {
   //! User Query
@@ -88,6 +91,7 @@ const App = () => {
         <Route element={<Login />} path='/login' />
         <Route element={<Register />} path='/register' />
         <Route element={<Pricing />} path='/pricing' />
+        <Route element={<CheckoutForm />} path='/checkout/:planId' />
         <Route
           element={
             <AuthRoute>
@@ -95,6 +99,22 @@ const App = () => {
             </AuthRoute>
           }
           path='/profile'
+        />
+        <Route
+          element={
+            <AuthRoute>
+              <PaymentSuccess />
+            </AuthRoute>
+          }
+          path='/success'
+        />
+        <Route
+          element={
+            <AuthRoute>
+              <PayingFreePlan />
+            </AuthRoute>
+          }
+          path='/free-subscription'
         />
       </Routes>
     </BrowserRouter>

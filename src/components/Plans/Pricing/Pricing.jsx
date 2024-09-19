@@ -91,7 +91,7 @@ const Pricing = () => {
               </div>
               <Link
                 className='w-full text-center h-14 py-4 px-6 rounded-full bg-white border border-gray-200 shadow hover:bg-gray-50 focus:ring focus:ring-orange-200 transition duration-200 mb-8 flex items-center justify-center gap-2'
-                to='/premium-subscription'
+                to={`/checkout/${premiumPlan?.[0]?._id}`}
               >
                 <span className='text-sm font-semibold '>Sign up today</span>
                 <svg
