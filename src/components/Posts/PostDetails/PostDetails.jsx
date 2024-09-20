@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import {
   FaThumbsUp,
@@ -11,6 +11,12 @@ import {
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { fetchPost } from '../../../APIServices/posts/postsAPI';
+import { RiUserUnfollowFill, RiUserFollowLine } from 'react-icons/ri';
+import {
+  followUserAPI,
+  unfollowUserAPI,
+  userProfileAPI,
+} from '../../../APIServices/users/usersAPI';
 
 const PostDetails = () => {
   const [comment, setComment] = useState('');
@@ -24,7 +30,60 @@ const PostDetails = () => {
     queryFn: () => fetchPost(postId),
   });
 
-  console.log(data);
+  //! Profile Use Query
+  const { data: profileData, refetch: refetchProfile } = useQuery({
+    queryKey: ['profile'],
+    queryFn: () => userProfileAPI(),
+  });
+
+  //! Follow Logic
+  //! Get the author id
+  const targetId = data?.postFound?.author;
+
+  //! Get the login userid
+  const userId = profileData?.user?._id;
+
+  //! Get if the user/login is following the user
+  const isFollowing = profileData?.user?.following?.find(
+    user => user?.toString() === targetId?.toString()
+  );
+
+  console.log(profileData?.user?.following);
+  console.log(targetId);
+
+  //! Follow & Unfollow Mutation
+  const followUserMutation = useMutation({
+    mutationKey: ['follow'],
+    mutationFn: followUserAPI,
+  });
+
+  //! Handler for follow mutation
+  const followUserHandler = async () => {
+    followUserMutation
+      .mutateAsync(targetId)
+      .then(() => {
+        //! Update the profile after following
+        refetchProfile();
+      })
+      .catch(e => console.log(e));
+  };
+
+  //! Follow & Unfollow Mutation
+  const unfollowUserMutation = useMutation({
+    mutationKey: ['unfollow'],
+    mutationFn: unfollowUserAPI,
+  });
+
+  //! Handler for unfollow mutation
+  const unfollowUserHandler = async () => {
+    unfollowUserMutation
+      .mutateAsync(targetId)
+      .then(() => {
+        //! Update the profile after unfollowing
+        refetchProfile();
+      })
+      .catch(e => console.log(e));
+  };
 
   return (
     <div className='container mx-auto p-4'>
@@ -62,23 +121,23 @@ const PostDetails = () => {
           </span>
         </div>
         {/* follow icon */}
-        {/* {isFollowing ? (
+        {isFollowing ? (
           <button
-            onClick={handleFollow}
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            onClick={unfollowUserHandler}
+            className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
           >
-            <RiUserUnfollowFill className="mr-2" />
+            <RiUserUnfollowFill className='mr-2' />
             Unfollow
           </button>
         ) : (
           <button
-            onClick={handleFollow}
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            onClick={followUserHandler}
+            className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
           >
             Follow
-            <RiUserFollowLine className="ml-2" />
+            <RiUserFollowLine className='ml-2' />
           </button>
-        )} */}
+        )}
 
         {/* author */}
         <span className='ml-2'>{/* {postData?.author?.username} */}</span>
