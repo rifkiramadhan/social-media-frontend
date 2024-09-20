@@ -5,7 +5,6 @@ const BASE_URL = 'http://localhost:5000/api/v1/posts';
 
 //! Create Post API
 export const createPostAPI = async postData => {
-  console.log(postData);
   const response = await axios.post(`${BASE_URL}/create`, postData, {
     withCredentials: true,
   });
@@ -14,7 +13,6 @@ export const createPostAPI = async postData => {
 
 //! Update Post API
 export const updatePostAPI = async postData => {
-  console.log(postData);
   const response = await axios.put(
     `${BASE_URL}/${postData?.postId}`,
     {
@@ -30,7 +28,6 @@ export const updatePostAPI = async postData => {
 
 //! Fetch All Posts
 export const fetchAllPosts = async filters => {
-  console.log(filters);
   const posts = await axios.get(BASE_URL, {
     params: filters,
   });
@@ -52,4 +49,28 @@ export const deletePostAPI = async postId => {
   });
 
   return posts.data;
+};
+
+//! Like Post API
+export const likePostAPI = async postId => {
+  const response = await axios.put(
+    `${BASE_URL}/likes/${postId}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+//! Dislike Post API
+export const dislikePostAPI = async postId => {
+  const response = await axios.put(
+    `${BASE_URL}/dislikes/${postId}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
 };

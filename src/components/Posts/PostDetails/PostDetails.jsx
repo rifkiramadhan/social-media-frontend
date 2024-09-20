@@ -10,7 +10,11 @@ import {
 } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import { fetchPost } from '../../../APIServices/posts/postsAPI';
+import {
+  dislikePostAPI,
+  fetchPost,
+  likePostAPI,
+} from '../../../APIServices/posts/postsAPI';
 import { RiUserUnfollowFill, RiUserFollowLine } from 'react-icons/ri';
 import {
   followUserAPI,
@@ -25,7 +29,13 @@ const PostDetails = () => {
   const { postId } = useParams();
 
   //! Use query
-  const { isError, isLoading, data, error, isSuccess } = useQuery({
+  const {
+    isError,
+    isLoading,
+    data,
+    error,
+    refetch: refetchPost,
+  } = useQuery({
     queryKey: ['post-details'],
     queryFn: () => fetchPost(postId),
   });
@@ -48,14 +58,13 @@ const PostDetails = () => {
     user => user?.toString() === targetId?.toString()
   );
 
-  console.log(profileData?.user?.following);
-  console.log(targetId);
-
   //! Follow & Unfollow Mutation
   const followUserMutation = useMutation({
     mutationKey: ['follow'],
     mutationFn: followUserAPI,
   });
+
+  console.log(data);
 
   //! Handler for follow mutation
   const followUserHandler = async () => {
@@ -85,6 +94,39 @@ const PostDetails = () => {
       .catch(e => console.log(e));
   };
 
+  //! Likes & dislikes Mutation
+  const likePostMutation = useMutation({
+    mutationKey: ['likes'],
+    mutationFn: likePostAPI,
+  });
+
+  //! Handler for like mutation
+  const likePostHandler = async () => {
+    likePostMutation
+      .mutateAsync(postId)
+      .then(() => {
+        //! Update the profile after unfollowing
+        refetchPost();
+      })
+      .catch(e => console.log(e));
+  };
+
+  const dislikePostMutation = useMutation({
+    mutationKey: ['dislikes'],
+    mutationFn: dislikePostAPI,
+  });
+
+  //! Handler for dislike mutation
+  const dislikePostHandler = async () => {
+    dislikePostMutation
+      .mutateAsync(postId)
+      .then(() => {
+        //! Update the profile after unfollowing
+        refetchPost();
+      })
+      .catch(e => console.log(e));
+  };
+
   return (
     <div className='container mx-auto p-4'>
       <div className='bg-white rounded-lg shadow-lg p-5'>
@@ -99,25 +141,25 @@ const PostDetails = () => {
           {/* like icon */}
           <span
             className='flex items-center gap-1 cursor-pointer'
-            // onClick={handleLike}
+            onClick={likePostHandler}
           >
             <FaThumbsUp />
-            {/* {postData?.likes?.length || 0} */}
+            {data?.postFound?.likes?.length || 0}
           </span>
 
           {/* Dislike icon */}
           <span
             className='flex items-center gap-1 cursor-pointer'
-            // onClick={handleDislike}
+            onClick={dislikePostHandler}
           >
             <FaThumbsDown />
 
-            {/* {postData?.dislikes?.length || 0} */}
+            {data?.postFound?.dislikes?.length || 0}
           </span>
           {/* views icon */}
           <span className='flex items-center gap-1'>
             <FaEye />
-            {/* {postData?.viewsCount || 0} */}
+            {data?.postFound?.viewsCount || 0}
           </span>
         </div>
         {/* follow icon */}
