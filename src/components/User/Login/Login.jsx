@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { loginAPI } from '../../../APIServices/users/usersAPI';
 import AlertMessage from '../../Alert/AllertMessage';
 
-const Register = () => {
+const Login = () => {
   //! Navigate
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const Register = () => {
         .mutateAsync(values)
         .then(() => {
           //! Redirect
-          navigate('/profile');
+          navigate('/dashboard');
         })
         .catch(err => {
           console.log(err);
@@ -164,6 +164,16 @@ const Register = () => {
                 Sign in with Google
               </span>
             </a>
+            {/* Forgot Password Link */}
+            <div className='mt-10 inline-block items-center justify-center  bg-white w-full text-center'>
+              <span>Forgot the password ? </span>
+              <Link
+                className='text-indigo-500 hover: transition duration-200 font-medium hover:text-indigo-900'
+                to='/forgot-password'
+              >
+                Forgot Password
+              </Link>
+            </div>
           </form>
         </div>
       </div>
@@ -171,4 +181,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

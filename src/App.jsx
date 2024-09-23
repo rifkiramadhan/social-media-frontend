@@ -23,6 +23,8 @@ import CheckoutForm from './components/Plans/CheckoutForm/CheckoutForm';
 import PaymentSuccess from './components/Plans/PaymentSuccess/PaymentSuccess';
 import PayingFreePlan from './components/Plans/Playing/PlayingFreePlan/PlayingFreePlan';
 import AccountVerificationDashboard from './components/User/UserDashboard/AccountVerificationDashboard/AccountVerificationDashboard';
+import RequestResetPassword from './components/User/ResetPassword/RequestResetPassword/RequestResetPassword';
+import ResetPassword from './components/User/ResetPassword/ResetPassword/ResetPassword';
 
 const App = () => {
   //! User Query
@@ -102,6 +104,11 @@ const App = () => {
         <Route element={<Register />} path='/register' />
         <Route element={<Pricing />} path='/pricing' />
         <Route element={<CheckoutForm />} path='/checkout/:planId' />
+        <Route element={<RequestResetPassword />} path='/forgot-password' />
+        <Route
+          element={<ResetPassword />}
+          path='/reset-password/:verifyToken'
+        />
         <Route
           element={
             <AuthRoute>
