@@ -8,8 +8,12 @@ import {
   FaFlag,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { userProfileAPI } from '../../../../APIServices/users/usersAPI';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  sendEmailVerificationTokenAPI,
+  userProfileAPI,
+} from '../../../../APIServices/users/usersAPI';
+import AlertMessage from '../../../Alert/AllertMessage';
 
 const AccountSummaryDashboard = () => {
   const { data, isLoading, isError, error } = useQuery({
@@ -103,6 +107,19 @@ const AccountSummaryDashboard = () => {
     },
   ];
 
+  //! Sending email verification token mutation
+  const verificationTokenMutation = useMutation({
+    mutationKey: ['send-email-verification-token'],
+    mutationFn: sendEmailVerificationTokenAPI,
+  });
+
+  //! Handle Send Verification Email
+  const handleSendVerificationEmail = async () => {
+    verificationTokenMutation.mutate();
+  };
+
+  console.log(verificationTokenMutation);
+
   return (
     <div className='p-4'>
       <p
@@ -113,18 +130,22 @@ const AccountSummaryDashboard = () => {
         Welcome Back: {data?.user?.username}
       </p>
       {/* display account verification status */}
-      {/* {mutation.isPending ? (
-        <AlertMessage type="loading" message="Loading..." />
-      ) : mutation.isError ? (
+      {verificationTokenMutation.isPending ? (
+        <AlertMessage type='loading' message='Email sending loading...' />
+      ) : verificationTokenMutation.isError ? (
         <AlertMessage
-          type="error"
+          type='error'
           message={
-            mutation?.error?.message || mutation?.error?.response?.data?.message
+            verificationTokenMutation?.error?.message ||
+            verificationTokenMutation?.error?.response?.data?.message
           }
         />
-      ) : mutation.isSuccess ? (
-        <AlertMessage type="success" message={mutation?.data?.message} />
-      ) : null} */}
+      ) : verificationTokenMutation?.isSuccess ? (
+        <AlertMessage
+          type='success'
+          message={verificationTokenMutation?.data?.message}
+        />
+      ) : null}
       {!hasPlan && (
         <div
           className='bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4'
@@ -149,7 +170,7 @@ const AccountSummaryDashboard = () => {
           <p>
             Your account is not verified. Please{' '}
             <button
-              // onClick={handleSendVerificationEmail}
+              onClick={handleSendVerificationEmail}
               className='underline text-red-800'
             >
               verify your account

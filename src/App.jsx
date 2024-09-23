@@ -22,6 +22,7 @@ import Pricing from './components/Plans/Pricing/Pricing';
 import CheckoutForm from './components/Plans/CheckoutForm/CheckoutForm';
 import PaymentSuccess from './components/Plans/PaymentSuccess/PaymentSuccess';
 import PayingFreePlan from './components/Plans/Playing/PlayingFreePlan/PlayingFreePlan';
+import AccountVerificationDashboard from './components/User/UserDashboard/AccountVerificationDashboard/AccountVerificationDashboard';
 
 const App = () => {
   //! User Query
@@ -56,6 +57,15 @@ const App = () => {
               </AuthRoute>
             }
             path='create-post'
+          />
+          {/* Verify Account */}
+          <Route
+            element={
+              <AuthRoute>
+                <AccountVerificationDashboard />
+              </AuthRoute>
+            }
+            path='account-verification/:verifyToken'
           />
           {/* Create Plan */}
           <Route
