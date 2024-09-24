@@ -11,18 +11,12 @@ export const createPostAPI = async postData => {
   return response.data;
 };
 
-//! Update Post API
-export const updatePostAPI = async postData => {
-  const response = await axios.put(
-    `${BASE_URL}/${postData?.postId}`,
-    {
-      title: postData.title,
-      description: postData.description,
-    },
-    {
-      withCredentials: true,
-    }
-  );
+//!update post api
+export const updatePostAPI = async ({ formData, postId }) => {
+  const response = await axios.put(`${BASE_URL}/${postId}`, formData, {
+    withCredentials: true,
+  });
+
   return response.data;
 };
 
@@ -37,7 +31,9 @@ export const fetchAllPosts = async filters => {
 
 //! Fetch Posts
 export const fetchPost = async postId => {
-  const posts = await axios.get(`${BASE_URL}/${postId}`);
+  const posts = await axios.get(`${BASE_URL}/${postId}`, {
+    withCredentials: true,
+  });
 
   return posts.data;
 };

@@ -8,9 +8,10 @@ import {
   FaTrashAlt,
   FaComment,
 } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import {
+  deletePostAPI,
   dislikePostAPI,
   fetchPost,
   likePostAPI,
@@ -24,6 +25,7 @@ import {
 
 const PostDetails = () => {
   const [comment, setComment] = useState('');
+  const navigate = useNavigate();
 
   //! Get the post id
   const { postId } = useParams();
@@ -45,6 +47,38 @@ const PostDetails = () => {
     queryKey: ['profile'],
     queryFn: () => userProfileAPI(),
   });
+
+  const handleClick = () => {
+    // Ambil pathname dari useLocation
+    const pathname = location.pathname;
+
+    // Memisahkan URL menjadi array berdasarkan '/'
+    const parts = pathname.split('/');
+
+    // Potong URL untuk mengambil 'dashboard/update-post/idpostingan'
+    const newPath = `dashboard/update-post/${postId}`;
+
+    // Redirect atau navigate ke path baru
+    navigate(`/${newPath}`);
+  };
+
+  //! Post Mutation
+  const postMutation = useMutation({
+    mutationKey: ['delete-post'],
+    mutationFn: deletePostAPI,
+  });
+
+  //! Delete Handler
+  const deleteHandler = async postId => {
+    postMutation
+      .mutateAsync(postId)
+      .then(() => {
+        navigate('/posts');
+        //! refetch
+        refetch();
+      })
+      .catch(e => console.log(e));
+  };
 
   //! Follow Logic
   //! Get the author id
@@ -136,7 +170,6 @@ const PostDetails = () => {
           className='w-full h-full object-cover rounded-lg mb-4'
         />
         {/* Show messages */}
-
         <div className='flex gap-4 items-center mb-4'>
           {/* like icon */}
           <span
@@ -180,10 +213,8 @@ const PostDetails = () => {
             <RiUserFollowLine className='ml-2' />
           </button>
         )}
-
         {/* author */}
         <span className='ml-2'>{/* {postData?.author?.username} */}</span>
-
         {/* post details */}
         <div className='flex justify-between items-center mb-3'>
           <div
@@ -193,8 +224,14 @@ const PostDetails = () => {
 
           {/* Edit delete icon */}
           <div className='flex gap-2'>
-            <FaEdit className='text-blue-500 cursor-pointer' />
-            <FaTrashAlt className='text-red-500 cursor-pointer' />
+            <FaEdit
+              className='text-blue-500 cursor-pointer'
+              onClick={handleClick}
+            />
+            <FaTrashAlt
+              className='text-red-500 cursor-pointer'
+              onClick={() => deleteHandler(data?.postFound?._id)}
+            />
           </div>
         </div>
 

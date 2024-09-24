@@ -25,6 +25,7 @@ import PayingFreePlan from './components/Plans/Playing/PlayingFreePlan/PlayingFr
 import AccountVerificationDashboard from './components/User/UserDashboard/AccountVerificationDashboard/AccountVerificationDashboard';
 import RequestResetPassword from './components/User/ResetPassword/RequestResetPassword/RequestResetPassword';
 import ResetPassword from './components/User/ResetPassword/ResetPassword/ResetPassword';
+import UpdatePost from './components/Posts/UpdatePost/UpdatePost';
 
 const App = () => {
   //! User Query
@@ -59,6 +60,15 @@ const App = () => {
               </AuthRoute>
             }
             path='create-post'
+          />
+          {/* Update Post */}
+          <Route
+            element={
+              <AuthRoute>
+                <UpdatePost />
+              </AuthRoute>
+            }
+            path='update-post/:postId'
           />
           {/* Verify Account */}
           <Route
