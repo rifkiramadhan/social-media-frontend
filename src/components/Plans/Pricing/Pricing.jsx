@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { fetchPlansAPI } from '../../../APIServices/plans/plansAPI';
 
 const Pricing = () => {
-  const { data, isError, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['pricing-lists'],
     queryFn: fetchPlansAPI,
   });
+
+  console.log(data);
 
   //! Get Free Plan
   const freePlan = data?.plans?.filter(plan => plan.planName === 'Free');
@@ -81,7 +83,6 @@ const Pricing = () => {
             <div className='bg-orange-500 rounded-3xl px-8 lg:px-10 pb-14 pt-10 h-full'>
               <h2 className='text-white text-3xl font-bold font-heading mb-6'>
                 {premiumPlan?.[0]?.planName}
-                Premium
               </h2>
               <div className='flex items-center gap-4 flex-wrap mb-6'>
                 <h2 className='text-white text-6xl font-bold font-heading'>

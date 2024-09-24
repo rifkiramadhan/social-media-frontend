@@ -26,6 +26,7 @@ import AccountVerificationDashboard from './components/User/UserDashboard/Accoun
 import RequestResetPassword from './components/User/ResetPassword/RequestResetPassword/RequestResetPassword';
 import ResetPassword from './components/User/ResetPassword/ResetPassword/ResetPassword';
 import UpdatePost from './components/Posts/UpdatePost/UpdatePost';
+import Rankings from './components/Rankings/Rankings';
 
 const App = () => {
   //! User Query
@@ -115,6 +116,7 @@ const App = () => {
         <Route element={<Pricing />} path='/pricing' />
         <Route element={<CheckoutForm />} path='/checkout/:planId' />
         <Route element={<RequestResetPassword />} path='/forgot-password' />
+        <Route element={<Rankings />} path='/ranking' />
         <Route
           element={<ResetPassword />}
           path='/reset-password/:verifyToken'

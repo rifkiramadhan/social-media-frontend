@@ -192,7 +192,7 @@ const PostDetails = () => {
           {/* views icon */}
           <span className='flex items-center gap-1'>
             <FaEye />
-            {data?.postFound?.viewsCount || 0}
+            {data?.postFound?.viewers?.length || 0}
           </span>
         </div>
         {/* follow icon */}

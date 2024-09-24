@@ -70,7 +70,7 @@ const CheckoutForm = () => {
         </div>
         {/* Display loading */}
         {paymentMutation?.isPending && (
-          <AlertMessage type='loading' message='Proccessing please wait...' />
+          <AlertMessage type='loading' message='Processing please wait...' />
         )}{' '}
         {/* Display error */}
         {paymentMutation?.isError && (
