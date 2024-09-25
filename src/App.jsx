@@ -27,6 +27,7 @@ import RequestResetPassword from './components/User/ResetPassword/RequestResetPa
 import ResetPassword from './components/User/ResetPassword/ResetPassword/ResetPassword';
 import UpdatePost from './components/Posts/UpdatePost/UpdatePost';
 import Rankings from './components/Rankings/Rankings';
+import NotificationsLists from './components/Notification/NotificationLists/NotificationLists';
 
 const App = () => {
   //! User Query
@@ -70,6 +71,15 @@ const App = () => {
               </AuthRoute>
             }
             path='update-post/:postId'
+          />
+          {/* Notification */}
+          <Route
+            element={
+              <AuthRoute>
+                <NotificationsLists />
+              </AuthRoute>
+            }
+            path='notifications'
           />
           {/* Verify Account */}
           <Route

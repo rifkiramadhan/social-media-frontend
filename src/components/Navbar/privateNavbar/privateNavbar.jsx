@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import { logoutAPI } from '../../../APIServices/users/usersAPI';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/slices/authSlices';
+import NotificationCounts from '../../Notification/NotificationCounts/NotificationCounts';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
@@ -104,6 +105,7 @@ const PrivateNavbar = () => {
                     </button>
                   </Link>
                   {/* Notification */}
+                  <NotificationCounts />
 
                   {/* <NotificationIcon notificationCount={9} /> */}
                 </div>
