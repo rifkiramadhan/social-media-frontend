@@ -28,6 +28,9 @@ import ResetPassword from './components/User/ResetPassword/ResetPassword/ResetPa
 import UpdatePost from './components/Posts/UpdatePost/UpdatePost';
 import Rankings from './components/Rankings/Rankings';
 import NotificationsLists from './components/Notification/NotificationLists/NotificationLists';
+import MyFollowing from './components/User/Followers/MyFollowing/MyFollowing';
+import MyFollowers from './components/User/Followers/MyFollowers/MyFollowers';
+import MyEarnings from './components/User/MyEarnings/MyEarnings';
 
 const App = () => {
   //! User Query
@@ -54,6 +57,33 @@ const App = () => {
         <Route element={<Home />} path='/' />
         {/* User Dashboard */}
         <Route element={<UserDashbaord />} path='/dashboard'>
+          {/* My Earnings */}
+          <Route
+            element={
+              <AuthRoute>
+                <MyEarnings />
+              </AuthRoute>
+            }
+            path='my-earnings'
+          />
+          {/* My Followers */}
+          <Route
+            element={
+              <AuthRoute>
+                <MyFollowers />
+              </AuthRoute>
+            }
+            path='my-followers'
+          />
+          {/* My Following */}
+          <Route
+            element={
+              <AuthRoute>
+                <MyFollowing />
+              </AuthRoute>
+            }
+            path='my-followings'
+          />
           {/* Create Post */}
           <Route
             element={
