@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreatePost from './components/Posts/CreatePost/CreatePost';
 import PostList from './components/Posts/PostList/PostList';
-import PublicNavbar from './components/Navbar/PublicNavbar/PublicNavbar';
+import PublicNavbar from './components/Navbar/publicNavbar/publicNavbar';
 import Home from './components/Home/Home';
 import PostDetails from './components/Posts/PostDetails/PostDetails';
 import Login from './components/User/Login/Login';
 import Register from './components/User/Register/Register';
 import Profile from './components/User/Profile/Profile';
-import PrivateNavbar from './components/Navbar/PrivateNavbar/PrivateNavbar';
+import PrivateNavbar from './components/Navbar/privateNavbar/privateNavbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatusAPI } from './APIServices/users/usersAPI';
 import { useQuery } from '@tanstack/react-query';
