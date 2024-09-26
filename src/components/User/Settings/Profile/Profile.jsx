@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import React from 'react';
-import { checkAuthStatusAPI } from '../../../APIServices/users/usersAPI';
+import { checkAuthStatusAPI } from '../../../../APIServices/users/usersAPI';
 import { useEffect } from 'react';
-import { isAuthenticated } from '../../../redux/slices/authSlices';
+import { isAuthenticated } from '../../../../redux/slices/authSlices';
 
 const Profile = () => {
   //! User Query

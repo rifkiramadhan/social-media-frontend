@@ -1,3 +1,4 @@
+import { useMutation, useQuery } from '@tanstack/react-query';
 import React from 'react';
 import {
   FaEye,
@@ -6,13 +7,14 @@ import {
   FaThumbsUp,
   FaThumbsDown,
   FaFlag,
+  FaCommentDots,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   sendEmailVerificationTokenAPI,
   userProfileAPI,
 } from '../../../../APIServices/users/usersAPI';
+import { getMyEarningsAPI } from '../../../../APIServices/earnings/earningsAPI';
 import AlertMessage from '../../../Alert/AllertMessage';
 
 const AccountSummaryDashboard = () => {
@@ -21,41 +23,34 @@ const AccountSummaryDashboard = () => {
     queryFn: userProfileAPI,
   });
 
-  //! Check if user has email
   const hasEmail = data?.user?.email;
-  console.log(hasEmail);
-
-  //! Check if user has plan
   const hasPlan = data?.user?.hasSelectedPlan;
-
-  //! Check if user has verified account
   const isEmailVerified = data?.user?.isEmailVerified;
-
-  //! Total followers
   const totalFollowers = data?.user?.followers?.length;
-
-  //! Total following
   const totalFollowing = data?.user?.following?.length;
-
-  //! Get user posts
   const userPosts = data?.user?.posts?.length;
 
-  //! There is a view count in the post object so calculate the total views
-  const totalViews = 0;
+  let totalViews = 0;
+  let totalLikes = 0;
+  let totalComments = 0;
+  let totalDislikes = 0;
 
-  //! Calculate total likes but likes is an array
-  const totalLikes = 0;
+  //! Loop through the users posts to update the initial counters
+  data?.user?.posts?.forEach(post => {
+    totalViews += post.viewers.length;
+    totalLikes += post.likes.length;
+    totalDislikes += post.dislikes.length;
+    totalComments += post.comments.length;
+  });
 
-  //! Total posts
+  const { data: earnings } = useQuery({
+    queryKey: ['my-earnings'],
+    queryFn: getMyEarningsAPI,
+  });
 
-  //! Calculate total comments
-  const totalComments = 0;
+  //! Calc total amount
+  const totalEarnings = earnings?.reduce((acc, curr) => acc + curr.amount, 0);
 
-  //! Calculate total dislikes
-  const totalDislikes = 0;
-
-  //! Total earnings
-  const totalEarnings = 0;
   const stats = [
     {
       icon: <FaEye />,
@@ -96,13 +91,13 @@ const AccountSummaryDashboard = () => {
     {
       icon: <FaFlag />,
       label: 'Posts',
-      value: userPosts?.length || 0,
+      value: userPosts || 0,
       bgColor: 'bg-pink-500',
     },
     {
-      icon: <FaUsers />,
-      label: 'Ranking',
-      value: '1st',
+      icon: <FaCommentDots />,
+      label: 'Comments',
+      value: totalComments,
       bgColor: 'bg-teal-500',
     },
   ];
@@ -113,12 +108,9 @@ const AccountSummaryDashboard = () => {
     mutationFn: sendEmailVerificationTokenAPI,
   });
 
-  //! Handle Send Verification Email
   const handleSendVerificationEmail = async () => {
     verificationTokenMutation.mutate();
   };
-
-  console.log(verificationTokenMutation);
 
   return (
     <div className='p-4'>
@@ -140,7 +132,7 @@ const AccountSummaryDashboard = () => {
             verificationTokenMutation?.error?.response?.data?.message
           }
         />
-      ) : verificationTokenMutation?.isSuccess ? (
+      ) : verificationTokenMutation.isSuccess ? (
         <AlertMessage
           type='success'
           message={verificationTokenMutation?.data?.message}

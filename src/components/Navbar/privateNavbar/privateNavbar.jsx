@@ -1,15 +1,15 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { PlusIcon } from '@heroicons/react/20/solid';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { useMutation } from '@tanstack/react-query';
-import { logoutAPI } from '../../../APIServices/users/usersAPI';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { logoutAPI, userProfileAPI } from '../../../APIServices/users/usersAPI';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/slices/authSlices';
 import NotificationCounts from '../../Notification/NotificationCounts/NotificationCounts';
+import Avatar from '../../User/Avatar/Avatar';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
@@ -18,6 +18,16 @@ const classNames = (...classes) => {
 const PrivateNavbar = () => {
   //! Dispatch hook
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { data, isError, isLoading, isSuccess, error, refetch } = useQuery({
+    queryKey: ['ranking'],
+    queryFn: userProfileAPI,
+  });
+
+  refetch();
+
+  console.log(data);
 
   //! User Mutation
   const logoutMutation = useMutation({
@@ -32,6 +42,7 @@ const PrivateNavbar = () => {
       .then(() => {
         //! Dispatch action to logout
         dispatch(logout(null));
+        navigate('/posts');
       })
       .catch(e => console.log(e));
   };
@@ -117,15 +128,15 @@ const PrivateNavbar = () => {
                         <span className='absolute -inset-1.5' />
                         <span className='sr-only'>Open user menu</span>
                         {/* Profile Image */}
-                        {/* {data?.user?.profilePicture ? (
+                        {data?.user?.profilePicture?.path ? (
                           <img
-                            className="h-10 w-10 rounded-full"
-                            src={data?.user?.profilePicture}
-                            alt="profile"
+                            className='h-10 w-10 rounded-full'
+                            src={data?.user?.profilePicture?.path}
+                            alt='profile'
                           />
                         ) : (
                           <Avatar />
-                        )} */}
+                        )}
                       </Menu.Button>
                     </div>
                     <Transition
@@ -218,22 +229,22 @@ const PrivateNavbar = () => {
                     />
                   </span>
                   {/* Profile Image */}
-                  {/* {data?.user?.profilePicture ? (
+                  {data?.user?.profilePicture?.path ? (
                     <img
-                      className="h-10 w-10 rounded-full"
-                      src={data?.user?.profilePicture}
-                      alt="profile"
+                      className='h-10 w-10 rounded-full'
+                      src={data?.user?.profilePicture?.path}
+                      alt='profile'
                     />
                   ) : (
                     <Avatar />
-                  )} */}
+                  )}
                 </div>
                 <div className='ml-3'>
                   <div className='text-base font-medium text-gray-800'>
-                    {/* {localStorage.getItem("username")} */}
+                    {localStorage.getItem('username')}
                   </div>
                   <div className='text-sm font-medium text-gray-500'>
-                    {/* {data?.user?.username} */}
+                    {data?.user?.username}
                   </div>
                 </div>
               </div>

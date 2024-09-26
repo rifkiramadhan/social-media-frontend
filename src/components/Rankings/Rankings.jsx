@@ -40,9 +40,9 @@ const Rankings = () => {
                       >
                         {`#${ranking.rank}`}
                       </div>
-                      {ranking?.user?.profilePicture ? (
+                      {ranking?.user?.profilePicture?.path ? (
                         <img
-                          src={ranking?.user?.profilePicture}
+                          src={ranking?.user?.profilePicture?.path}
                           alt='avatar'
                           className='w-12 h-12 rounded-full'
                         />

@@ -17,7 +17,7 @@ const MyEarnings = () => {
       {data?.length <= 0 ? (
         <NoDataFound />
       ) : (
-        <div className='flex justify-center items-center h-screen bg-gray-100 max-h-96 mt-3 overflow-auto'>
+        <div className='flex justify-center items-center bg-gray-100'>
           <div className='w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white rounded-xl shadow-lg overflow-hidden '>
             <div className='flex flex-col items-center py-6 bg-gradient-to-r from-green-400 to-blue-500 '>
               <FaDollarSign className='text-white text-6xl' />

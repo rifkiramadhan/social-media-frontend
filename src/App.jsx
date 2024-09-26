@@ -6,7 +6,7 @@ import Home from './components/Home/Home';
 import PostDetails from './components/Posts/PostDetails/PostDetails';
 import Login from './components/User/Login/Login';
 import Register from './components/User/Register/Register';
-import Profile from './components/User/Profile/Profile';
+import Profile from './components/User/Settings/Profile/Profile';
 import PrivateNavbar from './components/Navbar/privateNavbar/privateNavbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatusAPI } from './APIServices/users/usersAPI';
@@ -31,6 +31,10 @@ import NotificationsLists from './components/Notification/NotificationLists/Noti
 import MyFollowing from './components/User/Followers/MyFollowing/MyFollowing';
 import MyFollowers from './components/User/Followers/MyFollowers/MyFollowers';
 import MyEarnings from './components/User/MyEarnings/MyEarnings';
+import DashboardPosts from './components/User/UserDashboard/DashboardPosts/DashboardPosts';
+import SettingsPage from './components/User/Settings/Settings';
+import UpdateEmail from './components/User/Settings/UpdateEmail/UpdateEmail';
+import UploadProfilePicture from './components/User/Settings/UploadProfilePicture/UploadProfilePicture';
 
 const App = () => {
   //! User Query
@@ -83,6 +87,42 @@ const App = () => {
               </AuthRoute>
             }
             path='my-followings'
+          />
+          {/* Upload Profile Picture */}
+          <Route
+            element={
+              <AuthRoute>
+                <UploadProfilePicture />
+              </AuthRoute>
+            }
+            path='upload-profile-picture'
+          />
+          {/* Update Email */}
+          <Route
+            element={
+              <AuthRoute>
+                <UpdateEmail />
+              </AuthRoute>
+            }
+            path='update-email'
+          />
+          {/* Settings Page */}
+          <Route
+            element={
+              <AuthRoute>
+                <SettingsPage />
+              </AuthRoute>
+            }
+            path='settings'
+          />
+          {/* My Post */}
+          <Route
+            element={
+              <AuthRoute>
+                <DashboardPosts />
+              </AuthRoute>
+            }
+            path='posts'
           />
           {/* Create Post */}
           <Route

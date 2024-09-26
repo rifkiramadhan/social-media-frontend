@@ -12,11 +12,11 @@ const AccountVerificationDashboard = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(true);
-    }, 500); // delay for the fade-in effect
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
 
-  //Get the token from the url
+  //! Get the token from the url
   const { verifyToken } = useParams();
 
   const sendVerifyUserAccountMutation = useMutation({
@@ -38,7 +38,7 @@ const AccountVerificationDashboard = () => {
           message='Account verification failed, please try again or refresh the page!'
         />
       ) : (
-        sendVerifyUserAccountMutation.isSuccess && (
+        sendVerifyUserAccountMutation?.isSuccess && (
           <div
             className={`transition-opacity duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'

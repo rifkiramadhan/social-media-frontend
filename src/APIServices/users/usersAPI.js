@@ -1,4 +1,4 @@
-import { BASE_URL } from '../../../utils/baseEndpoint';
+import { BASE_URL } from '../../utils/baseEndpoint';
 import axios from 'axios';
 
 //! Register user
@@ -104,6 +104,21 @@ export const sendEmailVerificationTokenAPI = async userId => {
   return response.data;
 };
 
+//! Update email verification token
+export const sendUpdateEmailAPI = async email => {
+  const response = await axios.put(
+    `${BASE_URL}/users/update-email`,
+    {
+      email,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
+
 //! Send verify user account
 export const sendVerifyUserAccountAPI = async verifyToken => {
   const response = await axios.put(
@@ -124,6 +139,19 @@ export const forgotPasswordAPI = async email => {
     {
       email,
     },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
+
+//! Upload Profile Picture
+export const uploadProfilePictureAPI = async formData => {
+  const response = await axios.put(
+    `${BASE_URL}/users/upload-profile-picture`,
+    formData,
     {
       withCredentials: true,
     }

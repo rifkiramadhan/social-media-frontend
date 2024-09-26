@@ -35,10 +35,10 @@ const MyFollowers = () => {
               return (
                 <div className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'>
                   <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
-                    {follower?.profilePicture ? (
+                    {follower?.profilePicture?.path ? (
                       <img
                         className='w-24 h-24 rounded-full block mb-6 mx-auto'
-                        src={follower?.profilePicture}
+                        src={follower?.profilePicture?.path}
                         alt
                       />
                     ) : (
