@@ -14,7 +14,6 @@ import { useQuery } from '@tanstack/react-query';
 import { isAuthenticated } from './redux/slices/authSlices';
 import { useEffect } from 'react';
 import AuthRoute from './components/Auth/AuthRoute/AuthRoute';
-import UserDashbaord from './components/User/UserDashboard/UserDashboard';
 import AccountSummaryDashboard from './components/User/UserDashboard/AccountSummaryDashboard/AccountSummaryDashboard';
 import AddCategory from './components/Category/AddCategory/AddCategory';
 import CreatePlan from './components/Plans/CreatePlan/CreatePlan';
@@ -35,6 +34,8 @@ import DashboardPosts from './components/User/UserDashboard/DashboardPosts/Dashb
 import SettingsPage from './components/User/Settings/Settings';
 import UpdateEmail from './components/User/Settings/UpdateEmail/UpdateEmail';
 import UploadProfilePicture from './components/User/Settings/UploadProfilePicture/UploadProfilePicture';
+import UsersList from './components/User/UsersList/UsersList';
+import UserDashboard from './components/User/UserDashboard/UserDashboard';
 
 const App = () => {
   //! User Query
@@ -60,7 +61,7 @@ const App = () => {
       <Routes>
         <Route element={<Home />} path='/' />
         {/* User Dashboard */}
-        <Route element={<UserDashbaord />} path='/dashboard'>
+        <Route element={<UserDashboard />} path='/dashboard'>
           {/* My Earnings */}
           <Route
             element={
@@ -123,6 +124,15 @@ const App = () => {
               </AuthRoute>
             }
             path='posts'
+          />
+          {/* Users Lists */}
+          <Route
+            element={
+              <AuthRoute>
+                <UsersList />
+              </AuthRoute>
+            }
+            path='users'
           />
           {/* Create Post */}
           <Route

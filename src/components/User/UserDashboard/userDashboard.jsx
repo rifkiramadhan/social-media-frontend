@@ -66,13 +66,19 @@ const navigation = [
     icon: FaWallet,
     current: false,
   },
+  {
+    name: 'Users',
+    href: '/dashboard/users',
+    icon: FaUsers,
+    current: false,
+  },
 ];
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
 
-const UserDashbaord = () => {
+const UserDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   //Get the auth user from redux store
 
@@ -249,4 +255,4 @@ const UserDashbaord = () => {
   );
 };
 
-export default UserDashbaord;
+export default UserDashboard;

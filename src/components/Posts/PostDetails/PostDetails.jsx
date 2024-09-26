@@ -24,6 +24,7 @@ import {
 } from '../../../APIServices/users/usersAPI';
 import { useFormik } from 'formik';
 import { createCommentAPI } from '../../../APIServices/comments/commentsAPI';
+import AlertMessage from '../../Alert/AllertMessage';
 
 const PostDetails = () => {
   const [comment, setComment] = useState('');
@@ -36,6 +37,7 @@ const PostDetails = () => {
   const {
     isError,
     isLoading,
+    isSuccess,
     data,
     error,
     refetch: refetchPost,
@@ -196,6 +198,8 @@ const PostDetails = () => {
     },
   });
 
+  const errorMsg = commentMutation?.error?.response?.data?.message;
+
   return (
     <div className='container mx-auto p-4'>
       <div className='bg-white rounded-lg shadow-lg p-5'>
@@ -294,6 +298,10 @@ const PostDetails = () => {
             <FaComment className='inline mr-1' /> Comment
           </button>
         </form>
+        {isLoading && (
+          <AlertMessage type='loading' message='Loading please wait...' />
+        )}
+        {isError && <AlertMessage type='error' message={errorMsg} />}
         {/* Comments List */}
         <div>
           <h2 className='text-xl font-bold mb-2'>Comments:</h2>

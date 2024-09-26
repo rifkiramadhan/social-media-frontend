@@ -174,3 +174,27 @@ export const resetPasswordAPI = async data => {
 
   return response.data;
 };
+
+//! List All Users
+export const listAllUsersAPI = async () => {
+  const response = await axios.get(`${BASE_URL}/users/lists`, {
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+//! Togle Blocking
+export const toggleUserBlockAPI = async data => {
+  const response = await axios.put(
+    data?.actionURL,
+    {
+      userId: data?.userId,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
