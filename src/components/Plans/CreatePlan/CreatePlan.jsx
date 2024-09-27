@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPlanAPI } from '../../../APIServices/plans/plansAPI';
-import AlertMessage from '../../Alert/AllertMessage';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 
 const CreatePlan = () => {
   //navigate

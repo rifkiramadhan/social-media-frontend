@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { loginAPI } from '../../../APIServices/users/usersAPI';
-import AlertMessage from '../../Alert/AllertMessage';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 
 const Login = () => {
   //! Navigate

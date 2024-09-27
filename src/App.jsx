@@ -1,45 +1,47 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CreatePost from './components/Posts/CreatePost/CreatePost';
-import PostList from './components/Posts/PostList/PostList';
-import PublicNavbar from './components/Navbar/publicNavbar/publicNavbar';
-import Home from './components/Home/Home';
-import PostDetails from './components/Posts/PostDetails/PostDetails';
-import Login from './components/User/Login/Login';
-import Register from './components/User/Register/Register';
-import Profile from './components/User/Settings/Profile/Profile';
-import PrivateNavbar from './components/Navbar/privateNavbar/privateNavbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatusAPI } from './APIServices/users/usersAPI';
 import { useQuery } from '@tanstack/react-query';
 import { isAuthenticated } from './redux/slices/authSlices';
 import { useEffect } from 'react';
-import AuthRoute from './components/Auth/AuthRoute/AuthRoute';
-import AccountSummaryDashboard from './components/User/UserDashboard/AccountSummaryDashboard/AccountSummaryDashboard';
-import AddCategory from './components/Category/AddCategory/AddCategory';
-import CreatePlan from './components/Plans/CreatePlan/CreatePlan';
-import Pricing from './components/Plans/Pricing/Pricing';
-import CheckoutForm from './components/Plans/CheckoutForm/CheckoutForm';
-import PaymentSuccess from './components/Plans/PaymentSuccess/PaymentSuccess';
-import PayingFreePlan from './components/Plans/Playing/PlayingFreePlan/PlayingFreePlan';
-import AccountVerificationDashboard from './components/User/UserDashboard/AccountVerificationDashboard/AccountVerificationDashboard';
-import RequestResetPassword from './components/User/ResetPassword/RequestResetPassword/RequestResetPassword';
-import ResetPassword from './components/User/ResetPassword/ResetPassword/ResetPassword';
-import UpdatePost from './components/Posts/UpdatePost/UpdatePost';
-import Rankings from './components/Rankings/Rankings';
-import NotificationsLists from './components/Notification/NotificationLists/NotificationLists';
-import MyFollowing from './components/User/Followers/MyFollowing/MyFollowing';
-import MyFollowers from './components/User/Followers/MyFollowers/MyFollowers';
-import MyEarnings from './components/User/MyEarnings/MyEarnings';
-import DashboardPosts from './components/User/UserDashboard/DashboardPosts/DashboardPosts';
-import SettingsPage from './components/User/Settings/Settings';
-import UpdateEmail from './components/User/Settings/UpdateEmail/UpdateEmail';
-import UploadProfilePicture from './components/User/Settings/UploadProfilePicture/UploadProfilePicture';
-import UsersList from './components/User/UsersList/UsersList';
-import UserDashboard from './components/User/UserDashboard/UserDashboard';
+import {
+  AccountSummaryDashboard,
+  AccountVerificationDashboard,
+  AddCategory,
+  AuthRoute,
+  CheckoutForm,
+  CreatePlan,
+  CreatePost,
+  DashboardPosts,
+  Home,
+  Login,
+  MyEarnings,
+  MyFollowers,
+  MyFollowing,
+  NotificationsLists,
+  PayingFreePlan,
+  PaymentSuccess,
+  PostDetails,
+  PostList,
+  Pricing,
+  PrivateNavbar,
+  Profile,
+  PublicNavbar,
+  Rankings,
+  Register,
+  RequestResetPassword,
+  ResetPassword,
+  SettingsPage,
+  UpdateEmail,
+  UpdatePost,
+  UploadProfilePicture,
+  UserDashboard,
+  UsersList,
+} from './components';
 
 const App = () => {
   //! User Query
-  const { isError, isLoading, isSuccess, data, error, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ['user-auth'],
     queryFn: checkAuthStatusAPI,
   });

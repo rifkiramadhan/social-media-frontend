@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
-import AlertMessage from '../../../Alert/AllertMessage';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 import { sendUpdateEmailAPI } from '../../../../APIServices/users/usersAPI';
 import { useNavigate } from 'react-router-dom';
 

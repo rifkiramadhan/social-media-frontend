@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { paymentIntentAPI } from '../../../APIServices/stripe/stripeAPI';
 import { useState } from 'react';
-import AlertMessage from '../../Alert/AllertMessage';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 
 const CheckoutForm = () => {
   //! Get the id of the plan

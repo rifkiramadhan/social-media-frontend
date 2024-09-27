@@ -4,7 +4,7 @@ import { AiOutlineDashboard } from 'react-icons/ai';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { sendVerifyUserAccountAPI } from '../../../../APIServices/users/usersAPI';
-import AlertMessage from '../../../Alert/AllertMessage';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const AccountVerificationDashboard = () => {
   const [isVisible, setIsVisible] = useState(false);

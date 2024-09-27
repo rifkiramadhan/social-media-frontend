@@ -6,7 +6,7 @@ import ReactQuill from 'react-quill';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { createPostAPI } from '../../../APIServices/posts/postsAPI';
 import { FaTimesCircle } from 'react-icons/fa';
-import AlertMessage from '../../Alert/AllertMessage';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 import Select from 'react-select';
 import { fetchCategoriesAPI } from '../../../APIServices/categories/categoriesAPI';
 

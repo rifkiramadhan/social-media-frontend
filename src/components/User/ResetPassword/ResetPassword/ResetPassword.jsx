@@ -5,7 +5,7 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { resetPasswordAPI } from '../../../../APIServices/users/usersAPI';
-import AlertMessage from '../../../Alert/AllertMessage';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const ResetPassword = () => {
   //get the token from the url

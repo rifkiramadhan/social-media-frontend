@@ -5,7 +5,7 @@ import { AiOutlineMail } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { forgotPasswordAPI } from '../../../../APIServices/users/usersAPI';
-import AlertMessage from '../../../Alert/AllertMessage';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const RequestResetPassword = () => {
   //! Navigate

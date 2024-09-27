@@ -6,8 +6,8 @@ import {
   fetchAllPosts,
 } from '../../../APIServices/posts/postsAPI';
 import { Link } from 'react-router-dom';
-import NoDataFound from '../../Alert/NoDataFound';
-import AlertMessage from '../../Alert/AllertMessage';
+import NoDataFound from '../../Alert/NoDataFound/NoDataFound';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 import CategoryList from '../../Category/CategoryList/CategoryList';
 import { fetchCategoriesAPI } from '../../../APIServices/categories/categoriesAPI';
 import { FaSearch } from 'react-icons/fa';

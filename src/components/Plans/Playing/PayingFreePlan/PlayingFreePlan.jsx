@@ -3,7 +3,7 @@ import React from 'react';
 import { FaGift } from 'react-icons/fa';
 import { freePlanAPI } from '../../../../APIServices/stripe/stripeAPI';
 import { Link } from 'react-router-dom';
-import AlertMessage from '../../../Alert/AllertMessage';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const PayingFreePlan = () => {
   const { data, isError, isLoading, error, isSuccess } = useQuery({

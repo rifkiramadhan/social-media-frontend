@@ -15,7 +15,7 @@ import {
   userProfileAPI,
 } from '../../../../APIServices/users/usersAPI';
 import { getMyEarningsAPI } from '../../../../APIServices/earnings/earningsAPI';
-import AlertMessage from '../../../Alert/AllertMessage';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const AccountSummaryDashboard = () => {
   const { data, isLoading, isError, error } = useQuery({
@@ -180,7 +180,10 @@ const AccountSummaryDashboard = () => {
           <p className='font-bold'>Email Required</p>
           <p>
             Please{' '}
-            <Link to='/add-email' className='underline text-blue-800'>
+            <Link
+              to='/dashboard/update-email'
+              className='underline text-blue-800'
+            >
               add an email
             </Link>{' '}
             to your account for important notifications.

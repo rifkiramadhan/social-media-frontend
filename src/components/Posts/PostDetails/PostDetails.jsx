@@ -24,7 +24,7 @@ import {
 } from '../../../APIServices/users/usersAPI';
 import { useFormik } from 'formik';
 import { createCommentAPI } from '../../../APIServices/comments/commentsAPI';
-import AlertMessage from '../../Alert/AllertMessage';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 
 const PostDetails = () => {
   const [comment, setComment] = useState('');

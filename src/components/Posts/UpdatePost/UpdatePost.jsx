@@ -8,7 +8,7 @@ import Select from 'react-select';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPost, updatePostAPI } from '../../../APIServices/posts/postsAPI';
-import AlertMessage from '../../Alert/AllertMessage';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 import { fetchCategoriesAPI } from '../../../APIServices/categories/categoriesAPI';
 
 const UpdatePost = () => {
