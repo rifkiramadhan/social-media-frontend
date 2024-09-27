@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ReactQuill from 'react-quill';
@@ -18,7 +18,7 @@ const UpdatePost = () => {
 
   //fetch the post details
   // ! use query
-  const { data: postDetails, refetch: refetchPost } = useQuery({
+  const { data: postDetails } = useQuery({
     queryKey: ['post-details'],
     queryFn: () => fetchPost(postId),
   });

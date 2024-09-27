@@ -35,7 +35,7 @@ export const loginAPI = async userData => {
 };
 
 //---- Check Auth Status User ----//
-export const checkAuthStatusAPI = async userData => {
+export const checkAuthStatusAPI = async () => {
   const response = await axios.get(`${BASE_URL}/users/checkAuthenticated`, {
     withCredentials: true,
   });
@@ -44,7 +44,7 @@ export const checkAuthStatusAPI = async userData => {
 };
 
 //---- User Profile ----//
-export const userProfileAPI = async userData => {
+export const userProfileAPI = async () => {
   const response = await axios.get(`${BASE_URL}/users/profile`, {
     withCredentials: true,
   });
@@ -53,7 +53,7 @@ export const userProfileAPI = async userData => {
 };
 
 //---- Logout User ----//
-export const logoutAPI = async userData => {
+export const logoutAPI = async () => {
   const response = await axios.post(
     `${BASE_URL}/users/logout`,
     {},
@@ -92,7 +92,7 @@ export const unfollowUserAPI = async userId => {
 };
 
 //! Send email verification token
-export const sendEmailVerificationTokenAPI = async userId => {
+export const sendEmailVerificationTokenAPI = async () => {
   const response = await axios.put(
     `${BASE_URL}/users/account-verification-email`,
     {},

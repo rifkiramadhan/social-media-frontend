@@ -1,10 +1,7 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
 import '../PostCss.css';
-import {
-  deletePostAPI,
-  fetchAllPosts,
-} from '../../../APIServices/posts/postsAPI';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { fetchAllPosts } from '../../../APIServices/posts/postsAPI';
 import { Link } from 'react-router-dom';
 import NoDataFound from '../../Alert/NoDataFound/NoDataFound';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
@@ -12,6 +9,7 @@ import CategoryList from '../../Category/CategoryList/CategoryList';
 import { fetchCategoriesAPI } from '../../../APIServices/categories/categoriesAPI';
 import { FaSearch } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
+import { AiOutlineUser } from 'react-icons/ai';
 import truncateString from '../../../utils/truncateString';
 
 const PostList = () => {
@@ -21,7 +19,7 @@ const PostList = () => {
   const [page, setPage] = useState(1);
 
   //! User Query
-  const { isError, isLoading, isSuccess, data, error, refetch } = useQuery({
+  const { isError, isLoading, data, refetch } = useQuery({
     queryKey: ['lists-posts', { ...filters, page }],
     queryFn: () =>
       fetchAllPosts({ ...filters, title: searchTerm, page, limit: 10 }),
@@ -61,28 +59,11 @@ const PostList = () => {
     refetch();
   };
 
-  //! Post Mutation
-  const postMutation = useMutation({
-    mutationKey: ['delete-post'],
-    mutationFn: deletePostAPI,
-  });
-
   //! Fetch Categories
   const { data: categoriesData } = useQuery({
     queryKey: ['category-lists'],
     queryFn: fetchCategoriesAPI,
   });
-
-  //! Delete Handler
-  // const deleteHandler = async postId => {
-  //   postMutation
-  //     .mutateAsync(postId)
-  //     .then(() => {
-  //       //! refetch
-  //       refetch();
-  //     })
-  //     .catch(e => console.log(e));
-  // };
 
   return (
     <section className='overflow-hidden'>
@@ -150,7 +131,24 @@ const PostList = () => {
                       alt={post?._id}
                     />
                   </div>
-                  <div className='pt-6 pb-3 px-4'>
+                  <div className='pt-3 pb-3 px-2'>
+                    <div className='inline-flex font-bold pt-3 pb-3 gap-2 justify-center items-center'>
+                      {post?.author?.profilePicture ? (
+                        <img
+                          src={post?.author?.profilePicture?.path}
+                          alt={post?.author?.profilePicture?.fieldname}
+                          className='h-10 w-10 object-cover rounded-full'
+                        />
+                      ) : (
+                        <button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500'>
+                          <span className='sr-only'>Open user menu</span>
+                          <AiOutlineUser className='h-10 w-10 text-gray-400' />
+                        </button>
+                      )}
+                      <span className='text-gray-600 text-md'>
+                        {post?.author?.username}
+                      </span>
+                    </div>
                     <div
                       className='rendered-html-content mb-2'
                       dangerouslySetInnerHTML={{
@@ -170,7 +168,7 @@ const PostList = () => {
                       >
                         <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
                       </svg>
-                      <div className='py-1 px-2 rounded-md border border-gray-100 text-xs font-medium text-gray-700 inline-block'>
+                      <div className='py-1 rounded-md border border-gray-100 text-sm font-medium text-gray-700 inline-block'>
                         {post?.category?.categoryName}
                       </div>
                     </div>

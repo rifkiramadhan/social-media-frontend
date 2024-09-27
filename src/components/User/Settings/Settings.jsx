@@ -1,5 +1,4 @@
-import React from 'react';
-import { FaUserCircle, FaEnvelope, FaKey, FaCheckCircle } from 'react-icons/fa';
+import { FaUserCircle, FaEnvelope } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const SettingsPage = () => {

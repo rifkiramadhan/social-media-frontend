@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import 'react-quill/dist/quill.snow.css';
 import { FaTimesCircle } from 'react-icons/fa';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { uploadProfilePictureAPI } from '../../../../APIServices/users/usersAPI';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
@@ -19,6 +19,7 @@ const UploadProfilePicture = () => {
     mutationKey: ['upload-profile-picture'],
     mutationFn: uploadProfilePictureAPI,
   });
+
   const formik = useFormik({
     // initial data
     initialValues: {

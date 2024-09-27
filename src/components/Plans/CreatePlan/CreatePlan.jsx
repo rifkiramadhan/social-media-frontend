@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createPlanAPI } from '../../../APIServices/plans/plansAPI';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
@@ -53,6 +52,8 @@ const CreatePlan = () => {
     },
   });
 
+  console.log(planMutation);
+
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
       <form
@@ -72,7 +73,7 @@ const CreatePlan = () => {
         {planMutation.isError && (
           <AlertMessage
             type='error'
-            message={planMutation.error.response.data.message}
+            message={planMutation?.error?.response?.data?.message}
           />
         )}
 

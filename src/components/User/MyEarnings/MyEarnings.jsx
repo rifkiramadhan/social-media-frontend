@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { FaDollarSign } from 'react-icons/fa';
 import { getMyEarningsAPI } from '../../../APIServices/earnings/earningsAPI';
 import NoDataFound from '../../Alert/NoDataFound/NoDataFound';

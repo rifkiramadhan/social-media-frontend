@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { useFormik } from 'formik';
-import React from 'react';
 import * as Yup from 'yup';
 import { addCategoryAPI } from '../../../APIServices/categories/categoriesAPI';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';

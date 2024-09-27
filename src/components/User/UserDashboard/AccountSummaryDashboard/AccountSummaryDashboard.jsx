@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import React from 'react';
 import {
   FaEye,
   FaDollarSign,
@@ -18,7 +17,7 @@ import { getMyEarningsAPI } from '../../../../APIServices/earnings/earningsAPI';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const AccountSummaryDashboard = () => {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['profile'],
     queryFn: userProfileAPI,
   });

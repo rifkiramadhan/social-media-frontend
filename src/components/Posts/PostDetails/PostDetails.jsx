@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   FaThumbsUp,
   FaThumbsDown,
@@ -17,6 +17,7 @@ import {
   likePostAPI,
 } from '../../../APIServices/posts/postsAPI';
 import { RiUserUnfollowFill, RiUserFollowLine } from 'react-icons/ri';
+import { AiOutlineUser } from 'react-icons/ai';
 import {
   followUserAPI,
   unfollowUserAPI,
@@ -25,9 +26,10 @@ import {
 import { useFormik } from 'formik';
 import { createCommentAPI } from '../../../APIServices/comments/commentsAPI';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
+import Avatar from '../../User/Avatar/Avatar';
 
 const PostDetails = () => {
-  const [comment, setComment] = useState('');
+  const [comment] = useState('');
   const navigate = useNavigate();
 
   //! Get the post id
@@ -37,9 +39,7 @@ const PostDetails = () => {
   const {
     isError,
     isLoading,
-    isSuccess,
     data,
-    error,
     refetch: refetchPost,
   } = useQuery({
     queryKey: ['post-details'],
@@ -55,9 +55,8 @@ const PostDetails = () => {
   const handleClick = () => {
     // Ambil pathname dari useLocation
     const pathname = location.pathname;
-
     // Memisahkan URL menjadi array berdasarkan '/'
-    const parts = pathname.split('/');
+    pathname.split('/');
 
     // Potong URL untuk mengambil 'dashboard/update-post/idpostingan'
     const newPath = `dashboard/update-post/${postId}`;
@@ -79,17 +78,34 @@ const PostDetails = () => {
       .then(() => {
         navigate('/posts');
         //! refetch
-        refetch();
+        refetchPost();
       })
       .catch(e => console.log(e));
   };
 
   //! Follow Logic
   //! Get the author id
-  const targetId = data?.postFound?.author;
+  const targetId = data?.postFound?.author?._id;
 
   //! Get the login userid
   const userId = profileData?.user?._id;
+
+  //! Check if user is logged in
+  const isLoggedIn = Boolean(userId);
+
+  //! Redirect to login if not logged in
+  const redirectToLogin = () => {
+    navigate('/login');
+  };
+
+  //! Protect actions if not logged in
+  const handleProtectedAction = action => {
+    if (!isLoggedIn) {
+      redirectToLogin(); // Redirect to login if not authenticated
+    } else {
+      action(); // Execute the action if authenticated
+    }
+  };
 
   //! Get if the user/login is following the user
   const isFollowing = profileData?.user?.following?.find(
@@ -106,13 +122,14 @@ const PostDetails = () => {
 
   //! Handler for follow mutation
   const followUserHandler = async () => {
-    followUserMutation
-      .mutateAsync(targetId)
-      .then(() => {
-        //! Update the profile after following
-        refetchProfile();
-      })
-      .catch(e => console.log(e));
+    handleProtectedAction(() => {
+      followUserMutation
+        .mutateAsync(targetId)
+        .then(() => {
+          refetchProfile();
+        })
+        .catch(e => console.log(e));
+    });
   };
 
   //! Follow & Unfollow Mutation
@@ -123,13 +140,14 @@ const PostDetails = () => {
 
   //! Handler for unfollow mutation
   const unfollowUserHandler = async () => {
-    unfollowUserMutation
-      .mutateAsync(targetId)
-      .then(() => {
-        //! Update the profile after unfollowing
-        refetchProfile();
-      })
-      .catch(e => console.log(e));
+    handleProtectedAction(() => {
+      unfollowUserMutation
+        .mutateAsync(targetId)
+        .then(() => {
+          refetchProfile();
+        })
+        .catch(e => console.log(e));
+    });
   };
 
   //! Likes & dislikes Mutation
@@ -140,13 +158,14 @@ const PostDetails = () => {
 
   //! Handler for like mutation
   const likePostHandler = async () => {
-    likePostMutation
-      .mutateAsync(postId)
-      .then(() => {
-        //! Update the profile after unfollowing
-        refetchPost();
-      })
-      .catch(e => console.log(e));
+    handleProtectedAction(() => {
+      likePostMutation
+        .mutateAsync(postId)
+        .then(() => {
+          refetchPost();
+        })
+        .catch(e => console.log(e));
+    });
   };
 
   const dislikePostMutation = useMutation({
@@ -156,13 +175,14 @@ const PostDetails = () => {
 
   //! Handler for dislike mutation
   const dislikePostHandler = async () => {
-    dislikePostMutation
-      .mutateAsync(postId)
-      .then(() => {
-        //! Update the profile after unfollowing
-        refetchPost();
-      })
-      .catch(e => console.log(e));
+    handleProtectedAction(() => {
+      dislikePostMutation
+        .mutateAsync(postId)
+        .then(() => {
+          refetchPost();
+        })
+        .catch(e => console.log(e));
+    });
   };
 
   const commentMutation = useMutation({
@@ -187,14 +207,17 @@ const PostDetails = () => {
         postId,
       };
 
-      commentMutation
-        .mutateAsync(data)
-        .then(() => {
-          refetchPost();
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      handleProtectedAction(() => {
+        commentMutation
+          .mutateAsync(data)
+          .then(() => {
+            refetchPost();
+            formik.resetForm();
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      });
     },
   });
 
@@ -255,25 +278,43 @@ const PostDetails = () => {
           )
         ) : null}
         {/* author */}
-        <span className='ml-2'>{/* {postData?.author?.username} */}</span>
+        <div className='flex font-bold pt-6 pb-3 px-2 gap-2 items-center'>
+          {data?.postFound?.author?.profilePicture ? (
+            <img
+              src={data?.postFound?.author?.profilePicture?.path}
+              alt={data?.postFound?.author?.profilePicture?.fieldname}
+              className='h-10 w-10 object-cover rounded-full'
+            />
+          ) : (
+            <button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500'>
+              <span className='sr-only'>Open user menu</span>
+              <AiOutlineUser className='h-10 w-10 text-gray-400' />
+            </button>
+          )}
+          <span className='text-gray-600 text-lg'>
+            {data?.postFound?.author?.username}
+          </span>
+        </div>
         {/* post details */}
-        <div className='flex justify-between items-center mb-3'>
+        <div className='flex justify-between items-center mb-3 mt-6'>
           <div
             className='rendered-html-content mb-2'
             dangerouslySetInnerHTML={{ __html: data?.postFound?.description }}
           />
 
           {/* Edit delete icon */}
-          <div className='flex gap-2'>
-            <FaEdit
-              className='text-blue-500 cursor-pointer'
-              onClick={handleClick}
-            />
-            <FaTrashAlt
-              className='text-red-500 cursor-pointer'
-              onClick={() => deleteHandler(data?.postFound?._id)}
-            />
-          </div>
+          {userId === targetId ? (
+            <div className='flex gap-2'>
+              <FaEdit
+                className='text-blue-500 cursor-pointer'
+                onClick={handleClick}
+              />
+              <FaTrashAlt
+                className='text-red-500 cursor-pointer'
+                onClick={() => deleteHandler(data?.postFound?._id)}
+              />
+            </div>
+          ) : null}
         </div>
 
         {/* Comment Form */}
@@ -304,18 +345,41 @@ const PostDetails = () => {
         {isError && <AlertMessage type='error' message={errorMsg} />}
         {/* Comments List */}
         <div>
-          <h2 className='text-xl font-bold mb-2'>Comments:</h2>
-          {data?.postFound?.comments?.map((comment, index) => (
-            <div key={index} className='border-b border-gray-300 mb-2 pb-2'>
-              <p className='text-gray-800'>{comment.content}</p>
-              <span className='text-gray-600 text-sm'>
-                - {comment.author?.username}
-              </span>
-              <small className='text-gray-600 text-sm ml-2'>
-                {new Date(comment.createdAt).toLocaleDateString()}
-              </small>
-            </div>
-          ))}
+          <h2 className='text-xl font-bold mb-6 mt-6'>Comments:</h2>
+          {data?.postFound?.comments
+            ?.slice()
+            .reverse()
+            .map((comment, index) => (
+              <div key={index} className='border-b border-gray-300 mb-2 pb-2'>
+                <div className='flex font-bold items-center gap-2'>
+                  {comment?.author?.profilePicture?.path ? (
+                    <img
+                      src={comment?.author?.profilePicture?.path}
+                      alt={comment?.author?.profilePicture?.fieldname}
+                      className='h-5 w-5 object-cover rounded-full'
+                    />
+                  ) : (
+                    <Avatar />
+                  )}
+                  <span className='text-gray-600 text-sm'>
+                    {comment.author?.username}
+                  </span>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width={4}
+                    height={4}
+                    viewBox='0 0 4 4'
+                    fill='none'
+                  >
+                    <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
+                  </svg>
+                  <small className='text-gray-400 text-xs'>
+                    {new Date(comment.createdAt).toLocaleDateString()}
+                  </small>
+                </div>
+                <p className='mt-2 text-gray-600'>{comment.content}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>

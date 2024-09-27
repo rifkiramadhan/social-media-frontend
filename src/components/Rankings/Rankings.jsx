@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { FaTrophy, FaDollarSign } from 'react-icons/fa';
 import { fetchAllEarningsAPI } from '../../APIServices/earnings/earningsAPI';
 import Avatar from '../User/Avatar/Avatar';
 
 const Rankings = () => {
-  const { data, isError, isLoading, isSuccess, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['ranking'],
     queryFn: fetchAllEarningsAPI,
   });

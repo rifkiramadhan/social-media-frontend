@@ -1,6 +1,3 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import React from 'react';
-
 const CategoryList = ({ categories, onCategorySelect, onClearFilters }) => {
   return (
     <div className='flex flex-wrap gap-2 mb-10'>

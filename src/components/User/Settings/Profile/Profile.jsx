@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
-import React from 'react';
 import { checkAuthStatusAPI } from '../../../../APIServices/users/usersAPI';
 import { useEffect } from 'react';
 import { isAuthenticated } from '../../../../redux/slices/authSlices';
 
 const Profile = () => {
   //! User Query
-  const { isError, isLoading, isSuccess, data, error, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ['user-auth'],
     queryFn: checkAuthStatusAPI,
   });
@@ -16,8 +15,10 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(isAuthenticated(data));
-  }, [data]);
+    if (data) {
+      dispatch(isAuthenticated(data));
+    }
+  }, [data, dispatch]);
 
   return <div>Profile</div>;
 };

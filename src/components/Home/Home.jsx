@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Features from './Features';
 import CallToAction from './CallToAction';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { FaCreditCard } from 'react-icons/fa';
 
 const PayingPremiumPlan = () => {

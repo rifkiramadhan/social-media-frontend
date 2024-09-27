@@ -1,18 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { FaGift } from 'react-icons/fa';
 import { freePlanAPI } from '../../../../APIServices/stripe/stripeAPI';
 import { Link } from 'react-router-dom';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const PayingFreePlan = () => {
-  const { data, isError, isLoading, error, isSuccess } = useQuery({
+  const { data, isError, isLoading, isSuccess } = useQuery({
     queryKey: ['free-plan'],
     queryFn: freePlanAPI,
   });
   console.log(data);
 
-  // alert('h');
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-green-100'>
       {/* show loading */}

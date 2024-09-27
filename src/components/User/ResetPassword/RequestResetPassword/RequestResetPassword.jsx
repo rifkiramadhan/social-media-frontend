@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import React from 'react';
 import * as Yup from 'yup';
 import { AiOutlineMail } from 'react-icons/ai';
 // import { useNavigate } from 'react-router-dom';

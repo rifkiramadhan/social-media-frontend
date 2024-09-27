@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ import truncateString from '../../../../utils/truncateString';
 import { deletePostAPI } from '../../../../APIServices/posts/postsAPI';
 
 const DashboardPosts = () => {
-  const { data, isLoading, isError, error, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['profile'],
     queryFn: userProfileAPI,
   });
@@ -64,7 +63,7 @@ const DashboardPosts = () => {
                   <tbody>
                     {userPosts?.map(post => {
                       return (
-                        <tr className='text-xs bg-gray-50'>
+                        <tr key={post?._id} className='text-xs bg-gray-50'>
                           <td className='py-5 px-6 font-medium flex items-center space-x-2'>
                             <img
                               src={post?.image?.path}

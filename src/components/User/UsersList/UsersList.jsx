@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { FiUserX, FiUserCheck } from 'react-icons/fi';
 import {
   listAllUsersAPI,
@@ -8,7 +7,7 @@ import {
 import { BASE_URL } from '../../../utils/baseEndpoint';
 
 const UsersList = () => {
-  const { data, isError, isLoading, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ['users'],
     queryFn: listAllUsersAPI,
   });

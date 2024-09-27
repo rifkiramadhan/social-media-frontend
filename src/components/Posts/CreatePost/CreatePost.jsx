@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import 'react-quill/dist/quill.snow.css';
 import * as Yup from 'yup';
@@ -9,8 +9,11 @@ import { FaTimesCircle } from 'react-icons/fa';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 import Select from 'react-select';
 import { fetchCategoriesAPI } from '../../../APIServices/categories/categoriesAPI';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
+  const navigate = useNavigate();
+
   //! State for wysiwyg
   const [description, setDescription] = useState('');
 
@@ -22,6 +25,11 @@ const CreatePost = () => {
   const postMutation = useMutation({
     mutationKey: ['create-post'],
     mutationFn: createPostAPI,
+    onSuccess: () => {
+      setTimeout(() => {
+        navigate('/posts');
+      }, 1000);
+    },
   });
 
   const formik = useFormik({
@@ -42,7 +50,7 @@ const CreatePost = () => {
     //! Submit
     onSubmit: values => {
       const formData = new FormData();
-      formData.append('description', values.description);
+      formData.append('description', description);
       formData.append('image', values.image);
       formData.append('category', values.category);
       postMutation.mutate(formData);
@@ -123,7 +131,7 @@ const CreatePost = () => {
             {/* ReactQuill here */}
             <ReactQuill
               theme='snow'
-              value={formik.values.description}
+              value={description}
               onChange={value => {
                 setDescription(value);
                 formik.setFieldValue('description', value);

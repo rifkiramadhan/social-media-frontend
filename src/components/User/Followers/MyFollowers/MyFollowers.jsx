@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { userProfileAPI } from '../../../../APIServices/users/usersAPI';
 import Avatar from '../../Avatar/Avatar';
 
 const MyFollowers = () => {
   //! Fetch userProfile
-  const { data, isLoading, isError, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ['profile'],
     queryFn: userProfileAPI,
   });
@@ -33,7 +32,10 @@ const MyFollowers = () => {
           <div className='flex flex-wrap -mx-4 -mb-8'>
             {myFollowers?.map(follower => {
               return (
-                <div className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'>
+                <div
+                  key={follower?._id}
+                  className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'
+                >
                   <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
                     {follower?.profilePicture?.path ? (
                       <img

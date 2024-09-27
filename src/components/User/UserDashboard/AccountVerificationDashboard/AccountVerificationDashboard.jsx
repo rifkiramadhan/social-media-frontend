@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { AiOutlineDashboard } from 'react-icons/ai';
 import { Link, useParams } from 'react-router-dom';
@@ -26,7 +26,7 @@ const AccountVerificationDashboard = () => {
 
   useEffect(() => {
     sendVerifyUserAccountMutation.mutate(verifyToken);
-  }, []);
+  }, [verifyToken, sendVerifyUserAccountMutation]);
 
   return (
     <div>

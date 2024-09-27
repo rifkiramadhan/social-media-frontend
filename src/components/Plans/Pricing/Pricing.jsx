@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { fetchPlansAPI } from '../../../APIServices/plans/plansAPI';
 
@@ -183,7 +182,7 @@ const Pricing = () => {
               <h2 className='text-xl font-bold font-heading mb-2'>
                 Is there refund?
               </h2>
-              <p className='text-gray-500'>No. We don't offer refund.</p>
+              <p className='text-gray-500'>No. We don&apos;t offer refund.</p>
             </div>
           </div>
         </div>

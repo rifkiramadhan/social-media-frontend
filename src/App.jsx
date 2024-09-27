@@ -50,12 +50,14 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(isAuthenticated(data));
-  }, [data]);
+    if (data) {
+      dispatch(isAuthenticated(data));
+    }
+  }, [data, dispatch]);
 
   //! Get the login user from store
   const { userAuth } = useSelector(state => state.auth);
-  console.log(userAuth);
+
   return (
     <BrowserRouter>
       {/* Navbar */}

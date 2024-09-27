@@ -20,12 +20,13 @@ const PrivateNavbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, isError, isLoading, isSuccess, error, refetch } = useQuery({
-    queryKey: ['ranking'],
+  const { data } = useQuery({
+    queryKey: ['user-profile'],
     queryFn: userProfileAPI,
+    onSuccess: () => {
+      window.location.refresh();
+    },
   });
-
-  refetch();
 
   console.log(data);
 
@@ -43,6 +44,7 @@ const PrivateNavbar = () => {
         //! Dispatch action to logout
         dispatch(logout(null));
         navigate('/posts');
+        window.location.reload();
       })
       .catch(e => console.log(e));
   };

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
@@ -54,7 +53,7 @@ const Login = () => {
               to='/register'
               className='inline-block text-gray-500 hover: transition duration-200 mb-8'
             >
-              <span>Don't have an account?</span> {''}
+              <span>Don&apos;t have an account?</span> {''}
               <span />
               <span className='font-bold font-heading'>Register</span>
             </Link>
