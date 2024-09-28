@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
+import { PlansVersion } from '../../utils/baseEndpointVersion/plansVersion/plansVersion';
+import { PlansGrouping } from '../../utils/baseEndpointGrouping/plansGrouping/plansGrouping';
 
 //! Create that must return a promise
-const BASE_URL = 'http://localhost:5000/api/v1/plans';
+const BASE_URL = `${BASE_URL_API}/${PlansVersion}/${PlansGrouping}`;
 
 //! Create Post API
 export const createPlanAPI = async planData => {

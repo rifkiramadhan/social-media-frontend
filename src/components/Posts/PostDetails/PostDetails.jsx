@@ -52,7 +52,7 @@ const PostDetails = () => {
     queryFn: () => userProfileAPI(),
   });
 
-  const handleClick = () => {
+  const editHandler = () => {
     // Ambil pathname dari useLocation
     const pathname = location.pathname;
     // Memisahkan URL menjadi array berdasarkan '/'
@@ -305,14 +305,20 @@ const PostDetails = () => {
           {/* Edit delete icon */}
           {userId === targetId ? (
             <div className='flex gap-2'>
-              <FaEdit
-                className='text-blue-500 cursor-pointer'
-                onClick={handleClick}
-              />
-              <FaTrashAlt
-                className='text-red-500 cursor-pointer'
+              <button
+                onClick={editHandler}
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+              >
+                <FaEdit className='text-blue-500 cursor-pointer' />
+                <span className='ml-2'>Edit</span>
+              </button>
+              <button
                 onClick={() => deleteHandler(data?.postFound?._id)}
-              />
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
+              >
+                <FaTrashAlt className='text-red-500 cursor-pointer' />
+                <span className='ml-2'>Delete</span>
+              </button>
             </div>
           ) : null}
         </div>

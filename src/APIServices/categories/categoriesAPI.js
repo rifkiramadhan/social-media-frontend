@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { CategoriesVersion } from '../../utils/baseEndpointVersion/categoriesVersion/categoriesVersion';
+import { CategoriesGrouping } from '../../utils/baseEndpointGrouping/categoriesGrouping/categoriesGrouping';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
 
 //! Create that must return a promise
-const BASE_URL = 'http://localhost:5000/api/v1/categories';
+const BASE_URL = `${BASE_URL_API}/${CategoriesVersion}/${CategoriesGrouping}`;
 
 //! Create Post API
 export const addCategoryAPI = async categoryData => {

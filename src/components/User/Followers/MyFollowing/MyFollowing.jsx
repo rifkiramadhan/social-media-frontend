@@ -36,7 +36,7 @@ const MyFollowing = () => {
                   <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
                     {follower?.profilePicture?.path ? (
                       <img
-                        className='w-24 h-24 rounded-full block mb-6 mx-auto'
+                        className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'
                         src={follower?.profilePicture?.path}
                         alt
                       />

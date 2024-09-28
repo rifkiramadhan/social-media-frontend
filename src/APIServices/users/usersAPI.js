@@ -1,10 +1,15 @@
-import { BASE_URL } from '../../utils/baseEndpoint';
+// import { BASE_URL } from '../../utils/baseEndpointURL';
 import axios from 'axios';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
+import { UsersVersion } from '../../utils/baseEndpointVersion/usersVersion/usersVersion';
+import { UsersGrouping } from '../../utils/baseEndpointGrouping/usersGrouping/usersGrouping';
+
+const BASE_URL = `${BASE_URL_API}/${UsersVersion}/${UsersGrouping}`;
 
 //! Register user
 export const registerAPI = async userData => {
   const response = await axios.post(
-    `${BASE_URL}/users/register`,
+    `${BASE_URL}/register`,
     {
       username: userData?.username,
       password: userData?.password,
@@ -21,7 +26,7 @@ export const registerAPI = async userData => {
 //! Login user
 export const loginAPI = async userData => {
   const response = await axios.post(
-    `${BASE_URL}/users/login`,
+    `${BASE_URL}/login`,
     {
       username: userData?.username,
       password: userData?.password,
@@ -36,7 +41,7 @@ export const loginAPI = async userData => {
 
 //---- Check Auth Status User ----//
 export const checkAuthStatusAPI = async () => {
-  const response = await axios.get(`${BASE_URL}/users/checkAuthenticated`, {
+  const response = await axios.get(`${BASE_URL}/checkAuthenticated`, {
     withCredentials: true,
   });
 
@@ -45,7 +50,7 @@ export const checkAuthStatusAPI = async () => {
 
 //---- User Profile ----//
 export const userProfileAPI = async () => {
-  const response = await axios.get(`${BASE_URL}/users/profile`, {
+  const response = await axios.get(`${BASE_URL}/profile`, {
     withCredentials: true,
   });
 
@@ -55,7 +60,7 @@ export const userProfileAPI = async () => {
 //---- Logout User ----//
 export const logoutAPI = async () => {
   const response = await axios.post(
-    `${BASE_URL}/users/logout`,
+    `${BASE_URL}/logout`,
     {},
     {
       withCredentials: true,
@@ -68,7 +73,7 @@ export const logoutAPI = async () => {
 //! Follow user
 export const followUserAPI = async userId => {
   const response = await axios.put(
-    `${BASE_URL}/users/follow/${userId}`,
+    `${BASE_URL}/follow/${userId}`,
     {},
     {
       withCredentials: true,
@@ -81,7 +86,7 @@ export const followUserAPI = async userId => {
 //! Un Folow user
 export const unfollowUserAPI = async userId => {
   const response = await axios.put(
-    `${BASE_URL}/users/unfollow/${userId}`,
+    `${BASE_URL}/unfollow/${userId}`,
     {},
     {
       withCredentials: true,
@@ -94,7 +99,7 @@ export const unfollowUserAPI = async userId => {
 //! Send email verification token
 export const sendEmailVerificationTokenAPI = async () => {
   const response = await axios.put(
-    `${BASE_URL}/users/account-verification-email`,
+    `${BASE_URL}/account-verification-email`,
     {},
     {
       withCredentials: true,
@@ -107,7 +112,7 @@ export const sendEmailVerificationTokenAPI = async () => {
 //! Update email verification token
 export const sendUpdateEmailAPI = async email => {
   const response = await axios.put(
-    `${BASE_URL}/users/update-email`,
+    `${BASE_URL}/update-email`,
     {
       email,
     },
@@ -122,7 +127,7 @@ export const sendUpdateEmailAPI = async email => {
 //! Send verify user account
 export const sendVerifyUserAccountAPI = async verifyToken => {
   const response = await axios.put(
-    `${BASE_URL}/users/verify-account/${verifyToken}`,
+    `${BASE_URL}/verify-account/${verifyToken}`,
     {},
     {
       withCredentials: true,
@@ -135,7 +140,7 @@ export const sendVerifyUserAccountAPI = async verifyToken => {
 //! Forgot Password
 export const forgotPasswordAPI = async email => {
   const response = await axios.post(
-    `${BASE_URL}/users/forgot-password`,
+    `${BASE_URL}/forgot-password`,
     {
       email,
     },
@@ -150,7 +155,7 @@ export const forgotPasswordAPI = async email => {
 //! Upload Profile Picture
 export const uploadProfilePictureAPI = async formData => {
   const response = await axios.put(
-    `${BASE_URL}/users/upload-profile-picture`,
+    `${BASE_URL}/upload-profile-picture`,
     formData,
     {
       withCredentials: true,
@@ -163,7 +168,7 @@ export const uploadProfilePictureAPI = async formData => {
 //! Reset Password
 export const resetPasswordAPI = async data => {
   const response = await axios.post(
-    `${BASE_URL}/users/reset-password/${data?.verifyToken}`,
+    `${BASE_URL}/reset-password/${data?.verifyToken}`,
     {
       password: data?.password,
     },
@@ -177,7 +182,7 @@ export const resetPasswordAPI = async data => {
 
 //! List All Users
 export const listAllUsersAPI = async () => {
-  const response = await axios.get(`${BASE_URL}/users/lists`, {
+  const response = await axios.get(`${BASE_URL}/lists`, {
     withCredentials: true,
   });
 

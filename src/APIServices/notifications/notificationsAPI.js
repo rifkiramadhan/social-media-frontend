@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
+import { NotificationsVersion } from '../../utils/baseEndpointVersion/notificationsVersion/notificationsVersion';
+import { NotificationsGrouping } from '../../utils/baseEndpointGrouping/notificationsGrouping/notificationsGrouping';
 
 //! Create that must return a promise
-const BASE_URL = 'http://localhost:5000/api/v1/notifications';
+const BASE_URL = `${BASE_URL_API}/${NotificationsVersion}/${NotificationsGrouping}`;
 
 //! Create Post API
 export const fetchNotificationsAPI = async () => {

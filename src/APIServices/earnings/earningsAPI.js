@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
+import { EarningsVersion } from '../../utils/baseEndpointVersion/earningsVersion/earningsVersion';
+import { EarningsGrouping } from '../../utils/baseEndpointGrouping/earningsGrouping/earningsGrouping';
 
 //! Create that must return a promise
-const BASE_URL = 'http://localhost:5000/api/v1/earnings';
+const BASE_URL = `${BASE_URL_API}/${EarningsVersion}/${EarningsGrouping}`;
 
 //! Fetch All Earrnings
 export const fetchAllEarningsAPI = async () => {

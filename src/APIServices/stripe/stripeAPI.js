@@ -1,7 +1,10 @@
 import axios from 'axios';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
+import { StripeVersion } from '../../utils/baseEndpointVersion/stripeVersion/stripeVersion';
+import { StripeGrouping } from '../../utils/baseEndpointGrouping/stripeGrouping/stripeGrouping';
 
 //! Create that must return a promise
-const BASE_URL = 'http://localhost:5000/api/v1/stripe';
+const BASE_URL = `${BASE_URL_API}/${StripeVersion}/${StripeGrouping}`;
 
 //! Create Post API
 export const paymentIntentAPI = async planId => {

@@ -1,0 +1,1 @@
+export const EarningsGrouping = 'earnings';
