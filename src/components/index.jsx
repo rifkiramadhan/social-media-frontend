@@ -13,7 +13,7 @@ export { default as UsersList } from './User/UsersList/UsersList';
 export { default as Login } from './User/Login/Login';
 export { default as Register } from './User/Register/Register';
 export { default as UploadProfilePicture } from './User/Settings/UploadProfilePicture/UploadProfilePicture';
-export { default as UserDashboard } from './User/UserDashboard/UserDashboard.jsx';
+export { default as UserDashboard } from './User/UserDashboard/userDashboard';
 export { default as AddCategory } from './Category/AddCategory/AddCategory';
 export { default as CreatePlan } from './Plans/CreatePlan/CreatePlan';
 export { default as Pricing } from './Plans/Pricing/Pricing';
