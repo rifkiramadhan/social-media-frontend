@@ -27,5 +27,5 @@ export { default as PostList } from './Posts/PostList/PostList';
 export { default as NotificationsLists } from './Notification/NotificationLists/NotificationLists';
 export { default as Rankings } from './Rankings/Rankings';
 export { default as Home } from './Home/Home';
-export { default as PublicNavbar } from './Navbar/publicNavbar/publicNavbar';
-export { default as PrivateNavbar } from './Navbar/privateNavbar/privateNavbar';
+export { default as PublicNavbar } from './Navbar/PublicNavbar/publicNavbar';
+export { default as PrivateNavbar } from './Navbar/PrivateNavbar/privateNavbar';
