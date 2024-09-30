@@ -12,7 +12,6 @@ export { default as UpdateEmail } from './User/Settings/UpdateEmail/UpdateEmail'
 export { default as UsersList } from './User/UsersList/UsersList';
 export { default as Login } from './User/Login/Login';
 export { default as Register } from './User/Register/Register';
-export { default as Profile } from './User/Settings/Profile/Profile';
 export { default as UploadProfilePicture } from './User/Settings/UploadProfilePicture/UploadProfilePicture';
 export { default as UserDashboard } from './User/UserDashboard/UserDashboard';
 export { default as AddCategory } from './Category/AddCategory/AddCategory';

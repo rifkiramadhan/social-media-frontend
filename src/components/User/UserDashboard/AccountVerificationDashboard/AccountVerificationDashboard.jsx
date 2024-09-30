@@ -25,8 +25,10 @@ const AccountVerificationDashboard = () => {
   });
 
   useEffect(() => {
-    sendVerifyUserAccountMutation.mutate(verifyToken);
-  }, [verifyToken, sendVerifyUserAccountMutation]);
+    if (verifyToken) {
+      sendVerifyUserAccountMutation.mutate(verifyToken);
+    }
+  }, [verifyToken]);
 
   return (
     <div>

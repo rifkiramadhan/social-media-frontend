@@ -25,7 +25,6 @@ import {
   PostList,
   Pricing,
   PrivateNavbar,
-  Profile,
   PublicNavbar,
   Rankings,
   Register,
@@ -214,14 +213,6 @@ const App = () => {
         <Route
           element={<ResetPassword />}
           path='/reset-password/:verifyToken'
-        />
-        <Route
-          element={
-            <AuthRoute>
-              <Profile />
-            </AuthRoute>
-          }
-          path='/profile'
         />
         <Route
           element={

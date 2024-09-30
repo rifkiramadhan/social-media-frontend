@@ -5,6 +5,7 @@ import { userProfileAPI } from '../../../../APIServices/users/usersAPI';
 import { htmlToText } from 'html-to-text';
 import truncateString from '../../../../utils/truncateString';
 import { deletePostAPI } from '../../../../APIServices/posts/postsAPI';
+import Profile from '../../Settings/Profile/Profile';
 
 const DashboardPosts = () => {
   const { data, refetch } = useQuery({
@@ -35,13 +36,14 @@ const DashboardPosts = () => {
   const userPosts = data?.user?.posts;
 
   return (
-    <section className='py-8'>
+    <section className='py-2'>
       {userPosts?.length < 0 ? (
         <div>No posts yet</div>
       ) : (
-        <section className='py-8'>
-          <div className='container px-4 mx-auto'>
-            <div className='pt-4 bg-white shadow rounded'>
+        <section className='py-2'>
+          <Profile />
+          <div className='container mx-auto'>
+            <div className='pt-20 bg-white shadow rounded'>
               <div className='flex px-6 pb-4 border-b'>
                 <h3 className='text-xl font-bold'>
                   Your Posts ({userPosts?.length})

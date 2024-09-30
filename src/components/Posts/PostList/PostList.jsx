@@ -69,7 +69,7 @@ const PostList = () => {
     <section className='overflow-hidden'>
       <div className='container px-4 mx-auto'>
         <h1 className='text-4xl lg:text-6xl font-bold font-heading mb-6 mt-16'>
-          Blog Summit Stories
+          Satgasnas News
         </h1>
         {/* featured post */}
         {/* <FeaturedPost post={featuredPost} /> */}
