@@ -4,6 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { registerAPI } from '../../../APIServices/users/usersAPI';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
+import { BASE_URL_API } from '../../../utils/baseEndpointURL';
+import { UsersVersion } from '../../../utils/baseEndpointVersion/usersVersion/usersVersion';
+import { UsersGrouping } from '../../../utils/baseEndpointGrouping/usersGrouping/usersGrouping';
 
 const Register = () => {
   //! Navigate
@@ -152,7 +155,7 @@ const Register = () => {
             </button>
             {/* login with google */}
             <a
-              href='http://localhost:5000/api/v1/users/auth/google'
+              href={`${BASE_URL_API}/${UsersVersion}/${UsersGrouping}/auth/google`}
               className='h-14 inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-white w-full text-center border border-gray-100 shadow hover:bg-gray-50 focus:ring focus:ring-orange-200 transition duration-200'
               type='submit'
             >
