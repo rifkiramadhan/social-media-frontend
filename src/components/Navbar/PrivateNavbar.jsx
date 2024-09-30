@@ -5,11 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { logoutAPI, userProfileAPI } from '../../../APIServices/users/usersAPI';
+import { logoutAPI, userProfileAPI } from '../../APIServices/users/usersAPI';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/slices/authSlices';
-import NotificationCounts from '../../Notification/NotificationCounts/NotificationCounts';
-import Avatar from '../../User/Avatar/Avatar';
+import { logout } from '../../redux/slices/authSlices';
+import NotificationCounts from '../Notification/NotificationCounts/NotificationCounts';
+import Avatar from '../User/Avatar/Avatar';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
