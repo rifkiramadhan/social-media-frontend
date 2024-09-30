@@ -1,3 +1,4 @@
+import './slick-carousel.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuthStatusAPI } from './APIServices/users/usersAPI';

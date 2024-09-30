@@ -126,7 +126,7 @@ const UpdatePost = () => {
               htmlFor='description'
               className='block text-sm font-medium text-gray-700'
             >
-              Description
+              Description:
             </label>
             <ReactQuill
               value={formik.values.description}
@@ -148,7 +148,7 @@ const UpdatePost = () => {
               htmlFor='category'
               className='block text-sm font-medium text-gray-700'
             >
-              Category
+              Category:
             </label>
             <Select
               name='category'
@@ -178,7 +178,7 @@ const UpdatePost = () => {
               htmlFor='images'
               className='block text-sm font-medium text-gray-700 mb-2'
             >
-              Upload Image
+              Upload Image:
             </label>
             <div className='flex justify-center items-center w-full'>
               <input

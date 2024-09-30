@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { userProfileAPI } from '../../../../APIServices/users/usersAPI';
-import Avatar from '../../Avatar/Avatar';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const MyFollowing = () => {
   //! Fetch userProfile
@@ -38,10 +38,9 @@ const MyFollowing = () => {
                       <img
                         className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'
                         src={follower?.profilePicture?.path}
-                        alt
                       />
                     ) : (
-                      <Avatar />
+                      <AiOutlineUser className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto' />
                     )}
                     <h5 className='text-2xl font-bold text-gray-900 mb-2'>
                       {follower?.username}

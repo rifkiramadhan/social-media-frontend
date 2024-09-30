@@ -7,6 +7,7 @@ import {
 } from '../../../../APIServices/users/usersAPI';
 import { useEffect } from 'react';
 import { isAuthenticated } from '../../../../redux/slices/authSlices';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const Profile = () => {
   const { data } = useQuery({
@@ -35,13 +36,12 @@ const Profile = () => {
             {data?.profilePicture ? (
               <img
                 src={data?.profilePicture?.path}
-                className='cat rounded-full w-full h-full border-2 border-orange-500'
+                className='cat rounded-full object-cover w-full h-full border-2 border-orange-500'
                 alt='Profile picture'
               />
             ) : (
-              <img
-                src='https://i.ibb.co/k8ZkTsJ/av1.jpg'
-                className='cat rounded-full w-full h-full border-2 border-orange-500'
+              <AiOutlineUser
+                className='cat rounded-full object-cover w-full h-full border-2 bg-white border-orange-500'
                 alt='Default profile picture'
               />
             )}

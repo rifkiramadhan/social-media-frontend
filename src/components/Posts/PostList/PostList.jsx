@@ -79,9 +79,9 @@ const PostList = () => {
         {/* Searching Feature */}
         <form
           onSubmit={handleSearchSubmit}
-          className='flex flex-col sm:flex-row items-center gap-2 mb-4'
+          className='flex flex-grid items-center gap-2 mb-4'
         >
-          <div className='flex-grow  flex items-center border border-gray-300 rounded-lg overflow-hidden'>
+          <div className='flex-grow flex items-center border border-gray-300 rounded-lg overflow-hidden'>
             <input
               type='text'
               placeholder='Search posts...'
@@ -91,7 +91,7 @@ const PostList = () => {
             />
             <button
               type='submit'
-              className='p-2 text-white bg-orange-500 hover:bg-blue-600 rounded-r-lg'
+              className='whitespace-nowrap p-2 text-white bg-orange-500 hover:bg-blue-600 rounded-r-lg'
             >
               <FaSearch className='h-5 w-5' />
             </button>
