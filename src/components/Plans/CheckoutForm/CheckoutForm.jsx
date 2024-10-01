@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { paymentIntentAPI } from '../../../APIServices/stripe/stripeAPI';
 import { useState } from 'react';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
+import { BASE_URL_API } from '../../../utils/baseEndpointURL';
 
 const CheckoutForm = () => {
   //! Get the id of the plan
@@ -44,7 +45,7 @@ const CheckoutForm = () => {
             elements,
             clientSecret: paymentMutation.data?.clientSecret,
             confirmParams: {
-              return_url: 'http://localhost:5173/success',
+              return_url: `${BASE_URL_API}/success`,
             },
           });
 
