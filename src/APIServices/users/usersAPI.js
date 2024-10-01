@@ -1,11 +1,9 @@
 import axios from 'axios';
-// import { BASE_URL_API } from '../../utils/baseEndpointURL';
-// import { UsersVersion } from '../../utils/baseEndpointVersion/usersVersion/usersVersion';
-// import { UsersGrouping } from '../../utils/baseEndpointGrouping/usersGrouping/usersGrouping';
+import { BASE_URL_API } from '../../utils/baseEndpointURL';
+import { UsersVersion } from '../../utils/baseEndpointVersion/usersVersion/usersVersion';
+import { UsersGrouping } from '../../utils/baseEndpointGrouping/usersGrouping/usersGrouping';
 
-// const BASE_URL = `${BASE_URL_API}/${UsersVersion}/${UsersGrouping}`;
-const BASE_URL =
-  'https://social-media-backend-steel-five.vercel.app/api/v1/users';
+const BASE_URL = `${BASE_URL_API}/${UsersVersion}/${UsersGrouping}`;
 
 //! Register user
 export const registerAPI = async userData => {
