@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { IoLogOutOutline } from 'react-icons/io5';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { logoutAPI, userProfileAPI } from '../../APIServices/users/usersAPI';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlices';
@@ -19,7 +19,6 @@ const PrivateNavbar = () => {
   //! Dispatch hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const { data } = useQuery({
     queryKey: ['user-profile'],
@@ -44,25 +43,7 @@ const PrivateNavbar = () => {
       .then(() => {
         //! Dispatch action to logout
         dispatch(logout(null));
-        //! Clear any local storage items related to authentication
-        localStorage.removeItem('username');
-        localStorage.removeItem('token');
-
-        //! Clear all React Query caches
-        queryClient.clear();
-
-        //! Clear all cookies
-        document.cookie.split(';').forEach(c => {
-          document.cookie = c
-            .replace(/^ +/, '')
-            .replace(
-              /=.*/,
-              '=;expires=' + new Date().toUTCString() + ';path=/'
-            );
-        });
-
-        //! Use replace instead of navigate to prevent going back to authenticated pages
-        navigate('/login', { replace: true });
+        navigate('/posts');
       })
       .catch(e => console.log(e));
   };
@@ -150,7 +131,7 @@ const PrivateNavbar = () => {
                         {/* Profile Image */}
                         {data?.user?.profilePicture?.path ? (
                           <img
-                            className='h-10 w-10 object-cover rounded-full'
+                            className='h-10 w-10 object-contain rounded-full'
                             src={data?.user?.profilePicture?.path}
                             alt='profile'
                           />
@@ -251,7 +232,7 @@ const PrivateNavbar = () => {
                   {/* Profile Image */}
                   {data?.user?.profilePicture?.path ? (
                     <img
-                      className='h-10 object-cover w-10 rounded-full'
+                      className='h-10 object-contain w-10 rounded-full'
                       src={data?.user?.profilePicture?.path}
                       alt='profile'
                     />
