@@ -35,20 +35,36 @@ const PrivateNavbar = () => {
   const logoutMutation = useMutation({
     mutationKey: ['logout'],
     mutationFn: logoutAPI,
-    onSuccess: () => {
-      dispatch(logout());
-      queryClient.clear();
-      navigate('/login', { replace: true });
-      window.location.reload(true);
-    },
-    onError: error => {
-      console.error('Logout error:', error);
-    },
   });
 
   //! Logout Handler
   const logoutHandler = async () => {
-    logoutMutation().mutate();
+    logoutMutation
+      .mutateAsync()
+      .then(() => {
+        //! Dispatch action to logout
+        dispatch(logout(null));
+        //! Clear any local storage items related to authentication
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
+
+        //! Clear all React Query caches
+        queryClient.clear();
+
+        //! Clear all cookies
+        document.cookie.split(';').forEach(c => {
+          document.cookie = c
+            .replace(/^ +/, '')
+            .replace(
+              /=.*/,
+              '=;expires=' + new Date().toUTCString() + ';path=/'
+            );
+        });
+
+        //! Use replace instead of navigate to prevent going back to authenticated pages
+        navigate('/login', { replace: true });
+      })
+      .catch(e => console.log(e));
   };
 
   return (

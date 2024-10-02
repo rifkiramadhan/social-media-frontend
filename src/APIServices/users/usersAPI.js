@@ -40,15 +40,11 @@ export const loginAPI = async userData => {
 
 //---- Check Auth Status User ----//
 export const checkAuthStatusAPI = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/checkAuthenticated`, {
-      withCredentials: true,
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Auth check error:', error);
-    return { isAuthenticated: false };
-  }
+  const response = await axios.get(`${BASE_URL}/checkAuthenticated`, {
+    withCredentials: true,
+  });
+
+  return response.data;
 };
 
 //---- User Profile ----//
@@ -62,29 +58,15 @@ export const userProfileAPI = async () => {
 
 //---- Logout User ----//
 export const logoutAPI = async () => {
-  try {
-    const response = await axios.post(
-      `${BASE_URL}/logout`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
+  const response = await axios.post(
+    `${BASE_URL}/logout`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
 
-    localStorage.removeItem('username');
-    localStorage.removeItem('token');
-
-    document.cookie.split(';').forEach(c => {
-      document.cookie = c
-        .replace(/^ +/, '')
-        .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
-    });
-
-    return response.data;
-  } catch (error) {
-    console.error('Logout error:', error);
-    throw error;
-  }
+  return response.data;
 };
 
 //! Follow user
