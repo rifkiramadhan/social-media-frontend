@@ -43,8 +43,10 @@ const PrivateNavbar = () => {
       .then(() => {
         //! Dispatch action to logout
         dispatch(logout(null));
-        navigate('/posts');
-        window.location.reload();
+        //! Clear any local storage items related to authentication
+        localStorage.removeItem('username');
+        //! Use replace instead of navigate to prevent going back to authenticated pages
+        navigate('/login', { replace: true });
       })
       .catch(e => console.log(e));
   };
