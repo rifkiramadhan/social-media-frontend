@@ -134,7 +134,7 @@ const PrivateNavbar = () => {
                         {/* Profile Image */}
                         {data?.user?.profilePicture?.path ? (
                           <img
-                            className='h-10 w-10 object-contain rounded-full'
+                            className='h-10 w-10 object-cover rounded-full'
                             src={data?.user?.profilePicture?.path}
                             alt='profile'
                           />
@@ -235,7 +235,7 @@ const PrivateNavbar = () => {
                   {/* Profile Image */}
                   {data?.user?.profilePicture?.path ? (
                     <img
-                      className='h-10 object-contain w-10 rounded-full'
+                      className='h-10 object-cover w-10 rounded-full'
                       src={data?.user?.profilePicture?.path}
                       alt='profile'
                     />
