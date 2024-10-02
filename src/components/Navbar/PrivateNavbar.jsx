@@ -43,6 +43,7 @@ const PrivateNavbar = () => {
       .then(() => {
         //! Dispatch action to logout
         dispatch(logout(null));
+        localStorage.removeItem('token');
         navigate('/posts');
       })
       .catch(e => console.log(e));
