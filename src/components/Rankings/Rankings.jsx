@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import { FaTrophy, FaDollarSign } from 'react-icons/fa';
 import { fetchAllEarningsAPI } from '../../APIServices/earnings/earningsAPI';
 import Avatar from '../User/Avatar/Avatar';
+import NoDataFound from '../Alert/NoDataFound/NoDataFound';
+import AlertMessage from '../Alert/AllertMessage/AllertMessage';
 
 const Rankings = () => {
-  const { data } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ['ranking'],
     queryFn: fetchAllEarningsAPI,
   });
@@ -25,45 +27,55 @@ const Rankings = () => {
                   </p>
                 </div>
               </div>
-              <div className='divide-y divide-gray-200'>
-                {data?.earnings?.map((ranking, index) => (
-                  <div
-                    key={index}
-                    className='pt-6 pb-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7'
-                  >
-                    <div className='flex items-center space-x-4'>
-                      <div
-                        className={`text-lg font-bold ${
-                          index === 0 ? 'text-yellow-500' : 'text-gray-500'
-                        }`}
-                      >
-                        {`#${ranking.rank}`}
-                      </div>
-                      {ranking?.user?.profilePicture?.path ? (
-                        <img
-                          src={ranking?.user?.profilePicture?.path}
-                          alt='avatar'
-                          className='w-12 h-12 object-cover rounded-full'
-                        />
-                      ) : (
-                        <Avatar />
-                      )}
-                      <div className='text-black font-medium'>
-                        {ranking.user.username}
-                      </div>
-                      <div className='text-gray-600'>
-                        {`Posts: ${ranking.user.posts?.length}`}
-                      </div>
-                      <div className='ml-auto flex items-center space-x-2'>
-                        <FaDollarSign className='text-green-500 text-xl' />
-                        <div className='text-gray-600 font-medium'>
-                          {ranking.totalAmount?.toFixed(2)}
+              {data?.earnings?.length <= 0 && (
+                <NoDataFound text='No Post Found' />
+              )}
+              {isError && (
+                <AlertMessage type='error' message='Something happened!' />
+              )}
+              {isLoading ? (
+                <AlertMessage type='loading' message='Loading please wait...' />
+              ) : (
+                <div className='divide-y divide-gray-200'>
+                  {data?.earnings?.map((ranking, index) => (
+                    <div
+                      key={index}
+                      className='pt-6 pb-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7'
+                    >
+                      <div className='flex items-center space-x-4'>
+                        <div
+                          className={`text-lg font-bold ${
+                            index === 0 ? 'text-yellow-500' : 'text-gray-500'
+                          }`}
+                        >
+                          {`#${ranking.rank}`}
+                        </div>
+                        {ranking?.user?.profilePicture?.path ? (
+                          <img
+                            src={ranking?.user?.profilePicture?.path}
+                            alt='avatar'
+                            className='w-12 h-12 object-cover rounded-full'
+                          />
+                        ) : (
+                          <Avatar />
+                        )}
+                        <div className='text-black font-medium'>
+                          {ranking.user.username}
+                        </div>
+                        <div className='text-gray-600'>
+                          {`Posts: ${ranking.user.posts?.length}`}
+                        </div>
+                        <div className='ml-auto flex items-center space-x-2'>
+                          <FaDollarSign className='text-green-500 text-xl' />
+                          <div className='text-gray-600 font-medium'>
+                            {ranking.totalAmount?.toFixed(2)}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

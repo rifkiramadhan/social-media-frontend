@@ -29,7 +29,7 @@ const Profile = () => {
   }, [data, dispatch]);
 
   return (
-    <div className='Nicer rounded-md section-1 h-auto min-h-[13rem] md:min-h-[16rem]'>
+    <div className='jumbotron-profile rounded-md section-1 h-auto min-h-[13rem] md:min-h-[16rem]'>
       <div className='px-6 pt-14 mt-2 absolute z-10 w-full'>
         <div className='flex flex-wrap'>
           <div className='relative w-16 h-16 md:w-28 md:h-28 flex-shrink-0'>

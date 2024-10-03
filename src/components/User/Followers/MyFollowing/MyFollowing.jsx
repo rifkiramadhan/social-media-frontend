@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { userProfileAPI } from '../../../../APIServices/users/usersAPI';
 import { AiOutlineUser } from 'react-icons/ai';
+import NoDataFound from '../../../Alert/NoDataFound/NoDataFound';
+import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const MyFollowing = () => {
   //! Fetch userProfile
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['profile'],
     queryFn: userProfileAPI,
   });
@@ -26,34 +28,42 @@ const MyFollowing = () => {
               Here are all the people you follow.
             </p>
           </div>
-          <div className='flex flex-wrap -mx-4 -mb-8'>
-            {myFollowing?.map(follower => {
-              return (
-                <div
-                  key={follower?._id}
-                  className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'
-                >
-                  <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
-                    {follower?.profilePicture?.path ? (
-                      <img
-                        className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'
-                        src={follower?.profilePicture?.path}
-                      />
-                    ) : (
-                      <AiOutlineUser className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto' />
-                    )}
-                    <h5 className='text-2xl font-bold text-gray-900 mb-2'>
-                      {follower?.username}
-                    </h5>
-                    <span className='block text-orange-900 mb-3'>
-                      {follower?.email || 'No email'}
-                    </span>
-                    <div className='flex items-center justify-center'></div>
+          {data?.length <= 0 && <NoDataFound />}
+          {isError && (
+            <AlertMessage type='error' message='Something happened!' />
+          )}
+          {isLoading ? (
+            <AlertMessage type='loading' message='Loading please wait...' />
+          ) : (
+            <div className='flex flex-wrap -mx-4 -mb-8'>
+              {myFollowing?.map(follower => {
+                return (
+                  <div
+                    key={follower?._id}
+                    className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'
+                  >
+                    <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
+                      {follower?.profilePicture?.path ? (
+                        <img
+                          className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'
+                          src={follower?.profilePicture?.path}
+                        />
+                      ) : (
+                        <AiOutlineUser className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto' />
+                      )}
+                      <h5 className='text-2xl font-bold text-gray-900 mb-2'>
+                        {follower?.username}
+                      </h5>
+                      <span className='block text-orange-900 mb-3'>
+                        {follower?.email || 'No email'}
+                      </span>
+                      <div className='flex items-center justify-center'></div>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>

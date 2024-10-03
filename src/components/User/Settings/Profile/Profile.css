@@ -1,10 +1,10 @@
-.Nicer {
+.jumbotron-profile {
   position: relative;
   overflow: hidden;
   padding-bottom: 3rem;
 }
 
-.Nicer::before {
+.jumbotron-profile::before {
   content: ' ';
   display: block;
   position: absolute;
@@ -22,7 +22,7 @@
   padding: 0;
 }
 
-.Nicer::after {
+.jumbotron-profile::after {
   content: ' ';
   display: block;
   position: absolute;
@@ -54,7 +54,7 @@
 
 /* Tablet styles */
 @media screen and (min-width: 768px) {
-  .Nicer::after {
+  .jumbotron-profile::after {
     width: 70%;
     background-image: linear-gradient(
       to right,
@@ -72,7 +72,7 @@
 
 /* Desktop styles */
 @media screen and (min-width: 1024px) {
-  .Nicer::after {
+  .jumbotron-profile::after {
     width: 50%;
     background-image: linear-gradient(
       to right,

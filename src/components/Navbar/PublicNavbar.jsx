@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
-import { FaBlog } from 'react-icons/fa';
+import { Link, useLocation } from 'react-router-dom';
 import { RiLoginCircleFill } from 'react-icons/ri';
 
 const PublicNavbar = () => {
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState(location.pathname);
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Latest Articles', path: '/posts' },
+    { name: 'Creators Ranking', path: '/ranking' },
+    { name: 'Pricing', path: '/pricing' },
+  ];
+
+  const handleItemClick = path => {
+    setActiveItem(path);
+  };
+
   return (
     <Disclosure as='nav' className='bg-white shadow'>
       {({ open }) => (
@@ -26,39 +40,27 @@ const PublicNavbar = () => {
                 </div>
                 <div className='flex flex-shrink-0 items-center'>
                   {/* Logo */}
-                  <FaBlog className='h-8 w-auto text-orange-500' />
+                  <img
+                    src='https://i.ibb.co.com/C9YyGkN/Logo.png'
+                    className='h-10 w-auto'
+                    alt='Logo'
+                  />
                 </div>
                 <div className='hidden md:ml-6 md:flex md:space-x-8'>
-                  <Link
-                    to='/'
-                    className='inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900'
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    to='/posts'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Latest Articles
-                  </Link>
-                  <Link
-                    to='/ranking'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Creators Ranking
-                  </Link>
-                  <Link
-                    to='/pricing'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Pricing
-                  </Link>
-                  <Link
-                    to='/'
-                    className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                  >
-                    Privacy
-                  </Link>
+                  {navItems.map(item => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                        activeItem === item.path
+                          ? 'border-indigo-500 text-gray-900'
+                          : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                      }`}
+                      onClick={() => handleItemClick(item.path)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
               </div>
               <div className='flex items-center'>

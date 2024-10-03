@@ -1,10 +1,12 @@
+import { Fragment } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { FaDollarSign } from 'react-icons/fa';
 import { getMyEarningsAPI } from '../../../APIServices/earnings/earningsAPI';
 import NoDataFound from '../../Alert/NoDataFound/NoDataFound';
+import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 
 const MyEarnings = () => {
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['my-earnings'],
     queryFn: getMyEarningsAPI,
   });
@@ -13,8 +15,10 @@ const MyEarnings = () => {
 
   return (
     <div>
-      {data?.length <= 0 ? (
-        <NoDataFound />
+      {data?.length <= 0 && <NoDataFound />}
+      {isError && <AlertMessage type='error' message='Something happened!' />}
+      {isLoading ? (
+        <AlertMessage type='loading' message='Loading please wait...' />
       ) : (
         <div className='flex justify-center items-center bg-gray-100'>
           <div className='w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white rounded-xl shadow-lg overflow-hidden '>

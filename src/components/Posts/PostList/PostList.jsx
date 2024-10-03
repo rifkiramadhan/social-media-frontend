@@ -101,7 +101,7 @@ const PostList = () => {
             className='p-2 text-sm text-orange-500 border border-blue-500 rounded-lg hover:bg-blue-100 flex items-center gap-1'
           >
             <MdClear className='h-4 w-4' />
-            Clear Filters
+            Clear
           </button>
         </form>
         {/* Post category */}
