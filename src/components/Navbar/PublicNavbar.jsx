@@ -2,7 +2,6 @@ import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { FaBlog } from 'react-icons/fa';
-import { IoMdLogIn } from 'react-icons/io';
 import { RiLoginCircleFill } from 'react-icons/ri';
 
 const PublicNavbar = () => {
