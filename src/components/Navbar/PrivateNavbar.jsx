@@ -1,9 +1,8 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
-import { IoLogOutOutline } from 'react-icons/io5';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { logoutAPI, userProfileAPI } from '../../APIServices/users/usersAPI';
 import { useDispatch } from 'react-redux';
@@ -82,7 +81,7 @@ const PrivateNavbar = () => {
                       to='/posts'
                       className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
                     >
-                      Latest Posts
+                      Latest Articles
                     </Link>
                     <Link
                       to='/ranking'
@@ -99,15 +98,8 @@ const PrivateNavbar = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex items-center'>
+              <div className='flex items-center justify-between'>
                 <div className='flex-shrink-0'>
-                  <button
-                    onClick={logoutHandler}
-                    type='button'
-                    className='relative m-2 inline-flex items-center gap-x-1.5 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600'
-                  >
-                    <IoLogOutOutline className='h-5 w-5' aria-hidden='true' />
-                  </button>
                   <Link to='/dashboard'>
                     <button
                       type='button'
@@ -118,10 +110,8 @@ const PrivateNavbar = () => {
                     </button>
                   </Link>
                   {/* Notification */}
-                  <NotificationCounts />
-
-                  {/* <NotificationIcon notificationCount={9} /> */}
                 </div>
+                <NotificationCounts />
                 <div className='hidden md:ml-1 md:flex md:flex-shrink-0 md:items-center'>
                   {/* Profile dropdown */}
                   <Menu as='div' className='relative ml-1'>
@@ -200,10 +190,10 @@ const PrivateNavbar = () => {
                   as='button'
                   className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
                 >
-                  Latest Posts
+                  Latest Articles
                 </Disclosure.Button>
               </Link>
-              <Link to='/rankings'>
+              <Link to='/ranking'>
                 <Disclosure.Button
                   as='button'
                   className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
@@ -220,16 +210,76 @@ const PrivateNavbar = () => {
                 </Disclosure.Button>
               </Link>
             </div>
+            <div className='border-t border-gray-200 pb-3 pt-4'>
+              <Link to='/dashboard/create-post'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  Create New Post
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/posts'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  My Posts
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/my-followers'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  My Followers
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/my-followings'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  My Followings
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/add-category'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  Add New Category
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/create-plan'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  Create New Plan
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/my-earnings'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  My Earnings
+                </Disclosure.Button>
+              </Link>
+              <Link to='/dashboard/users'>
+                <Disclosure.Button
+                  as='button'
+                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
+                >
+                  Users
+                </Disclosure.Button>
+              </Link>
+            </div>
             {/* Profile links */}
             <div className='border-t border-gray-200 pb-3 pt-4'>
               <div className='flex items-center px-4 sm:px-6'>
                 <div className='flex-shrink-0'>
-                  <span className='inline-flex items-center justify-center h-8 w-8 rounded-full bg-orange-100'>
-                    <BellIcon
-                      className='h-5 w-5 text-orange-500'
-                      aria-hidden='true'
-                    />
-                  </span>
                   {/* Profile Image */}
                   {data?.user?.profilePicture?.path ? (
                     <img

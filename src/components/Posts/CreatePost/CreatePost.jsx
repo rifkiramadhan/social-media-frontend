@@ -109,7 +109,7 @@ const CreatePost = () => {
     <div className='flex items-center justify-center'>
       <div className='max-w-md w-full bg-white rounded-lg shadow-md p-8 m-4'>
         <h2 className='text-2xl font-bold text-center text-gray-800 mb-8'>
-          Add New Post
+          Create New Post
         </h2>
         {/* show alert */}
         {isLoading && (
@@ -230,7 +230,7 @@ const CreatePost = () => {
             type='submit'
             className='w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-500 hover:from-indigo-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
           >
-            Add Post
+            Submit
           </button>
         </form>
       </div>

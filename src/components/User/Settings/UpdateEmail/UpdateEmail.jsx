@@ -56,7 +56,7 @@ const UpdateEmail = () => {
     <div className='flex items-center justify-center h-screen bg-gray-100'>
       <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-sm'>
         <h2 className='text-2xl font-semibold text-center text-gray-700'>
-          Add Your Email
+          Update Your Email
         </h2>
         {/* Show messages */}
         {/* success */}
@@ -91,7 +91,7 @@ const UpdateEmail = () => {
             type='submit'
             className='w-full px-3 py-2 mt-4 text-white bg-blue-600 rounded-md focus:bg-blue-700 focus:outline-none'
           >
-            Add Email
+            Sent Email
           </button>
         </form>
       </div>

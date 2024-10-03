@@ -7,7 +7,6 @@ import {
 } from '@heroicons/react/24/outline';
 import { FaBlog } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router-dom';
-
 import {
   FaUserEdit,
   FaFileAlt,
@@ -49,15 +48,15 @@ const navigation = [
     current: false,
   },
   {
-    name: 'Create Plan',
-    href: '/dashboard/create-plan',
-    icon: FaCalendarPlus,
+    name: 'Add New Category',
+    href: '/dashboard/add-category',
+    icon: FaTags,
     current: false,
   },
   {
-    name: 'Add Category',
-    href: '/dashboard/add-category',
-    icon: FaTags,
+    name: 'Create New Plan',
+    href: '/dashboard/create-plan',
+    icon: FaCalendarPlus,
     current: false,
   },
   {

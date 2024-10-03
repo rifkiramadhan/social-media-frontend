@@ -1,8 +1,9 @@
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { PlusIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 import { FaBlog } from 'react-icons/fa';
+import { IoMdLogIn } from 'react-icons/io';
+import { RiLoginCircleFill } from 'react-icons/ri';
 
 const PublicNavbar = () => {
   return (
@@ -39,7 +40,7 @@ const PublicNavbar = () => {
                     to='/posts'
                     className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
                   >
-                    Latest Posts
+                    Latest Articles
                   </Link>
                   <Link
                     to='/ranking'
@@ -54,30 +55,25 @@ const PublicNavbar = () => {
                     Pricing
                   </Link>
                   <Link
-                    to='/register'
+                    to='/'
                     className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
                   >
-                    Create Account
+                    Privacy
                   </Link>
                 </div>
               </div>
               <div className='flex items-center'>
                 <div className='flex-shrink-0'>
                   <Link
-                    to='/create-post'
-                    className='relative inline-flex items-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-pulse'
+                    to='/register'
+                    className='relative inline-flex items-center gap-x-1.5 rounded-full bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 animate-pulse'
                   >
-                    <PlusIcon className='-ml-0.5 h-5 w-5' aria-hidden='true' />
-                    Create Post
+                    <RiLoginCircleFill
+                      className='-ml-0.5 h-5 w-5'
+                      aria-hidden='true'
+                    />
+                    Sign Up
                   </Link>
-                </div>
-                <div className='hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center'>
-                  <button
-                    type='button'
-                    className='relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-                  >
-                    <span className='absolute -inset-1.5' />
-                  </button>
                 </div>
               </div>
             </div>
@@ -99,7 +95,7 @@ const PublicNavbar = () => {
                 href='/posts'
                 className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
               >
-                Latest Posts
+                Latest Articles
               </Disclosure.Button>
               <Disclosure.Button
                 as='a'
@@ -110,10 +106,10 @@ const PublicNavbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as='a'
-                href='/register'
+                href='/'
                 className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
               >
-                Create Account
+                Privacy
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>

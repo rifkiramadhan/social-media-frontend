@@ -146,7 +146,7 @@ const UploadProfilePicture = () => {
             type='submit'
             className='w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-500 hover:from-indigo-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
           >
-            Upload Profile Picture
+            Submit
           </button>
         </form>
       </div>

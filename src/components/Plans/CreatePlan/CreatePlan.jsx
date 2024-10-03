@@ -61,7 +61,7 @@ const CreatePlan = () => {
         className='p-6 mt-8 bg-white rounded shadow-md w-80'
       >
         <h2 className='mb-4 text-xl font-semibold text-center text-gray-700'>
-          Create Plan
+          Create New Plan
         </h2>
         {/* show mesage */}
         {planMutation.isPending && (
@@ -140,7 +140,7 @@ const CreatePlan = () => {
           type='submit'
           className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline'
         >
-          Create Plan
+          Submit
         </button>
       </form>
     </div>

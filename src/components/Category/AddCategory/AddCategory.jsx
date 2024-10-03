@@ -32,7 +32,7 @@ const AddCategory = () => {
         <div className='flex flex-col justify-center max-w-md mx-auto h-full py-12'>
           <form onSubmit={formik.handleSubmit}>
             <h1 className='text-3xl font-bold font-heading mb-4'>
-              Add Category
+              Add New Category
             </h1>
             {/* show loading */}
             {/* show alert */}
@@ -70,7 +70,7 @@ const AddCategory = () => {
               className='h-14 inline-flex items-center justify-center py-4 px-6 text-white font-bold font-heading rounded-full bg-orange-500 w-full text-center border border-orange-600 shadow hover:bg-orange-600 focus:ring focus:ring-orange-200 transition duration-200 mb-8'
               type='submit'
             >
-              Add Category
+              Submit
             </button>
           </form>
         </div>
