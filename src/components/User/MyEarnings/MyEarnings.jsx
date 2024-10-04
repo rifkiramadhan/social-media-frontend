@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { FaDollarSign } from 'react-icons/fa';
 import { getMyEarningsAPI } from '../../../APIServices/earnings/earningsAPI';

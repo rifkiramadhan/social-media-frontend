@@ -1,7 +1,7 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { logoutAPI, userProfileAPI } from '../../APIServices/users/usersAPI';
@@ -18,6 +18,12 @@ const PrivateNavbar = () => {
   //! Dispatch hook
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState(location.pathname);
+
+  useEffect(() => {
+    setActiveItem(location.pathname);
+  }, [location]);
 
   const { data } = useQuery({
     queryKey: ['user-profile'],
@@ -48,6 +54,23 @@ const PrivateNavbar = () => {
       .catch(e => console.log(e));
   };
 
+  const navItems = [
+    { name: 'Latest Articles', path: '/posts' },
+    { name: 'Creators Ranking', path: '/ranking' },
+    { name: 'Pricing', path: '/pricing' },
+  ];
+
+  const dashboardItems = [
+    { name: 'Create New Post', path: '/dashboard/create-post' },
+    { name: 'My Posts', path: '/dashboard/posts' },
+    { name: 'My Followers', path: '/dashboard/my-followers' },
+    { name: 'My Followings', path: '/dashboard/my-followings' },
+    { name: 'Add New Category', path: '/dashboard/add-category' },
+    { name: 'Create New Plan', path: '/dashboard/create-plan' },
+    { name: 'My Earnings', path: '/dashboard/my-earnings' },
+    { name: 'Users', path: '/dashboard/users' },
+  ];
+
   return (
     <Disclosure as='nav' className='bg-white '>
       {({ open }) => (
@@ -77,24 +100,20 @@ const PrivateNavbar = () => {
                 </div>
                 <div className='flex justify-center items-center'>
                   <div className='hidden md:ml-6 md:flex md:space-x-8'>
-                    <Link
-                      to='/posts'
-                      className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                    >
-                      Latest Articles
-                    </Link>
-                    <Link
-                      to='/ranking'
-                      className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                    >
-                      Creators Ranking
-                    </Link>
-                    <Link
-                      to='/pricing'
-                      className='inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                    >
-                      Pricing
-                    </Link>
+                    {navItems.map(item => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                          activeItem === item.path
+                            ? 'border-indigo-500 text-gray-900'
+                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                        }`}
+                        onClick={() => setActiveItem(item.path)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -177,104 +196,38 @@ const PrivateNavbar = () => {
           {/* Mobile Navs  private links*/}
           <Disclosure.Panel className='md:hidden'>
             <div className='space-y-1 pb-3 pt-2'>
-              <Link to='/'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Home
-                </Disclosure.Button>
-              </Link>
-              <Link to='/posts'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Latest Articles
-                </Disclosure.Button>
-              </Link>
-              <Link to='/ranking'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Creators Ranking
-                </Disclosure.Button>
-              </Link>
-              <Link to='/pricing'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Pricing
-                </Disclosure.Button>
-              </Link>
+              {navItems.map(item => (
+                <Link key={item.name} to={item.path}>
+                  <Disclosure.Button
+                    as='button'
+                    className={`block w-full text-left border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+                      activeItem === item.path
+                        ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                    } sm:pl-5 sm:pr-6`}
+                    onClick={() => setActiveItem(item.path)}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                </Link>
+              ))}
             </div>
             <div className='border-t border-gray-200 pb-3 pt-4'>
-              <Link to='/dashboard/create-post'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Create New Post
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/posts'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  My Posts
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/my-followers'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  My Followers
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/my-followings'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  My Followings
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/add-category'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Add New Category
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/create-plan'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Create New Plan
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/my-earnings'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  My Earnings
-                </Disclosure.Button>
-              </Link>
-              <Link to='/dashboard/users'>
-                <Disclosure.Button
-                  as='button'
-                  className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
-                >
-                  Users
-                </Disclosure.Button>
-              </Link>
+              {dashboardItems.map(item => (
+                <Link key={item.name} to={item.path}>
+                  <Disclosure.Button
+                    as='button'
+                    className={`block w-full text-left border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+                      activeItem === item.path
+                        ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                    } sm:pl-5 sm:pr-6`}
+                    onClick={() => setActiveItem(item.path)}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                </Link>
+              ))}
             </div>
             {/* Profile links */}
             <div className='border-t border-gray-200 pb-3 pt-4'>

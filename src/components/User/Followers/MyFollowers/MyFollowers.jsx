@@ -50,7 +50,6 @@ const MyFollowers = () => {
                         <img
                           className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'
                           src={follower?.profilePicture?.path}
-                          alt
                         />
                       ) : (
                         <AiOutlineUser className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto' />

@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 
 const CategoryList = ({ categories, onCategorySelect }) => {
-  // Slider settings
+  //! Slider categories settings
   const settings = {
     dots: true,
     infinite: true,
@@ -28,7 +28,7 @@ const CategoryList = ({ categories, onCategorySelect }) => {
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 4,
           dots: true,
         },

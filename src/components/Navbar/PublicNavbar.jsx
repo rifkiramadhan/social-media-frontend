@@ -9,10 +9,10 @@ const PublicNavbar = () => {
   const [activeItem, setActiveItem] = useState(location.pathname);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Latest Articles', path: '/posts' },
-    { name: 'Creators Ranking', path: '/ranking' },
-    { name: 'Pricing', path: '/pricing' },
+    { name: 'Home', path: '/', href: '/' },
+    { name: 'Latest Articles', path: '/posts', href: 'posts' },
+    { name: 'Creators Ranking', path: '/ranking', href: '/ranking' },
+    { name: 'Pricing', path: '/pricing', href: '/pricing' },
   ];
 
   const handleItemClick = path => {
@@ -84,7 +84,7 @@ const PublicNavbar = () => {
             <div className='space-y-1 pb-3 pt-2'>
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
 
-              <Disclosure.Button
+              {/* <Disclosure.Button
                 as='a'
                 href='/'
                 className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
@@ -100,7 +100,7 @@ const PublicNavbar = () => {
               </Disclosure.Button>
               <Disclosure.Button
                 as='a'
-                href='#'
+                href='/pricing'
                 className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
               >
                 Pricing
@@ -111,7 +111,23 @@ const PublicNavbar = () => {
                 className='block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6'
               >
                 Privacy
-              </Disclosure.Button>
+              </Disclosure.Button> */}
+
+              {navItems.map(item => (
+                <Disclosure.Button
+                  key={item.name}
+                  as={Link}
+                  to={item.path}
+                  className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
+                    activeItem === item.path
+                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                  } sm:pl-5 sm:pr-6`}
+                  onClick={() => handleItemClick(item.path)}
+                >
+                  {item.name}
+                </Disclosure.Button>
+              ))}
             </div>
           </Disclosure.Panel>
         </>

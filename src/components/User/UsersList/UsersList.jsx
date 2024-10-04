@@ -56,7 +56,7 @@ const UsersList = () => {
         <div className='space-y-3'>
           {data?.map(user => (
             <div
-              key={user.id}
+              key={user?._id}
               className='flex items-center justify-between bg-gray-100 p-3 rounded-lg'
             >
               <div className='flex items-center gap-2'>
@@ -64,14 +64,13 @@ const UsersList = () => {
                   <img
                     className='w-10 h-10 rounded-full object-cover'
                     src={user.profilePicture?.path}
-                    alt
                   />
                 ) : (
                   <Avatar />
                 )}
                 <span className='font-bold'>
-                  {user.username} -{' '}
-                  <span className='text-gray-400'>{user.accountType}</span>
+                  {user?.username} -{' '}
+                  <span className='text-gray-400'>{user?.accountType}</span>
                 </span>
               </div>
 

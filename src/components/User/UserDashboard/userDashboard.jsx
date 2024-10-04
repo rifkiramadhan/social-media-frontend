@@ -5,7 +5,6 @@ import {
   HomeIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { FaBlog } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router-dom';
 import {
   FaUserEdit,
@@ -16,70 +15,90 @@ import {
   FaWallet,
 } from 'react-icons/fa';
 
-const navigation = [
-  {
-    name: 'Dashboard',
-    href: '/dashboard',
-    icon: HomeIcon,
-    current: true,
-  },
-  {
-    name: 'Create New Post',
-    href: '/dashboard/create-post',
-    icon: FaUserEdit,
-    current: false,
-  },
-  {
-    name: 'My Posts',
-    href: '/dashboard/posts',
-    icon: FaFileAlt,
-    current: false,
-  },
-  {
-    name: 'My Followers',
-    href: '/dashboard/my-followers',
-    icon: FaUsers,
-    current: false,
-  },
-  {
-    name: 'My Followings',
-    href: '/dashboard/my-followings',
-    icon: FaUsers,
-    current: false,
-  },
-  {
-    name: 'Add New Category',
-    href: '/dashboard/add-category',
-    icon: FaTags,
-    current: false,
-  },
-  {
-    name: 'Create New Plan',
-    href: '/dashboard/create-plan',
-    icon: FaCalendarPlus,
-    current: false,
-  },
-  {
-    name: 'My Earnings',
-    href: '/dashboard/my-earnings',
-    icon: FaWallet,
-    current: false,
-  },
-  {
-    name: 'Users',
-    href: '/dashboard/users',
-    icon: FaUsers,
-    current: false,
-  },
-];
+const getInitialNavigation = () => {
+  const currentPath = window.location.pathname; // Mendapatkan URL yang sedang dibuka
+
+  const sidebarMenu = [
+    {
+      name: 'Dashboard',
+      href: '/dashboard',
+      icon: HomeIcon,
+      current: currentPath === '/dashboard',
+    },
+    {
+      name: 'Create New Post',
+      href: '/dashboard/create-post',
+      icon: FaUserEdit,
+      current: currentPath === '/dashboard/create-post',
+    },
+    {
+      name: 'My Posts',
+      href: '/dashboard/posts',
+      icon: FaFileAlt,
+      current: currentPath === '/dashboard/posts',
+    },
+    {
+      name: 'My Followers',
+      href: '/dashboard/my-followers',
+      icon: FaUsers,
+      current: currentPath === '/dashboard/my-followers',
+    },
+    {
+      name: 'My Followings',
+      href: '/dashboard/my-followings',
+      icon: FaUsers,
+      current: currentPath === '/dashboard/my-followings',
+    },
+    {
+      name: 'Add New Category',
+      href: '/dashboard/add-category',
+      icon: FaTags,
+      current: currentPath === '/dashboard/add-category',
+    },
+    {
+      name: 'Create New Plan',
+      href: '/dashboard/create-plan',
+      icon: FaCalendarPlus,
+      current: currentPath === '/dashboard/create-plan',
+    },
+    {
+      name: 'My Earnings',
+      href: '/dashboard/my-earnings',
+      icon: FaWallet,
+      current: currentPath === '/dashboard/my-earnings',
+    },
+    {
+      name: 'Users',
+      href: '/dashboard/users',
+      icon: FaUsers,
+      current: currentPath === '/dashboard/users',
+    },
+  ];
+
+  return sidebarMenu;
+};
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
 
 const UserDashboard = () => {
+  const [navigation, setNavigation] = useState(getInitialNavigation);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  //Get the auth user from redux store
+
+  const handleNavigationClick = name => {
+    // Update localStorage dengan item yang diklik (opsional)
+    localStorage.setItem('activeItem', name);
+
+    // Update state untuk mencerminkan item yang aktif
+    setNavigation(prevNavigation =>
+      prevNavigation.map(item =>
+        item.name === name
+          ? { ...item, current: true }
+          : { ...item, current: false }
+      )
+    );
+  };
 
   return (
     <>
@@ -141,8 +160,15 @@ const UserDashboard = () => {
                     <div className='flex h-16 shrink-0 items-center'>
                       {/* Logo */}
                       <Link to='/'>
-                        <FaBlog className='h-8 w-auto text-orange-500' />
+                        <img
+                          src='https://i.ibb.co.com/C9YyGkN/Logo.png'
+                          className='h-10 w-auto'
+                          alt='Logo'
+                        />
                       </Link>
+                      <p className='ml-2 font-bold text-2xl text-red-600'>
+                        Media Satgasnas
+                      </p>
                     </div>
                     <nav className='flex flex-1 flex-col'>
                       <ul role='list' className='flex flex-1 flex-col gap-y-7'>
@@ -152,6 +178,9 @@ const UserDashboard = () => {
                               <li key={item.name}>
                                 <Link
                                   to={item.href}
+                                  onClick={() =>
+                                    handleNavigationClick(item.name)
+                                  }
                                   className={classNames(
                                     item.current
                                       ? 'bg-gray-50 text-orange-600'
@@ -189,8 +218,15 @@ const UserDashboard = () => {
             <div className='flex h-16 shrink-0 items-center'>
               {/* Logo */}
               <Link to='/'>
-                <FaBlog className='h-8 w-auto text-orange-500' />
+                <img
+                  src='https://i.ibb.co.com/C9YyGkN/Logo.png'
+                  className='h-10 w-auto'
+                  alt='Logo'
+                />
               </Link>
+              <p className='ml-2 font-bold text-2xl text-red-600'>
+                Media Satgasnas
+              </p>
             </div>
             <nav className='flex flex-1 flex-col'>
               <ul role='list' className='flex flex-1 flex-col gap-y-7'>
@@ -200,6 +236,7 @@ const UserDashboard = () => {
                       <li key={item.name}>
                         <Link
                           to={item.href}
+                          onClick={() => handleNavigationClick(item.name)}
                           className={classNames(
                             item.current
                               ? 'bg-gray-50 text-orange-600'
