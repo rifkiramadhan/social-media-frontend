@@ -97,16 +97,24 @@ const DashboardPosts = () => {
                               {new Date(post.createdAt).toDateString()}
                             </td>
                             <td>
-                              <span className='inline-block py-1 px-2 text-white bg-green-500 rounded-full'>
+                              <span className='inline-block py-1 px-2 text-white bg-green-900 rounded-full'>
                                 {new Date(post.nextEarningDate).toDateString()}
                               </span>
                             </td>
                             <td className='flex items-center mb-10 space-x-2'>
-                              <Link to={`/dashboard/update-post/${post._id}`}>
-                                <FiEdit className='text-green-500 cursor-pointer' />
+                              <Link
+                                className='flex items-center gap-1 py-1 px-2 text-white bg-blue-500 rounded-full cursor-pointer'
+                                to={`/dashboard/update-post/${post._id}`}
+                              >
+                                <FiEdit />
+                                Edit
                               </Link>
-                              <button onClick={() => handleDelete(post._id)}>
-                                <FiTrash2 className='text-red-500 cursor-pointer' />
+                              <button
+                                className='flex items-center gap-1 py-1 px-2 text-white bg-red-500 rounded-full cursor-pointer'
+                                onClick={() => handleDelete(post._id)}
+                              >
+                                <FiTrash2 />
+                                Delete
                               </button>
                             </td>
                           </tr>

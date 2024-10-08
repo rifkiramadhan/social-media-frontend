@@ -31,6 +31,7 @@ import {
   Register,
   RequestResetPassword,
   ResetPassword,
+  ScrollToTop,
   SettingsPage,
   UpdateEmail,
   UpdatePost,
@@ -232,6 +233,7 @@ const App = () => {
           path='/free-subscription'
         />
       </Routes>
+      <ScrollToTop />
     </BrowserRouter>
   );
 };

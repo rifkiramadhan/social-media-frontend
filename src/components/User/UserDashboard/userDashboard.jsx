@@ -102,7 +102,7 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div>
+      <div className='mx-auto'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as='div'

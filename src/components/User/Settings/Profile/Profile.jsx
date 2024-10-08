@@ -29,8 +29,8 @@ const Profile = () => {
   }, [data, dispatch]);
 
   return (
-    <div className='jumbotron-profile rounded-md section-1 h-auto min-h-[13rem] md:min-h-[16rem]'>
-      <div className='px-6 pt-14 mt-2 absolute z-10 w-full'>
+    <div className='jumbotron-profile lg:px-6 rounded-md h-auto min-h-[13rem] md:min-h-[16rem]'>
+      <div className='px-4 pt-14 mt-2 absolute z-10 w-full'>
         <div className='flex flex-wrap'>
           <div className='relative w-16 h-16 md:w-28 md:h-28 flex-shrink-0'>
             {data?.profilePicture ? (
@@ -88,7 +88,7 @@ const Profile = () => {
           <p>{profileData?.user?.bio || 'Your bio'}</p>
         </div>
       </div>
-      <div className='TestNa mt-52 md:mt-64 rounded-b-lg h-12'></div>
+      <div className='jumbotron-reset-styling mt-52 md:mt-64 rounded-b-lg h-12'></div>
     </div>
   );
 };

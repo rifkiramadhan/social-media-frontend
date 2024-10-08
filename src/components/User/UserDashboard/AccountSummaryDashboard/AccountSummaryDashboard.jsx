@@ -112,7 +112,7 @@ const AccountSummaryDashboard = () => {
   };
 
   return (
-    <div className='p-4'>
+    <div className='p-2'>
       <p
         className='
        font-bold text-2xl text-gray-800 mb-4

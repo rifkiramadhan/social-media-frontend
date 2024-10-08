@@ -29,3 +29,4 @@ export { default as Rankings } from './Rankings/Rankings';
 export { default as Home } from './Home/Home';
 export { default as PublicNavbar } from './Navbar/PublicNavbar';
 export { default as PrivateNavbar } from './Navbar/PrivateNavbar';
+export { default as ScrollToTop } from './ScrollToTop/ScrollToTop';

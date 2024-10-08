@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/slices/authSlices';
 import NotificationCounts from '../Notification/NotificationCounts/NotificationCounts';
 import Avatar from '../User/Avatar/Avatar';
+import { AiOutlineUser } from 'react-icons/ai';
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(' ');
@@ -50,6 +51,7 @@ const PrivateNavbar = () => {
         dispatch(logout(null));
         localStorage.removeItem('token');
         navigate('/posts');
+        window.location.refresh();
       })
       .catch(e => console.log(e));
   };
@@ -72,10 +74,10 @@ const PrivateNavbar = () => {
   ];
 
   return (
-    <Disclosure as='nav' className='bg-white '>
+    <Disclosure as='nav' className='bg-white shadow'>
       {({ open }) => (
         <>
-          <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>
             <div className='flex h-16 justify-start items-center'>
               <div className='flex-row w-full'>
                 <div className='flex justify-start items-start flex-row'>
@@ -131,9 +133,9 @@ const PrivateNavbar = () => {
                   {/* Notification */}
                 </div>
                 <NotificationCounts />
-                <div className='hidden md:ml-1 md:flex md:flex-shrink-0 md:items-center'>
+                <div className='hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center'>
                   {/* Profile dropdown */}
-                  <Menu as='div' className='relative ml-1'>
+                  <Menu as='div' className='relative'>
                     <div>
                       <Menu.Button className='relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
                         <span className='absolute -inset-1.5' />
@@ -146,7 +148,7 @@ const PrivateNavbar = () => {
                             alt='profile'
                           />
                         ) : (
-                          <Avatar />
+                          <AiOutlineUser className='w-10 h-10 object-contain rounded-full' />
                         )}
                       </Menu.Button>
                     </div>
