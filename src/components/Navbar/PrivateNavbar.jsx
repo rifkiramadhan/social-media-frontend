@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { logoutAPI, userProfileAPI } from '../../APIServices/users/usersAPI';
@@ -18,7 +18,6 @@ const classNames = (...classes) => {
 const PrivateNavbar = () => {
   //! Dispatch hook
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);
 
@@ -29,9 +28,6 @@ const PrivateNavbar = () => {
   const { data } = useQuery({
     queryKey: ['user-profile'],
     queryFn: userProfileAPI,
-    onSuccess: () => {
-      window.location.refresh();
-    },
   });
 
   console.log(data);
@@ -50,8 +46,8 @@ const PrivateNavbar = () => {
         //! Dispatch action to logout
         dispatch(logout(null));
         localStorage.removeItem('token');
-        navigate('/posts');
-        window.location.refresh();
+        // navigate('/posts');
+        window.location.href = '/posts';
       })
       .catch(e => console.log(e));
   };

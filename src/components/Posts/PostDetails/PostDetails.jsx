@@ -278,24 +278,44 @@ const PostDetails = () => {
           )
         ) : null}
         {/* author */}
-        <div className='flex font-bold pt-6 pb-3 px-2 gap-2 items-center'>
-          {data?.postFound?.author?.profilePicture ? (
-            <img
-              src={data?.postFound?.author?.profilePicture?.path}
-              alt={data?.postFound?.author?.profilePicture?.fieldname}
-              className='h-10 w-10 object-cover rounded-full'
-            />
-          ) : (
-            <button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500'>
-              <span className='sr-only'>Open user menu</span>
-              <AiOutlineUser className='h-10 w-10 text-gray-400' />
-            </button>
-          )}
-          <span className='text-gray-600 text-lg'>
-            {data?.postFound?.author?.username}
-          </span>
+        <div className='flex justify-between items-center'>
+          <div className='flex font-bold pt-6 pb-3 px-2 gap-2 items-center'>
+            {data?.postFound?.author?.profilePicture ? (
+              <img
+                src={data?.postFound?.author?.profilePicture?.path}
+                alt={data?.postFound?.author?.profilePicture?.fieldname}
+                className='h-10 w-10 object-cover rounded-full'
+              />
+            ) : (
+              <button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500'>
+                <span className='sr-only'>Open user menu</span>
+                <AiOutlineUser className='h-10 w-10 text-gray-400' />
+              </button>
+            )}
+            <span className='text-gray-600 text-lg'>
+              {data?.postFound?.author?.username}
+            </span>
+          </div>
+          {/* post details */}
+          {userId === targetId ? (
+            <div className='flex gap-2'>
+              <button
+                onClick={editHandler}
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+              >
+                <FaEdit className='text-white cursor-pointer' />
+                <span className='ml-2'>Edit</span>
+              </button>
+              <button
+                onClick={() => deleteHandler(data?.postFound?._id)}
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
+              >
+                <FaTrashAlt className='text-white cursor-pointer' />
+                <span className='ml-2'>Delete</span>
+              </button>
+            </div>
+          ) : null}
         </div>
-        {/* post details */}
         <div className='flex justify-between items-center mb-3 mt-6'>
           <div
             className='rendered-html-content mb-2'
@@ -303,24 +323,6 @@ const PostDetails = () => {
           />
 
           {/* Edit delete icon */}
-          {userId === targetId ? (
-            <div className='flex gap-2'>
-              <button
-                onClick={editHandler}
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
-              >
-                <FaEdit className='text-blue-500 cursor-pointer' />
-                <span className='ml-2'>Edit</span>
-              </button>
-              <button
-                onClick={() => deleteHandler(data?.postFound?._id)}
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
-              >
-                <FaTrashAlt className='text-red-500 cursor-pointer' />
-                <span className='ml-2'>Delete</span>
-              </button>
-            </div>
-          ) : null}
         </div>
 
         {/* Comment Form */}

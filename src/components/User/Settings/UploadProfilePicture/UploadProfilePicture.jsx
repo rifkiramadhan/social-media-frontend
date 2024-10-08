@@ -9,15 +9,27 @@ import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const UploadProfilePicture = () => {
   // state for wysiwg
-
   //File upload state
   const [imageError, setImageErr] = useState('');
   const [imagePreview, setImagePreview] = useState(null);
+  const [redirectCountdown, setRedirectCountdown] = useState(null);
 
   // post mutation
   const mutation = useMutation({
     mutationKey: ['upload-profile-picture'],
     mutationFn: uploadProfilePictureAPI,
+    onSuccess: () => {
+      let count = 3;
+      setRedirectCountdown(count);
+      const countdownInterval = setInterval(() => {
+        count -= 1;
+        setRedirectCountdown(count);
+        if (count === 0) {
+          clearInterval(countdownInterval);
+          window.location.href = '/dashboard/posts';
+        }
+      }, 500);
+    },
   });
 
   const formik = useFormik({
