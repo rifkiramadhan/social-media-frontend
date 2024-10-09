@@ -20,7 +20,7 @@ const PublicNavbar = () => {
   };
 
   return (
-    <Disclosure as='nav' className='bg-gray-200 shadow'>
+    <Disclosure as='nav' className='bg-gray-200 drop-shadow-sm'>
       {({ open }) => (
         <>
           <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-200'>
