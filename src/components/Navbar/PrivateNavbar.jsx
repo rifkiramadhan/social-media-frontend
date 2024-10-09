@@ -251,7 +251,7 @@ const PrivateNavbar = () => {
                   </div>
                 </div>
               </div>
-              <div className='mt-3 space-y-1'>
+              <div className='mt-3 space-y-1 z-10'>
                 <Link to='/dashboard/settings'>
                   <Disclosure.Button
                     as='button'
