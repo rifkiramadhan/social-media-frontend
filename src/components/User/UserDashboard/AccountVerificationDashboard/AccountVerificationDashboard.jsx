@@ -44,7 +44,7 @@ const AccountVerificationDashboard = () => {
           <div
             className={`transition-opacity duration-1000 ${
               isVisible ? 'opacity-100' : 'opacity-0'
-            } flex items-center justify-center h-screen bg-gradient-to-r from-orange-400 to-orange-500`}
+            } flex items-center justify-center h-screen bg-gradient-to-r bg-gray-100`}
           >
             <div className='bg-white p-8 rounded-lg shadow-2xl w-full max-w-sm text-center'>
               <FaCheckCircle className='mx-auto text-orange-500 text-6xl animate-bounce' />

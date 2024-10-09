@@ -20,10 +20,10 @@ const PublicNavbar = () => {
   };
 
   return (
-    <Disclosure as='nav' className='bg-gray-200 drop-shadow-sm'>
+    <Disclosure as='nav' className='bg-gray-100 drop-shadow-sm'>
       {({ open }) => (
         <>
-          <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-200'>
+          <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-100'>
             <div className='flex w-full h-16 justify-between'>
               <div className='flex'>
                 <div className='-ml-2 mr-2 flex items-center md:hidden'>

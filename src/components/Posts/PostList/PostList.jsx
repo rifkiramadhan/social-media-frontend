@@ -66,7 +66,7 @@ const PostList = () => {
   });
 
   return (
-    <section className='bg-gray-200 overflow-hidden'>
+    <section className='bg-gray-100 overflow-hidden'>
       <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-4xl lg:text-6xl font-bold font-heading mb-6 mt-16'>
           Media Satgasnas

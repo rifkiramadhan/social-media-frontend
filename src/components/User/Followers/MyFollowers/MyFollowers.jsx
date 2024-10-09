@@ -14,7 +14,7 @@ const MyFollowers = () => {
   //! Get the user following
   const myFollowers = data?.user?.followers;
   return (
-    <section className='relative py-20 md:py-32 overflow-hidden bg-gray-200'>
+    <section className='relative py-20 md:py-32 overflow-hidden bg-gray-100'>
       <div className='relative container px-4 mx-auto'>
         <div className='max-w-7xl mx-auto'>
           <div className='max-w-2xl mx-auto mb-20 text-center'>

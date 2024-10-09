@@ -224,7 +224,7 @@ const PostDetails = () => {
   const errorMsg = commentMutation?.error?.response?.data?.message;
 
   return (
-    <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-200'>
+    <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-100'>
       <div className='pt-10'>
         <div className='bg-white rounded-lg shadow-4xl p-2'>
           <img

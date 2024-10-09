@@ -17,7 +17,7 @@ const Pricing = () => {
   const premiumPlan = data?.plans?.filter(plan => plan.planName === 'Premium');
 
   return (
-    <section className='py-24 bg-gray-200'>
+    <section className='py-24 bg-gray-100'>
       <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-center text-5xl lg:text-6xl font-bold font-heading mb-6'>
           Pricing

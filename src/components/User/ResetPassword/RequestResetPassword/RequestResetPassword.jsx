@@ -45,7 +45,7 @@ const RequestResetPassword = () => {
   console.log(resetPasswordMutation);
 
   return (
-    <div className='flex items-center justify-center h-screen bg-gray-200'>
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
       <div className='bg-white p-8 rounded-lg shadow-4xl w-full max-w-md'>
         <h2 className='text-2xl font-semibold text-center text-gray-700'>
           Reset Password

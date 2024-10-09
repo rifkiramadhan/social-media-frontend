@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SettingsPage = () => {
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-gray-200'>
+    <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>
       <div className=' p-8 rounded-lg shadow-4xl w-full max-w-md bg-white'>
         <h2 className='text-2xl font-semibold text-center text-gray-700 mb-6'>
           User Settings

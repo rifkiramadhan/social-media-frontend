@@ -60,7 +60,7 @@ const CheckoutForm = () => {
   console.log(paymentMutation);
 
   return (
-    <div className='bg-gray-200 h-screen -mt-4 flex justify-center items-center'>
+    <div className='bg-gray-100 h-screen -mt-4 flex justify-center items-center'>
       <form
         onSubmit={handleSubmit}
         className='w-full max-w-md my-4 p-6 bg-white rounded-lg shadow-4xl'

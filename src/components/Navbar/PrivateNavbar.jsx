@@ -70,7 +70,7 @@ const PrivateNavbar = () => {
   ];
 
   return (
-    <Disclosure as='nav' className='bg-gray-200 drop-shadow-sm'>
+    <Disclosure as='nav' className='bg-gray-100 drop-shadow-sm'>
       {({ open }) => (
         <>
           <div className='mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>
@@ -129,7 +129,7 @@ const PrivateNavbar = () => {
                   {/* Notification */}
                 </div>
                 <NotificationCounts />
-                <div className='hidden z-20 md:ml-4 md:flex md:flex-shrink-0 md:items-center'>
+                <div className='hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center'>
                   {/* Profile dropdown */}
                   <Menu as='div' className='relative'>
                     <div>
@@ -251,7 +251,7 @@ const PrivateNavbar = () => {
                   </div>
                 </div>
               </div>
-              <div className='mt-3 space-y-1 z-10'>
+              <div className='mt-3 space-y-1'>
                 <Link to='/dashboard/settings'>
                   <Disclosure.Button
                     as='button'

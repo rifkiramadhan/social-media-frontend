@@ -12,7 +12,7 @@ const PayingFreePlan = () => {
   console.log(data);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-200'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
       {/* show loading */}
       {isLoading && (
         <AlertMessage type='loading' message='Processing from plan...' />

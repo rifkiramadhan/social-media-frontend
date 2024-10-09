@@ -19,7 +19,7 @@ const CreatePlan = () => {
     initialValues: {
       planName: '',
       features: '',
-      // limitations: '',
+      limitations: '',
       price: '',
     },
     // validation
@@ -36,9 +36,7 @@ const CreatePlan = () => {
       const planData = {
         planName: values.planName,
         features: values.features.split(',').map(feature => feature.trim()),
-        // limitations: values.limitations
-        // .split(',')
-        // .map(limitation => limitation.trim()),
+        limitations: values.limitations,
         price: values.price,
       };
 
@@ -55,7 +53,7 @@ const CreatePlan = () => {
   console.log(planMutation);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-200'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
       <form
         onSubmit={formik.handleSubmit}
         className='max-w-md w-full p-6 mt-8 bg-white rounded-lg shadow-4xl'
@@ -108,12 +106,12 @@ const CreatePlan = () => {
             <div className='text-red-500 mt-1'>{formik.errors.features}</div>
           )}
         </div>
-        {/* <div className='mb-4'>
+        <div className='mb-4'>
           <label className='block mb-2 text-sm font-bold text-gray-700'>
-            Limitations (comma separated):
+            Limitations:
           </label>
           <input
-            type='text'
+            type='number'
             id='limitations'
             {...formik.getFieldProps('limitations')}
             className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
@@ -121,7 +119,7 @@ const CreatePlan = () => {
           {formik.touched.limitations && formik.errors.limitations && (
             <div className='text-red-500 mt-1'>{formik.errors.limitations}</div>
           )}
-        </div> */}
+        </div>
         <div className='mb-4'>
           <label className='block mb-2 text-sm font-bold text-gray-700'>
             Price:
@@ -138,7 +136,7 @@ const CreatePlan = () => {
         </div>
         <button
           type='submit'
-          className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+          className='w-full px-4 py-2 font-bold text-white bg-orange-500 rounded hover:bg-orange-700 focus:outline-none focus:shadow-outline'
         >
           Submit
         </button>

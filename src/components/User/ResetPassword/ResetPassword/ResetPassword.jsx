@@ -57,7 +57,7 @@ const ResetPassword = () => {
   });
   console.log(resetPasswordMutation);
   return (
-    <div className='flex items-center justify-center h-screen bg-gray-200'>
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
       <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-sm'>
         <h2 className='text-2xl font-semibold text-center text-gray-700'>
           Enter New Password

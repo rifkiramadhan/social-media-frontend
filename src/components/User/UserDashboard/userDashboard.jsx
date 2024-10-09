@@ -102,7 +102,7 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div className='min-h-screen bg-gray-200'>
+      <div className='min-h-screen bg-gray-100'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as='div'
@@ -156,7 +156,7 @@ const UserDashboard = () => {
                     </div>
                   </Transition.Child>
 
-                  <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-gray-200 px-6 pb-4'>
+                  <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-gray-100 px-6 pb-4'>
                     <div className='flex h-16 shrink-0 items-center'>
                       {/* Logo */}
                       <Link to='/'>
@@ -185,7 +185,7 @@ const UserDashboard = () => {
                                     item.current
                                       ? 'bg-orange-200 text-orange-600'
                                       : 'text-orange-700 hover:text-orange-600 hover:bg-orange-100',
-                                    'group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold'
+                                    'group flex gap-x-3 p-2 text-sm leading-6 font-semibold'
                                   )}
                                 >
                                   <item.icon
@@ -214,7 +214,7 @@ const UserDashboard = () => {
 
         {/* Static sidebar for desktop */}
         <div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col'>
-          <div className='flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-300 bg-gray-200 px-6 pb-4'>
+          <div className='flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-300 bg-gray-100 px-6 pb-4'>
             <div className='flex h-16 shrink-0 items-center'>
               {/* Logo */}
               <Link to='/'>
@@ -241,7 +241,7 @@ const UserDashboard = () => {
                             item.current
                               ? 'bg-orange-200 text-orange-600'
                               : 'text-gray-700 hover:text-orange-600 hover:bg-orange-100',
-                            'group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold'
+                            'group flex gap-x-3 rounded-br-full rounded-tr-full p-2 text-sm leading-6 font-semibold'
                           )}
                         >
                           <item.icon

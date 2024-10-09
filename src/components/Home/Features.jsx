@@ -11,7 +11,7 @@ const Features = () => {
   return (
     <section className='py-24'>
       <div className='container mx-auto'>
-        <p className='uppercase text-blue-600 text-center text-sm font-bold font-heading mb-4'>
+        <p className='uppercase text-red-600 text-center text-sm font-bold font-heading mb-4'>
           UNIQUE FEATURES
         </p>
         <h1 className='text-center text-4xl lg:text-5xl font-bold font-heading mb-24'>

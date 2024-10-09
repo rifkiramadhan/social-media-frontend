@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
   });
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-200'>
+    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
       <div className='p-8 bg-white rounded-lg shadow-4xl max-w-md w-full'>
         {isLoading ? (
           <div className='flex flex-col items-center space-y-4'>

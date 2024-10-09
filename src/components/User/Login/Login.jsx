@@ -57,7 +57,7 @@ const Login = () => {
   console.log(userMutation);
 
   return (
-    <div className='flex flex-wrap pb-24 bg-gray-200'>
+    <div className='flex flex-wrap pb-24 bg-gray-100'>
       <div className='w-full p-4'>
         <div className='flex flex-col justify-center py-24 max-w-md mx-auto h-full'>
           <form
