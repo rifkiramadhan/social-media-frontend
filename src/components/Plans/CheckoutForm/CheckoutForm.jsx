@@ -60,10 +60,10 @@ const CheckoutForm = () => {
   console.log(paymentMutation);
 
   return (
-    <div className='bg-gray-900 h-screen -mt-4 flex justify-center items-center'>
+    <div className='bg-gray-200 h-screen -mt-4 flex justify-center items-center'>
       <form
         onSubmit={handleSubmit}
-        className='w-96 mx-auto my-4 p-6 bg-white rounded-lg shadow-md'
+        className='w-full max-w-md my-4 p-6 bg-white rounded-lg shadow-4xl'
       >
         {/* Stripe payment element */}
         <div className='mb-4'>

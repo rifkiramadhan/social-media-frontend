@@ -53,8 +53,8 @@ const UpdateEmail = () => {
   }, [redirectCountdown, navigate]);
 
   return (
-    <div className='flex items-center justify-center h-screen bg-gray-100'>
-      <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-sm'>
+    <div className='flex flex-col items-center justify-center min-h-screen'>
+      <div className='bg-white p-8 rounded-lg shadow-4xl w-full max-w-md'>
         <h2 className='text-2xl font-semibold text-center text-gray-700'>
           Update Your Email
         </h2>
@@ -80,7 +80,7 @@ const UpdateEmail = () => {
             type='email'
             id='email'
             {...formik.getFieldProps('email')}
-            className='w-full px-3 py-2 mt-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300'
+            className='w-full px-3 py-2 mt-2 border rounded-md focus:outline-none focus:ring focus:border-orange-300'
           />
           {formik.touched.email && formik.errors.email && (
             <div className='text-red-500 text-sm mt-1'>
@@ -89,7 +89,7 @@ const UpdateEmail = () => {
           )}
           <button
             type='submit'
-            className='w-full px-3 py-2 mt-4 text-white bg-blue-600 rounded-md focus:bg-blue-700 focus:outline-none'
+            className='w-full px-3 py-2 mt-4 text-white bg-orange-600 rounded-md focus:bg-orange-700 focus:outline-none'
           >
             Sent Email
           </button>

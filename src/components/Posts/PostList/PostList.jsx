@@ -66,13 +66,12 @@ const PostList = () => {
   });
 
   return (
-    <section className='overflow-hidden'>
-      <div className='container px-4 mx-auto'>
+    <section className='bg-gray-200 overflow-hidden'>
+      <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-4xl lg:text-6xl font-bold font-heading mb-6 mt-16'>
-          Satgasnas News
+          Media Satgasnas
         </h1>
         {/* featured post */}
-        {/* <FeaturedPost post={featuredPost} /> */}
         <h2 className='text-4xl font-bold font-heading mb-10'>
           Latest articles
         </h2>
@@ -81,7 +80,7 @@ const PostList = () => {
           onSubmit={handleSearchSubmit}
           className='flex flex-grid items-center gap-2 mb-4'
         >
-          <div className='flex-grow flex items-center border border-gray-300 rounded-lg overflow-hidden'>
+          <div className='flex-grow flex items-center border border-gray-200 rounded-full overflow-hidden'>
             <input
               type='text'
               placeholder='Search posts...'
@@ -98,7 +97,7 @@ const PostList = () => {
           </div>
           <button
             onClick={clearFilters}
-            className='p-2 text-sm text-orange-500 border border-blue-500 rounded-lg hover:bg-blue-100 flex items-center gap-1'
+            className='p-2 text-sm text-orange-500 border border-orange-500 rounded-full hover:bg-blue-100 flex items-center gap-1 active:bg-orange-500 active:text-white'
           >
             <MdClear className='h-4 w-4' />
             Clear

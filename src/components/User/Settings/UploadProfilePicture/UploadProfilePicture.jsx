@@ -8,19 +8,20 @@ import { uploadProfilePictureAPI } from '../../../../APIServices/users/usersAPI'
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const UploadProfilePicture = () => {
-  // state for wysiwg
-  //File upload state
+  //! State for wysiwg
+  //! File upload state
   const [imageError, setImageErr] = useState('');
   const [imagePreview, setImagePreview] = useState(null);
   const [redirectCountdown, setRedirectCountdown] = useState(null);
 
-  // post mutation
+  //! Post mutation
   const mutation = useMutation({
     mutationKey: ['upload-profile-picture'],
     mutationFn: uploadProfilePictureAPI,
     onSuccess: () => {
       let count = 3;
       setRedirectCountdown(count);
+
       const countdownInterval = setInterval(() => {
         count -= 1;
         setRedirectCountdown(count);
@@ -33,15 +34,17 @@ const UploadProfilePicture = () => {
   });
 
   const formik = useFormik({
-    // initial data
+    //! Initial data
     initialValues: {
       image: '',
     },
-    // validation
+
+    //! Validation
     validationSchema: Yup.object({
       image: Yup.string().required('image is required'),
     }),
-    // submit
+
+    //! Submit
     onSubmit: values => {
       const formData = new FormData();
       formData.append('image', values.image);
@@ -51,7 +54,7 @@ const UploadProfilePicture = () => {
   });
 
   console.log(mutation);
-  //!===== File upload logics====
+  //! ----File upload logics ----
   //! Handle fileChange
   const handleFileChange = event => {
     //get the file selected
@@ -69,23 +72,25 @@ const UploadProfilePicture = () => {
     formik.setFieldValue('image', file);
     setImagePreview(URL.createObjectURL(file));
   };
-  //!remove image
+
+  //! Remove image
   const removeImage = () => {
     formik.setFieldValue('image', null);
     setImagePreview(null);
   };
-  //get loading state
+
+  //! Get loading state
   const isLoading = mutation.isPending;
-  //isErr
+  //! isErr
   const isError = mutation.isError;
-  //success
+  //! Success
   const isSuccess = mutation.isSuccess;
-  //Error
+  //! Error
   const errorMsg = mutation?.error?.response?.data?.message;
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='max-w-md w-full bg-white rounded-lg shadow-md p-8 m-4'>
+    <div className='flex flex-col items-center justify-center min-h-screen'>
+      <div className='max-w-md w-full bg-white rounded-lg shadow-4xl p-8 m-4'>
         <h2 className='text-2xl font-bold text-center text-gray-800 mb-8'>
           Upload Profile Picture
         </h2>
@@ -97,7 +102,7 @@ const UploadProfilePicture = () => {
         {isSuccess && (
           <AlertMessage
             type='success'
-            message='Profile image has been upddated successfully'
+            message={`Profile image has been updated successfully. Redirecting in ${redirectCountdown} seconds...`}
           />
         )}
         {isError && <AlertMessage type='error' message={errorMsg} />}

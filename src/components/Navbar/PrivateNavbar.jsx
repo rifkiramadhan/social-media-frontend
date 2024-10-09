@@ -70,7 +70,7 @@ const PrivateNavbar = () => {
   ];
 
   return (
-    <Disclosure as='nav' className='bg-white shadow'>
+    <Disclosure as='nav' className='bg-gray-200 drop-shadow-sm'>
       {({ open }) => (
         <>
           <div className='mx-auto max-w-7xl px-4 sm:px-8 lg:px-6'>
@@ -79,7 +79,7 @@ const PrivateNavbar = () => {
                 <div className='flex justify-start items-start flex-row'>
                   <div className='-ml-2 mr-2 flex items-left md:hidden'>
                     {/* Mobile menu button */}
-                    <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
+                    <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500'>
                       <span className='absolute -inset-0.5' />
                       <span className='sr-only'>Open main menu</span>
                       {open ? (
@@ -104,8 +104,8 @@ const PrivateNavbar = () => {
                         to={item.path}
                         className={`inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
                           activeItem === item.path
-                            ? 'border-indigo-500 text-gray-900'
-                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                            ? 'border-orange-500  text-gray-900'
+                            : 'border-transparent text-gray-500 hover:border-orange-200 hover:text-gray-700'
                         }`}
                         onClick={() => setActiveItem(item.path)}
                       >
@@ -120,7 +120,7 @@ const PrivateNavbar = () => {
                   <Link to='/dashboard'>
                     <button
                       type='button'
-                      className='relative mr-1 inline-flex items-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                      className='relative mr-1 inline-flex items-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600'
                     >
                       <MdOutlineDashboard />
                       Dashboard
@@ -133,7 +133,7 @@ const PrivateNavbar = () => {
                   {/* Profile dropdown */}
                   <Menu as='div' className='relative'>
                     <div>
-                      <Menu.Button className='relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+                      <Menu.Button className='relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2'>
                         <span className='absolute -inset-1.5' />
                         <span className='sr-only'>Open user menu</span>
                         {/* Profile Image */}
@@ -200,8 +200,8 @@ const PrivateNavbar = () => {
                     as='button'
                     className={`block w-full text-left border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
                       activeItem === item.path
-                        ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                        ? 'border-orange-500 bg-orange-100 text-orange-700'
+                        : 'border-transparent text-gray-500 hover:border-orange-300 hover:bg-orange-200 hover:text-gray-700'
                     } sm:pl-5 sm:pr-6`}
                     onClick={() => setActiveItem(item.path)}
                   >
@@ -217,8 +217,8 @@ const PrivateNavbar = () => {
                     as='button'
                     className={`block w-full text-left border-l-4 py-2 pl-3 pr-4 text-base font-medium ${
                       activeItem === item.path
-                        ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700'
+                        ? 'border-orange-500 bg-orange-100 text-orange-700'
+                        : 'border-transparent text-gray-500 hover:border-orange-300 hover:bg-orange-200 hover:text-gray-700'
                     } sm:pl-5 sm:pr-6`}
                     onClick={() => setActiveItem(item.path)}
                   >

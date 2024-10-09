@@ -224,170 +224,174 @@ const PostDetails = () => {
   const errorMsg = commentMutation?.error?.response?.data?.message;
 
   return (
-    <div className='container mx-auto p-4'>
-      <div className='bg-white rounded-lg shadow-lg p-5'>
-        <img
-          src={data?.postFound?.image?.path}
-          alt={data?.postFound?.description}
-          className='w-full h-full object-cover rounded-lg mb-4'
-        />
-        {/* Show messages */}
-        <div className='flex gap-4 items-center mb-4'>
-          {/* like icon */}
-          <span
-            className='flex items-center gap-1 cursor-pointer'
-            onClick={likePostHandler}
-          >
-            <FaThumbsUp />
-            {data?.postFound?.likes?.length || 0}
-          </span>
-
-          {/* Dislike icon */}
-          <span
-            className='flex items-center gap-1 cursor-pointer'
-            onClick={dislikePostHandler}
-          >
-            <FaThumbsDown />
-
-            {data?.postFound?.dislikes?.length || 0}
-          </span>
-          {/* views icon */}
-          <span className='flex items-center gap-1'>
-            <FaEye />
-            {data?.postFound?.viewers?.length || 0}
-          </span>
-        </div>
-        {/* follow icon */}
-        {userId !== targetId ? (
-          isFollowing ? (
-            <button
-              onClick={unfollowUserHandler}
-              className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
+    <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-200'>
+      <div className='pt-10'>
+        <div className='bg-white rounded-lg shadow-4xl p-2'>
+          <img
+            src={data?.postFound?.image?.path}
+            alt={data?.postFound?.description}
+            className='w-full h-full object-cover rounded-lg mb-4'
+          />
+          {/* Show messages */}
+          <div className='flex gap-4 items-center mb-4'>
+            {/* like icon */}
+            <span
+              className='flex items-center gap-1 cursor-pointer'
+              onClick={likePostHandler}
             >
-              <RiUserUnfollowFill className='mr-2' />
-              Un Follow
-            </button>
-          ) : (
-            <button
-              onClick={followUserHandler}
-              className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
+              <FaThumbsUp />
+              {data?.postFound?.likes?.length || 0}
+            </span>
+
+            {/* Dislike icon */}
+            <span
+              className='flex items-center gap-1 cursor-pointer'
+              onClick={dislikePostHandler}
             >
-              <RiUserFollowLine className='mr-2' />
-              Follow
-            </button>
-          )
-        ) : null}
-        {/* author */}
-        <div className='flex justify-between items-center'>
-          <div className='flex font-bold pt-6 pb-3 px-2 gap-2 items-center'>
-            {data?.postFound?.author?.profilePicture ? (
-              <img
-                src={data?.postFound?.author?.profilePicture?.path}
-                alt={data?.postFound?.author?.profilePicture?.fieldname}
-                className='h-10 w-10 object-cover rounded-full'
-              />
-            ) : (
-              <button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500'>
-                <span className='sr-only'>Open user menu</span>
-                <AiOutlineUser className='h-10 w-10 text-gray-400' />
-              </button>
-            )}
-            <span className='text-gray-600 text-lg'>
-              {data?.postFound?.author?.username}
+              <FaThumbsDown />
+
+              {data?.postFound?.dislikes?.length || 0}
+            </span>
+            {/* views icon */}
+            <span className='flex items-center gap-1'>
+              <FaEye />
+              {data?.postFound?.viewers?.length || 0}
             </span>
           </div>
-          {/* post details */}
-          {userId === targetId ? (
-            <div className='flex gap-2'>
+          {/* follow icon */}
+          {userId !== targetId ? (
+            isFollowing ? (
               <button
-                onClick={editHandler}
-                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                onClick={unfollowUserHandler}
+                className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
               >
-                <FaEdit className='text-white cursor-pointer' />
-                <span className='ml-2'>Edit</span>
+                <RiUserUnfollowFill className='mr-2' />
+                Un Follow
               </button>
+            ) : (
               <button
-                onClick={() => deleteHandler(data?.postFound?._id)}
+                onClick={followUserHandler}
                 className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
               >
-                <FaTrashAlt className='text-white cursor-pointer' />
-                <span className='ml-2'>Delete</span>
+                <RiUserFollowLine className='mr-2' />
+                Follow
               </button>
-            </div>
+            )
           ) : null}
-        </div>
-        <div className='flex justify-between items-center mb-3 mt-6'>
-          <div
-            className='rendered-html-content mb-2'
-            dangerouslySetInnerHTML={{ __html: data?.postFound?.description }}
-          />
-
-          {/* Edit delete icon */}
-        </div>
-
-        {/* Comment Form */}
-        <form onSubmit={formik.handleSubmit}>
-          <textarea
-            className='w-full border border-gray-300 p-2 rounded-lg mb-2'
-            rows='3'
-            placeholder='Add a comment...'
-            value={comment}
-            {...formik.getFieldProps('content')}
-          ></textarea>
-          {/* comment error */}
-          {formik.touched.content && formik.errors.content && (
-            <div className='text-red-500 mb-4 mt-1'>
-              {formik.errors.content}
+          {/* author */}
+          <div className='flex justify-between items-center'>
+            <div className='flex font-bold pt-6 pb-3 px-2 gap-2 items-center'>
+              {data?.postFound?.author?.profilePicture ? (
+                <img
+                  src={data?.postFound?.author?.profilePicture?.path}
+                  alt={data?.postFound?.author?.profilePicture?.fieldname}
+                  className='h-10 w-10 object-cover rounded-full'
+                />
+              ) : (
+                <button className='bg-white rounded-full flex text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-indigo-500'>
+                  <span className='sr-only'>Open user menu</span>
+                  <AiOutlineUser className='h-10 w-10 text-gray-400' />
+                </button>
+              )}
+              <span className='text-gray-600 text-lg'>
+                {data?.postFound?.author?.username}
+              </span>
             </div>
-          )}
-          <button
-            type='submit'
-            className='bg-blue-500 text-white rounded-lg px-4 py-2'
-          >
-            <FaComment className='inline mr-1' /> Comment
-          </button>
-        </form>
-        {isLoading && (
-          <AlertMessage type='loading' message='Loading please wait...' />
-        )}
-        {isError && <AlertMessage type='error' message={errorMsg} />}
-        {/* Comments List */}
-        <div>
-          <h2 className='text-xl font-bold mb-6 mt-6'>Comments:</h2>
-          {data?.postFound?.comments
-            ?.slice()
-            .reverse()
-            .map((comment, index) => (
-              <div key={index} className='border-b border-gray-300 mb-2 pb-2'>
-                <div className='flex font-bold items-center gap-2'>
-                  {comment?.author?.profilePicture?.path ? (
-                    <img
-                      src={comment?.author?.profilePicture?.path}
-                      alt={comment?.author?.profilePicture?.fieldname}
-                      className='h-5 w-5 object-cover rounded-full'
-                    />
-                  ) : (
-                    <Avatar />
-                  )}
-                  <span className='text-gray-600 text-sm'>
-                    {comment.author?.username}
-                  </span>
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width={4}
-                    height={4}
-                    viewBox='0 0 4 4'
-                    fill='none'
-                  >
-                    <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
-                  </svg>
-                  <small className='text-gray-400 text-xs'>
-                    {new Date(comment.createdAt).toLocaleDateString()}
-                  </small>
-                </div>
-                <p className='mt-2 text-gray-600'>{comment.content}</p>
+            {/* post details */}
+            {userId === targetId ? (
+              <div className='flex gap-2'>
+                <button
+                  onClick={editHandler}
+                  className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+                >
+                  <FaEdit className='text-white cursor-pointer' />
+                  <span className='ml-2'>Edit</span>
+                </button>
+                <button
+                  onClick={() => deleteHandler(data?.postFound?._id)}
+                  className='inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
+                >
+                  <FaTrashAlt className='text-white cursor-pointer' />
+                  <span className='ml-2'>Delete</span>
+                </button>
               </div>
-            ))}
+            ) : null}
+          </div>
+          <div className='flex justify-between items-center mb-3 mt-6'>
+            <div
+              className='rendered-html-content mb-2'
+              dangerouslySetInnerHTML={{ __html: data?.postFound?.description }}
+            />
+
+            {/* Edit delete icon */}
+          </div>
+        </div>
+
+        <div className='bg-white rounded-lg shadow-4xl p-2 mt-5'>
+          {/* Comment Form */}
+          <form onSubmit={formik.handleSubmit}>
+            <textarea
+              className='w-full border border-gray-200 p-2 rounded-lg mb-2'
+              rows='3'
+              placeholder='Add a comment...'
+              value={comment}
+              {...formik.getFieldProps('content')}
+            ></textarea>
+            {/* comment error */}
+            {formik.touched.content && formik.errors.content && (
+              <div className='text-red-500 mb-4 mt-1'>
+                {formik.errors.content}
+              </div>
+            )}
+            <button
+              type='submit'
+              className='bg-blue-500 text-white rounded-lg px-4 py-2'
+            >
+              <FaComment className='inline mr-1' /> Comment
+            </button>
+          </form>
+          {isLoading && (
+            <AlertMessage type='loading' message='Loading please wait...' />
+          )}
+          {isError && <AlertMessage type='error' message={errorMsg} />}
+          {/* Comments List */}
+          <div>
+            <h2 className='text-xl font-bold mb-6 mt-6'>Comments:</h2>
+            {data?.postFound?.comments
+              ?.slice()
+              .reverse()
+              .map((comment, index) => (
+                <div key={index} className='border-b border-gray-200 mb-2 pb-2'>
+                  <div className='flex font-bold items-center gap-2'>
+                    {comment?.author?.profilePicture?.path ? (
+                      <img
+                        src={comment?.author?.profilePicture?.path}
+                        alt={comment?.author?.profilePicture?.fieldname}
+                        className='h-5 w-5 object-cover rounded-full'
+                      />
+                    ) : (
+                      <Avatar />
+                    )}
+                    <span className='text-gray-600 text-sm'>
+                      {comment.author?.username}
+                    </span>
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width={4}
+                      height={4}
+                      viewBox='0 0 4 4'
+                      fill='none'
+                    >
+                      <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
+                    </svg>
+                    <small className='text-gray-400 text-xs'>
+                      {new Date(comment.createdAt).toLocaleDateString()}
+                    </small>
+                  </div>
+                  <p className='mt-2 text-gray-600'>{comment.content}</p>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

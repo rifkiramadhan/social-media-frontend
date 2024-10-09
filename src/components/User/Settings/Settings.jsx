@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const SettingsPage = () => {
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-gray-100'>
-      <div className=' p-8 rounded-lg shadow-md w-full max-w-md'>
+    <div className='flex flex-col items-center justify-center h-screen bg-gray-200'>
+      <div className=' p-8 rounded-lg shadow-4xl w-full max-w-md bg-white'>
         <h2 className='text-2xl font-semibold text-center text-gray-700 mb-6'>
           User Settings
         </h2>
@@ -17,7 +17,7 @@ const SettingsPage = () => {
                 <h3 className='text-gray-700 font-semibold text-lg'>
                   Update Profile Photo
                 </h3>
-                <p className='text-gray-600'>Change your profile photo</p>
+                <p className='text-gray-600'>Change Profile Photo</p>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@ const SettingsPage = () => {
                 <h3 className='text-gray-700 font-semibold text-lg'>
                   Update Email
                 </h3>
-                <p className='text-gray-600'>Change your email address</p>
+                <p className='text-gray-600'>Change Email Address</p>
               </div>
             </div>
           </div>

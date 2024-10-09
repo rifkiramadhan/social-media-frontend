@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { RiLockPasswordLine } from 'react-icons/ri';
@@ -7,26 +8,40 @@ import { resetPasswordAPI } from '../../../../APIServices/users/usersAPI';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const ResetPassword = () => {
-  //get the token from the url
+  //! Get the token from the url
   const { verifyToken } = useParams();
+  const [redirectCountdown, setRedirectCountdown] = useState(null);
 
-  // user mutation
+  //! User mutation
   const resetPasswordMutation = useMutation({
     mutationKey: ['user-registration'],
     mutationFn: resetPasswordAPI,
+    onSuccess: () => {
+      let count = 3;
+      setRedirectCountdown(count);
+
+      const countdownInterval = setInterval(() => {
+        count -= 1;
+        setRedirectCountdown(count);
+        if (count === 0) {
+          clearInterval(countdownInterval);
+          window.location.href = '/login';
+        }
+      }, 500);
+    },
   });
 
-  // formik config
+  //! Formik config
   const formik = useFormik({
-    // initial data
+    //! Initial data
     initialValues: {
       password: '',
     },
-    // validation
+    //! Validation
     validationSchema: Yup.object({
       password: Yup.string().required('Password is required'),
     }),
-    // submit
+    //! Submit
     onSubmit: values => {
       const data = {
         password: values.password,
@@ -35,17 +50,17 @@ const ResetPassword = () => {
       resetPasswordMutation
         .mutateAsync(data)
         .then(() => {
-          // redirect
+          //! redirect
         })
         .catch(err => console.log(err));
     },
   });
   console.log(resetPasswordMutation);
   return (
-    <div className='flex items-center justify-center h-screen bg-orange-100'>
+    <div className='flex items-center justify-center h-screen bg-gray-200'>
       <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-sm'>
         <h2 className='text-2xl font-semibold text-center text-gray-700'>
-          Reset Your Password
+          Enter New Password
         </h2>
         {resetPasswordMutation.isPending && (
           <AlertMessage type='loading' message='Loading please wait...' />
@@ -53,7 +68,7 @@ const ResetPassword = () => {
         {resetPasswordMutation.isSuccess && (
           <AlertMessage
             type='success'
-            message={resetPasswordMutation.data?.message}
+            message={`${resetPasswordMutation.data?.message}. Redirecting in ${redirectCountdown} seconds...`}
           />
         )}
         {resetPasswordMutation.isError && (
@@ -82,8 +97,9 @@ const ResetPassword = () => {
           )}
           <button
             type='submit'
-            className='w-full px-3 py-2 mt-4 text-white bg-orange-600 rounded-md focus:bg-orange-700 focus:outline-none'
+            className='flex justify-center gap-1 items-center w-full px-3 py-2 mt-4 text-white bg-orange-600 rounded-md focus:bg-orange-700 focus:outline-none'
           >
+            <RiLockPasswordLine />
             Reset Password
           </button>
         </form>

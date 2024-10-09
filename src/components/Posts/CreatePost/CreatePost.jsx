@@ -106,8 +106,8 @@ const CreatePost = () => {
   const errorMsg = postMutation?.error?.response?.data?.message;
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='max-w-md w-full bg-white rounded-lg shadow-md p-8 m-4'>
+    <div className='container flex items-center justify-center'>
+      <div className='max-w-md w-full bg-white rounded-lg shadow-4xl p-8'>
         <h2 className='text-2xl font-bold text-center text-gray-800 mb-8'>
           Create New Post
         </h2>

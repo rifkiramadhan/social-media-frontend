@@ -15,7 +15,7 @@ const MyFollowing = () => {
   const myFollowing = data?.user?.following;
 
   return (
-    <section className='relative py-20 md:py-32 overflow-hidden bg-gray-50'>
+    <section className='relative py-20 md:py-32 overflow-hidden bg-gray-200'>
       <div className='relative container px-4 mx-auto'>
         <div className='max-w-7xl mx-auto'>
           <div className='max-w-2xl mx-auto mb-20 text-center'>
@@ -42,7 +42,7 @@ const MyFollowing = () => {
                     key={follower?._id}
                     className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'
                   >
-                    <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
+                    <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-lg shadow-4xl'>
                       {follower?.profilePicture?.path ? (
                         <img
                           className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'

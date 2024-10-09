@@ -102,7 +102,7 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div className='mx-auto'>
+      <div className='min-h-screen bg-gray-200'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as='div'
@@ -156,7 +156,7 @@ const UserDashboard = () => {
                     </div>
                   </Transition.Child>
 
-                  <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4'>
+                  <div className='flex grow flex-col gap-y-5 overflow-y-auto bg-gray-200 px-6 pb-4'>
                     <div className='flex h-16 shrink-0 items-center'>
                       {/* Logo */}
                       <Link to='/'>
@@ -183,16 +183,16 @@ const UserDashboard = () => {
                                   }
                                   className={classNames(
                                     item.current
-                                      ? 'bg-gray-50 text-orange-600'
-                                      : 'text-orange-700 hover:text-indigo-600 hover:bg-gray-50',
-                                    'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                      ? 'bg-orange-200 text-orange-600'
+                                      : 'text-orange-700 hover:text-orange-600 hover:bg-orange-100',
+                                    'group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold'
                                   )}
                                 >
                                   <item.icon
                                     className={classNames(
                                       item.current
-                                        ? 'text-indigo-600'
-                                        : 'text-gray-400 group-hover:text-indigo-600',
+                                        ? 'text-orange-600'
+                                        : 'text-gray-400 group-hover:text-orange-600',
                                       'h-6 w-6 shrink-0'
                                     )}
                                     aria-hidden='true'
@@ -214,7 +214,7 @@ const UserDashboard = () => {
 
         {/* Static sidebar for desktop */}
         <div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col'>
-          <div className='flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4'>
+          <div className='flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-300 bg-gray-200 px-6 pb-4'>
             <div className='flex h-16 shrink-0 items-center'>
               {/* Logo */}
               <Link to='/'>
@@ -239,9 +239,9 @@ const UserDashboard = () => {
                           onClick={() => handleNavigationClick(item.name)}
                           className={classNames(
                             item.current
-                              ? 'bg-gray-50 text-orange-600'
-                              : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
-                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                              ? 'bg-orange-200 text-orange-600'
+                              : 'text-gray-700 hover:text-orange-600 hover:bg-orange-100',
+                            'group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold'
                           )}
                         >
                           <item.icon
@@ -263,10 +263,10 @@ const UserDashboard = () => {
                 <li className='mt-auto'>
                   <Link
                     to='/dashboard/settings'
-                    className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600'
+                    className='group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-orange-600'
                   >
                     <Cog6ToothIcon
-                      className='h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600'
+                      className='h-6 w-6 shrink-0 text-gray-400 group-hover:text-orange-600'
                       aria-hidden='true'
                     />
                     Settings

@@ -55,10 +55,10 @@ const CreatePlan = () => {
   console.log(planMutation);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-200'>
       <form
         onSubmit={formik.handleSubmit}
-        className='p-6 mt-8 bg-white rounded shadow-md w-80'
+        className='max-w-md w-full p-6 mt-8 bg-white rounded-lg shadow-4xl'
       >
         <h2 className='mb-4 text-xl font-semibold text-center text-gray-700'>
           Create New Plan

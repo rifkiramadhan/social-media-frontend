@@ -32,9 +32,9 @@ const NotificationLists = () => {
   };
 
   return (
-    <div className='flex justify-center items-start  h-screen bg-gray-100'>
-      <div className='max-w-md w-full mt-5 bg-white rounded-lg shadow-xl overflow-hidden'>
-        <div className='bg-gray-800 p-4 text-white text-lg font-semibold rounded-t-lg'>
+    <div className='flex justify-center items-start h-screen bg-gray-200'>
+      <div className='max-w-md w-full mt-5 bg-white rounded-lg shadow-4xl overflow-hidden'>
+        <div className='bg-red-800 p-4 text-white text-lg font-semibold rounded-t-lg'>
           Notifications
         </div>
         <div className='max-h-96 mt-3 overflow-auto'>

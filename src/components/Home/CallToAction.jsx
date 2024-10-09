@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const CallToAction = () => {
   return (
-    <section className='py-24 bg-orange-50'>
-      <div className='container mx-auto px-4'>
-        <div className='bg-white border border-orange-100 rounded-4xl py-20 px-8'>
+    <section className='py-24 bg-gray-200'>
+      <div className='container mx-auto'>
+        <div className='bg-white border border-gray-100 rounded-4xl py-20 px-8'>
           <div className='flex justify-center mb-6'>
             <FaLightbulb className='text-orange-500' size='68' />
           </div>

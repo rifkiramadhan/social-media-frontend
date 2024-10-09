@@ -17,8 +17,8 @@ const Pricing = () => {
   const premiumPlan = data?.plans?.filter(plan => plan.planName === 'Premium');
 
   return (
-    <section className='py-24'>
-      <div className='container mx-auto px-4'>
+    <section className='py-24 bg-gray-200'>
+      <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-center text-5xl lg:text-6xl font-bold font-heading mb-6'>
           Pricing
         </h1>
@@ -30,7 +30,7 @@ const Pricing = () => {
         <div className='flex flex-wrap mb-24 -mx-4'>
           {/* Free Plan */}
           <div className='w-full lg:w-1/2 p-4'>
-            <div className='border border-gray-200 rounded-3xl px-8 lg:px-10 pb-14 pt-10 h-full'>
+            <div className='bg-white border border-gray-200 rounded-3xl px-8 lg:px-10 pb-14 pt-10 h-full'>
               <h2 className='text-3xl font-bold font-heading mb-6'>
                 {freePlan?.[0]?.planName}
               </h2>

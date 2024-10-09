@@ -14,7 +14,7 @@ const MyFollowers = () => {
   //! Get the user following
   const myFollowers = data?.user?.followers;
   return (
-    <section className='relative py-20 md:py-32 overflow-hidden bg-gray-50'>
+    <section className='relative py-20 md:py-32 overflow-hidden bg-gray-200'>
       <div className='relative container px-4 mx-auto'>
         <div className='max-w-7xl mx-auto'>
           <div className='max-w-2xl mx-auto mb-20 text-center'>
@@ -26,10 +26,6 @@ const MyFollowers = () => {
             <p className='text-lg text-gray-500 mb-6'>
               Here are all the people who follow you.
             </p>
-            <a
-              className='inline-flex py-4 px-6 items-center text-orange-900 font-semibold bg-gray-50 border border-gray-200 hover:border-orange-900 rounded-full transition duration-200'
-              href='#'
-            ></a>
           </div>
           {data?.length <= 0 && <NoDataFound />}
           {isError && (
@@ -45,7 +41,7 @@ const MyFollowers = () => {
                     key={follower?._id}
                     className='w-full md:w-1/2 lg:w-1/3 px-4 mb-8'
                   >
-                    <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-md'>
+                    <div className='max-w-md mx-auto py-10 px-6 text-center bg-white rounded-lg shadow-4xl'>
                       {follower?.profilePicture?.path ? (
                         <img
                           className='w-24 h-24 rounded-full object-cover block mb-6 mx-auto'

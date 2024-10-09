@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <section className='overflow-hidden pb-24'>
+    <section className='bg-gray-200 overflow-hidden pb-24 '>
       <div className='hidden navbar-menu fixed top-0 left-0 bottom-0 w-4/6 sm:max-w-xs z-50'>
         <div className='navbar-backdrop fixed inset-0 bg-gray-800 opacity-80' />
       </div>
@@ -31,7 +31,6 @@ const Home = () => {
       </div>
 
       {/* Featured Post */}
-      {/* <FeaturedPost post={featuredPost} /> */}
       {/* Features */}
       <Features />
       {/* Call to action */}

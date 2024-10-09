@@ -15,7 +15,7 @@ const Rankings = () => {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-gray-200 py-12'>
       <div className='w-full sm:max-w-xl mx-auto min-h-screen'>
-        <div className='flex flex-col justify-between items-center h-full bg-white shadow-lg rounded-3xl overflow-hidden'>
+        <div className='flex flex-col justify-between items-center h-full bg-white border-gray-100 rounded-4xl overflow-hidden'>
           <div className='px-4 py-10 sm:p-10'>
             <div className='max-w-md mx-auto'>
               <div className='flex items-center space-x-5 mb-6'>

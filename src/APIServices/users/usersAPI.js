@@ -137,10 +137,11 @@ export const sendVerifyUserAccountAPI = async verifyToken => {
 };
 
 //! Forgot Password
-export const forgotPasswordAPI = async email => {
+export const forgotPasswordAPI = async ({ email, username }) => {
   const response = await axios.post(
     `${BASE_URL}/forgot-password`,
     {
+      username,
       email,
     },
     {

@@ -61,10 +61,13 @@ const Register = () => {
   console.log(userMutation);
 
   return (
-    <div className='flex flex-wrap pb-24'>
+    <div className='flex flex-wrap pb-24 bg-gray-200'>
       <div className='w-full  p-4'>
         <div className='flex flex-col justify-center py-24 max-w-md mx-auto h-full'>
-          <form onSubmit={formik.handleSubmit}>
+          <form
+            className='bg-white rounded-2xl border-4xl p-8'
+            onSubmit={formik.handleSubmit}
+          >
             <Link
               to='/login'
               className='inline-block text-gray-500 hover: transition duration-200 mb-8'

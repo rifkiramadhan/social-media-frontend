@@ -16,8 +16,8 @@ const PaymentSuccess = () => {
   });
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-orange-100'>
-      <div className='p-8 bg-white rounded-lg shadow-md max-w-md w-full'>
+    <div className='flex items-center justify-center min-h-screen bg-gray-200'>
+      <div className='p-8 bg-white rounded-lg shadow-4xl max-w-md w-full'>
         {isLoading ? (
           <div className='flex flex-col items-center space-y-4'>
             <FaSpinner className='animate-spin text-4xl text-orange-500' />
@@ -37,7 +37,7 @@ const PaymentSuccess = () => {
             <h1 className='text-2xl font-bold'>Payment Successful</h1>
             <p className='text-gray-600'>
               Thank you for your payment. Your transaction ID is{' '}
-              <p className='text-center'>{paymentIntentId}.</p>
+              <p className='text-center font-bold'>{paymentIntentId}</p>
             </p>
             <Link
               to='/dashboard/create-post'

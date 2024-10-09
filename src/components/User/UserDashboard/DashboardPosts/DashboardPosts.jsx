@@ -45,7 +45,7 @@ const DashboardPosts = () => {
         <section className='py-2'>
           <Profile />
           <div className='container mx-auto'>
-            <div className='pt-20 bg-white shadow rounded'>
+            <div className='pt-20 bg-white shadow-4xl rounded-b-lg'>
               <div className='flex px-6 pb-4 border-b'>
                 <h3 className='text-xl font-bold'>
                   Your Posts ({userPosts?.length})

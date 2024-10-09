@@ -46,7 +46,7 @@ const UsersList = () => {
   };
 
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container mx-auto'>
       <div className='txt-2xl font-semibold mb-4'>Users List</div>
       {data?.length <= 0 && <NoDataFound />}
       {isError && <AlertMessage type='error' message='Something happened!' />}
@@ -57,7 +57,7 @@ const UsersList = () => {
           {data?.map(user => (
             <div
               key={user?._id}
-              className='flex items-center justify-between bg-gray-100 p-3 rounded-lg'
+              className='flex items-center justify-between bg-gray-100 p-3 rounded-lg shadow-4xl'
             >
               <div className='flex items-center gap-2'>
                 {user?.profilePicture?.path ? (
