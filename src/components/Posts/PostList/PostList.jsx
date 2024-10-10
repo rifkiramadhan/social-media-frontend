@@ -97,7 +97,7 @@ const PostList = () => {
           </div>
           <button
             onClick={clearFilters}
-            className='p-2 text-sm text-orange-500 border border-orange-500 rounded-full hover:bg-blue-100 flex items-center gap-1 active:bg-orange-500 active:text-white'
+            className='p-2 text-sm text-orange-500 border border-orange-500 rounded-full hover:bg-orange-100 flex items-center gap-1 active:bg-orange-500 active:text-white'
           >
             <MdClear className='h-4 w-4' />
             Clear
@@ -190,7 +190,7 @@ const PostList = () => {
         {page > 1 && (
           <button
             onClick={() => handlePageChange(page - 1)}
-            className='px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'
+            className='px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-50'
           >
             Previous
           </button>
@@ -203,7 +203,7 @@ const PostList = () => {
         {page < data?.totalPages && (
           <button
             onClick={() => handlePageChange(page + 1)}
-            className='px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'
+            className='px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 focus:ring-opacity-50'
           >
             Next
           </button>
