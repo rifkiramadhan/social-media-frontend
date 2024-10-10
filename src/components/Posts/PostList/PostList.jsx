@@ -90,7 +90,7 @@ const PostList = () => {
             />
             <button
               type='submit'
-              className='whitespace-nowrap p-2 text-white bg-orange-500 hover:bg-blue-600 rounded-r-lg'
+              className='whitespace-nowrap p-2 text-white bg-orange-500 hover:bg-orange-600 rounded-r-lg'
             >
               <FaSearch className='h-5 w-5' />
             </button>
