@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { FaDollarSign } from 'react-icons/fa';
 import { getMyEarningsAPI } from '../../../APIServices/earnings/earningsAPI';
-import NoDataFound from '../../Alert/NoDataFound/NoDataFound';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
 
 const MyEarnings = () => {
