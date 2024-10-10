@@ -83,7 +83,7 @@ const PostList = () => {
           <div className='flex-grow flex items-center border border-gray-200 rounded-full overflow-hidden'>
             <input
               type='text'
-              placeholder='Search posts...'
+              placeholder='Search Posts...'
               value={searchTerm}
               onChange={handleSearchChange}
               className='flex-grow p-2 text-sm focus:outline-orange-300 focus:rounded-tl-full focus:rounded-bl-full'

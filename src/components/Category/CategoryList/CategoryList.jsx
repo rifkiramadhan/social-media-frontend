@@ -8,20 +8,32 @@ const CategoryList = ({ categories, onCategorySelect }) => {
   const [isAtEnd, setIsAtEnd] = useState(false);
   const sliderRef = useRef(null);
 
-  const CustomArrow = ({ onClick, direction }) => (
-    <button
-      className={`z-10 !flex items-center justify-center w-8 h-8 rounded-full bg-white shadow-4xl focus:outline-none absolute top-1/2 transform -translate-y-1/2 ${
-        direction === 'prev' ? 'left-2' : 'right-2'
-      }`}
-      onClick={onClick}
-    >
-      {direction === 'prev' ? (
-        <ChevronLeft className='w-5 h-5 text-gray-600' />
-      ) : (
-        <ChevronRight className='w-5 h-5 text-gray-600' />
-      )}
-    </button>
-  );
+  const CustomArrow = ({ onClick, direction }) => {
+    if (
+      (direction === 'prev' && isAtStart) ||
+      (direction === 'next' && isAtEnd)
+    ) {
+      return null;
+    }
+
+    return (
+      <button
+        className={`z-10 flex items-center justify-center w-10 h-10 rounded-full
+        bg-white text-gray-800 shadow-md
+        hover:bg-black/10 focus:bg-black/20 transition-colors duration-200
+        absolute top-1/2 transform -translate-y-1/2 ${
+          direction === 'prev' ? 'left-1' : 'right-1'
+        }`}
+        onClick={onClick}
+      >
+        {direction === 'prev' ? (
+          <ChevronLeft className='w-5 h-5 text-gray-600' />
+        ) : (
+          <ChevronRight className='w-5 h-5 text-gray-600' />
+        )}
+      </button>
+    );
+  };
 
   const normalizedCategories = Array.isArray(categories)
     ? categories
@@ -32,7 +44,7 @@ const CategoryList = ({ categories, onCategorySelect }) => {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 250,
     slidesToShow: 6,
     slidesToScroll: 1,
     prevArrow: <CustomArrow direction='prev' />,
@@ -109,28 +121,29 @@ const CategoryList = ({ categories, onCategorySelect }) => {
               className='px-1'
             >
               <button
-                className={`h-10 inline-flex items-center justify-center w-full text-center py-3 px-4 rounded-full border border-gray-200 text-sm font-semibold transition duration-200 
+                className={`h-10 inline-flex items-center justify-center w-full text-center py-2 px-4 rounded-full border border-gray-200 text-sm font-semibold transition duration-200 
                   ${
                     activeCategory === (category?._id || category?.id)
                       ? 'bg-orange-200 text-orange-800'
-                      : 'bg-white text-gray-800 hover:bg-gray-50 focus:ring focus:ring-orange-200'
+                      : // : 'bg-white text-gray-800 hover:bg-gray-50 focus:ring focus:ring-orange-200'
+                        'bg-orange-500 text-white hover:bg-orange-600 focus:bg-orange-700 transition-colors duration-200'
                   }`}
                 onClick={() =>
                   handleCategoryClick(category?._id || category?.id)
                 }
               >
-                {category?.categoryName || category?.name || 'Unnamed'} (
-                {category?.posts?.length || 0})
+                {category?.categoryName || category?.name || 'Unnamed'}
+                {category?.posts?.length ? ` (${category.posts.length})` : ''}
               </button>
             </div>
           ))}
         </Slider>
       </div>
       {!isAtStart && (
-        <div className='absolute top-0 left-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none'></div>
+        <div className='absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none'></div>
       )}
       {!isAtEnd && (
-        <div className='absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+        <div className='absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
       )}
     </div>
   );
