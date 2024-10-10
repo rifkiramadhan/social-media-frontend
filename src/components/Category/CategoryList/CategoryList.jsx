@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -28,7 +28,7 @@ const CategoryList = ({ categories, onCategorySelect }) => {
     infinite: false,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToScroll: 1,
     prevArrow: <CustomArrow direction='prev' />,
     nextArrow: <CustomArrow direction='next' />,
     beforeChange: (current, next) => {
@@ -41,22 +41,22 @@ const CategoryList = ({ categories, onCategorySelect }) => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 6,
-          slidesToScroll: 6,
+          slidesToShow: 4,
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToShow: 3,
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
         },
       },
     ],
@@ -70,23 +70,39 @@ const CategoryList = ({ categories, onCategorySelect }) => {
   useEffect(() => {
     const handleResize = () => {
       if (sliderRef.current) {
+        const currentSlide = sliderRef.current.innerSlider.state.currentSlide;
+        const slidesToShow = sliderRef.current.props.responsive.reduce(
+          (acc, breakpoint) => {
+            if (window.innerWidth > breakpoint.breakpoint) {
+              return breakpoint.settings.slidesToShow;
+            }
+            return acc;
+          },
+          settings.slidesToShow
+        );
+
+        setIsAtStart(currentSlide === 0);
         setIsAtEnd(
-          sliderRef.current.innerSlider.state.currentSlide +
-            settings.slidesToShow >=
-            categories?.categories?.length
+          currentSlide + slidesToShow >= categories?.categories?.length
         );
       }
     };
 
     window.addEventListener('resize', handleResize);
+    handleResize(); // Call once on mount to set initial state
     return () => window.removeEventListener('resize', handleResize);
   }, [categories]);
+
+  // Ensure categories are loaded before rendering
+  if (!categories?.categories?.length) {
+    return <div>Loading categories...</div>;
+  }
 
   return (
     <div className='relative mb-10'>
       <div className='overflow-hidden'>
         <Slider ref={sliderRef} {...settings}>
-          {categories?.categories?.map(category => (
+          {categories.categories.map(category => (
             <div key={category._id} className='px-1'>
               <button
                 className={`h-10 inline-flex items-center justify-center w-full text-center py-3 px-4 rounded-full border border-gray-200 text-sm font-semibold transition duration-200 
