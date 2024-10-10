@@ -113,7 +113,9 @@ const PostList = () => {
         {data?.posts?.length <= 0 && <NoDataFound text='No Post Found' />}
         {isError && <AlertMessage type='error' message='Something happened!' />}
         {isLoading && (
-          <AlertMessage type='loading' message='Loading please wait...' />
+          <div className='flex items-start justify-center min-h-screen'>
+            <AlertMessage type='loading' message='Loading please wait...' />
+          </div>
         )}
         <div className='flex flex-wrap mb-32 -mx-4'>
           {/* Posts */}

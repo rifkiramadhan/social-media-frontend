@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -23,6 +23,12 @@ const CategoryList = ({ categories, onCategorySelect }) => {
     </button>
   );
 
+  const normalizedCategories = Array.isArray(categories)
+    ? categories
+    : Array.isArray(categories?.categories)
+    ? categories.categories
+    : [];
+
   const settings = {
     dots: false,
     infinite: false,
@@ -33,9 +39,7 @@ const CategoryList = ({ categories, onCategorySelect }) => {
     nextArrow: <CustomArrow direction='next' />,
     beforeChange: (current, next) => {
       setIsAtStart(next === 0);
-      setIsAtEnd(
-        next + settings.slidesToShow >= categories?.categories?.length
-      );
+      setIsAtEnd(next + settings.slidesToShow >= normalizedCategories.length);
     },
     responsive: [
       {
@@ -82,38 +86,41 @@ const CategoryList = ({ categories, onCategorySelect }) => {
         );
 
         setIsAtStart(currentSlide === 0);
-        setIsAtEnd(
-          currentSlide + slidesToShow >= categories?.categories?.length
-        );
+        setIsAtEnd(currentSlide + slidesToShow >= normalizedCategories.length);
       }
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Call once on mount to set initial state
+    handleResize();
     return () => window.removeEventListener('resize', handleResize);
-  }, [categories]);
+  }, [normalizedCategories]);
 
-  // Ensure categories are loaded before rendering
-  if (!categories?.categories?.length) {
-    return <div>Loading categories...</div>;
+  if (normalizedCategories.length === 0) {
+    return null;
   }
 
   return (
     <div className='relative mb-10'>
       <div className='overflow-hidden'>
         <Slider ref={sliderRef} {...settings}>
-          {categories.categories.map(category => (
-            <div key={category._id} className='px-1'>
+          {normalizedCategories.map((category, index) => (
+            <div
+              key={category?._id || category?.id || `category-${index}`}
+              className='px-1'
+            >
               <button
                 className={`h-10 inline-flex items-center justify-center w-full text-center py-3 px-4 rounded-full border border-gray-200 text-sm font-semibold transition duration-200 
                   ${
-                    activeCategory === category._id
+                    activeCategory === (category?._id || category?.id)
                       ? 'bg-orange-200 text-orange-800'
                       : 'bg-white text-gray-800 hover:bg-gray-50 focus:ring focus:ring-orange-200'
                   }`}
-                onClick={() => handleCategoryClick(category._id)}
+                onClick={() =>
+                  handleCategoryClick(category?._id || category?.id)
+                }
               >
-                {category.categoryName} ({category.posts?.length})
+                {category?.categoryName || category?.name || 'Unnamed'} (
+                {category?.posts?.length || 0})
               </button>
             </div>
           ))}
