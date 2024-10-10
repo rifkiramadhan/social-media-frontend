@@ -86,7 +86,7 @@ const PostList = () => {
               placeholder='Search posts...'
               value={searchTerm}
               onChange={handleSearchChange}
-              className='flex-grow p-2 text-sm focus:outline-orange-300 focus:rounded-tl-full rounded-bl-full'
+              className='flex-grow p-2 text-sm focus:outline-orange-300 focus:rounded-tl-full focus:rounded-bl-full'
             />
             <button
               type='submit'
