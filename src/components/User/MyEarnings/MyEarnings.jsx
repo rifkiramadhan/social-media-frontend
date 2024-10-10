@@ -12,14 +12,13 @@ const MyEarnings = () => {
 
   return (
     <div>
-      {data?.length <= 0 && <NoDataFound />}
       {isError && <AlertMessage type='error' message='Something happened!' />}
       {isLoading ? (
         <AlertMessage type='loading' message='Loading please wait...' />
       ) : (
         <div className='flex justify-center items-center bg-gray-100'>
           <div className='max-w-md w-full md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white rounded-lg shadow-4xl overflow-hidden '>
-            <div className='flex flex-col items-center py-6 bg-gradient-to-r from-green-400 to-blue-500 '>
+            <div className='flex flex-col items-center py-6 bg-gradient-to-r from-green-400 to-orange-500 '>
               <FaDollarSign className='text-white text-6xl' />
               <h1 className='text-2xl font-bold text-white mt-3'>
                 My Earnings
