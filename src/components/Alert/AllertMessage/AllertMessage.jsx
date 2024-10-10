@@ -19,9 +19,9 @@ const AlertMessage = ({ type, message }) => {
       break;
     case 'loading':
       icon = (
-        <AiOutlineLoading3Quarters className='animate-spin text-blue-500 text-3xl' />
+        <AiOutlineLoading3Quarters className='animate-spin text-orange-500 text-3xl' />
       );
-      colorClass = 'bg-blue-100 text-blue-700';
+      colorClass = 'bg-orange-100 text-orange-700';
       break;
     default:
       icon = null;
