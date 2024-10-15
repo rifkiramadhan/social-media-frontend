@@ -22,7 +22,7 @@ const PostList = () => {
   const { isError, isLoading, data, refetch } = useQuery({
     queryKey: ['lists-posts', { ...filters, page }],
     queryFn: () =>
-      fetchAllPosts({ ...filters, title: searchTerm, page, limit: 10 }),
+      fetchAllPosts({ ...filters, title: searchTerm, page, limit: 12 }),
   });
 
   //! Category Filter Handler
