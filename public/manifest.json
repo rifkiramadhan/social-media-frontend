@@ -1,6 +1,11 @@
 {
-  "short_name": "Satgasnas App",
   "name": "Media Satgasnas",
+  "short_name": "Satgasnas App",
+  "description": "Organisasi Media Cetak maupun Online yang bergerak untuk memberantas Mafia Hukum dan Tipikor.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "./logo192.png",
@@ -12,9 +17,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
