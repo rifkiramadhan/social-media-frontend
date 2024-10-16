@@ -31,7 +31,7 @@ const Profile = () => {
 
   return (
     <div className='rounded-t-lg shadow-4xl bg-white h-auto min-h-[13rem] md:min-h-[16rem]'>
-      <div className='pt-6 mt-2 p-6 w-full'>
+      <div className='pt-4 p-4 w-full'>
         <div className='flex flex-wrap'>
           <div className='relative w-16 h-16 md:w-28 md:h-28 flex-shrink-0'>
             {data?.profilePicture ? (
@@ -105,14 +105,14 @@ const Profile = () => {
         <div className='my-2 mt-4 mb-4 flex space-x-2 lg:space-x-4 '>
           <Link
             to='/dashboard/update-profile'
-            className='flex items-center px-2 py-1 gap-1 text-xs rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+            className='flex items-center px-3 py-2 gap-1 text-xs rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
           >
             <FaEdit />
             Update Profile
           </Link>{' '}
           <Link
             to='/dashboard/upload-profile-picture'
-            className='flex items-center px-2 py-1 gap-1 text-xs rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+            className='flex items-center px-3 py-2 gap-1 text-xs rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
           >
             <FaUserEdit />
             Update Photo

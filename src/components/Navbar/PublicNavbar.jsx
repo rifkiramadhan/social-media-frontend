@@ -39,8 +39,8 @@ const PublicNavbar = () => {
               </div>
 
               {/* Logo - centered on mobile, left-aligned on desktop */}
-              <div className='flex flex-1 items-center justify-center md:justify-start'>
-                <div className='flex flex-shrink-0 items-center'>
+              <div className='flex md:justify-start'>
+                <div className='flex'>
                   <img
                     src='https://i.ibb.co.com/C9YyGkN/Logo.png'
                     className='h-10 w-auto'

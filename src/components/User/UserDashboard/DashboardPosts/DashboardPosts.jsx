@@ -46,7 +46,7 @@ const DashboardPosts = () => {
           <Profile />
           <div className='container mx-auto'>
             <div className='pt-20 bg-white shadow-4xl rounded-b-lg'>
-              <div className='flex px-6 pb-4 border-b'>
+              <div className='flex px-4 pb-4 border-b'>
                 <h3 className='text-xl font-bold'>
                   My Posts ({userPosts?.length})
                 </h3>
@@ -75,7 +75,7 @@ const DashboardPosts = () => {
                       {userPosts?.map(post => {
                         return (
                           <tr key={post?._id} className='text-xs bg-gray-50'>
-                            <td className='py-5 px-6 font-medium flex items-center space-x-2'>
+                            <td className='font-medium flex items-center space-x-2'>
                               <img
                                 src={post?.image?.path}
                                 className='w-10 h-10 object-cover rounded-md'
@@ -106,14 +106,14 @@ const DashboardPosts = () => {
                             </td>
                             <td className='flex items-center mb-10 space-x-2'>
                               <Link
-                                className='flex items-center gap-1 py-1 px-2 text-white bg-blue-500 rounded-full cursor-pointer'
+                                className='flex items-center gap-1 py-2 px-3 text-white bg-blue-500 rounded-full cursor-pointer'
                                 to={`/dashboard/update-post/${post._id}`}
                               >
                                 <FiEdit />
                                 Edit
                               </Link>
                               <button
-                                className='flex items-center gap-1 py-1 px-2 text-white bg-red-500 rounded-full cursor-pointer'
+                                className='flex items-center gap-1 py-2 px-3 text-white bg-red-500 rounded-full cursor-pointer'
                                 onClick={() => handleDelete(post._id)}
                               >
                                 <FiTrash2 />
