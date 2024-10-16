@@ -24,22 +24,23 @@ const PublicNavbar = () => {
       {({ open }) => (
         <>
           <div className='mx-auto px-4 sm:px-8 lg:px-8 bg-gray-100'>
-            <div className='flex w-full h-16 justify-between'>
-              <div className='flex'>
-                <div className='-ml-2 mr-2 flex items-center md:hidden'>
-                  {/* Mobile menu button */}
-                  <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-orange-200 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500'>
-                    <span className='absolute -inset-0.5' />
-                    <span className='sr-only'>Open main menu</span>
-                    {open ? (
-                      <XMarkIcon className='block h-6 w-6' aria-hidden='true' />
-                    ) : (
-                      <Bars3Icon className='block h-6 w-6' aria-hidden='true' />
-                    )}
-                  </Disclosure.Button>
-                </div>
+            <div className='flex w-full h-16 justify-between items-center'>
+              {/* Hamburger menu for mobile */}
+              <div className='flex md:hidden'>
+                <Disclosure.Button className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-orange-200 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500'>
+                  <span className='absolute -inset-0.5' />
+                  <span className='sr-only'>Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className='block h-6 w-6' aria-hidden='true' />
+                  ) : (
+                    <Bars3Icon className='block h-6 w-6' aria-hidden='true' />
+                  )}
+                </Disclosure.Button>
+              </div>
+
+              {/* Logo - centered on mobile, left-aligned on desktop */}
+              <div className='flex flex-1 items-center justify-center md:justify-start'>
                 <div className='flex flex-shrink-0 items-center'>
-                  {/* Logo */}
                   <img
                     src='https://i.ibb.co.com/C9YyGkN/Logo.png'
                     className='h-10 w-auto'
@@ -63,7 +64,9 @@ const PublicNavbar = () => {
                   ))}
                 </div>
               </div>
-              <div className='flex items-center'>
+
+              {/* Sign Up button - hidden on mobile */}
+              <div className='hidden md:flex items-center'>
                 <div className='flex-shrink-0'>
                   <Link
                     to='/register'
@@ -97,6 +100,21 @@ const PublicNavbar = () => {
                   {item.name}
                 </Disclosure.Button>
               ))}
+            </div>
+            {/* Sign Up button for mobile */}
+            <div className='border-t border-gray-200 pb-3 pt-4'>
+              <div className='flex items-center px-4 sm:px-6'>
+                <Link
+                  to='/register'
+                  className='flex w-full items-center justify-center gap-x-1.5 rounded-full bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 animate-pulse'
+                >
+                  <RiLoginCircleFill
+                    className='-ml-0.5 h-5 w-5'
+                    aria-hidden='true'
+                  />
+                  Sign Up
+                </Link>
+              </div>
             </div>
           </Disclosure.Panel>
         </>

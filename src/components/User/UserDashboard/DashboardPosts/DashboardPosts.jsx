@@ -48,7 +48,7 @@ const DashboardPosts = () => {
             <div className='pt-20 bg-white shadow-4xl rounded-b-lg'>
               <div className='flex px-6 pb-4 border-b'>
                 <h3 className='text-xl font-bold'>
-                  Your Posts ({userPosts?.length})
+                  My Posts ({userPosts?.length})
                 </h3>
               </div>
               {data?.length <= 0 && <NoDataFound />}
@@ -78,14 +78,17 @@ const DashboardPosts = () => {
                             <td className='py-5 px-6 font-medium flex items-center space-x-2'>
                               <img
                                 src={post?.image?.path}
-                                className='w-10 h-10 object-cover rounded-full'
+                                className='w-10 h-10 object-cover rounded-md'
                               />
-                              <div>
+                              <Link
+                                className='hover:underline hover:font-semibold'
+                                to={`/posts/${post?._id}`}
+                              >
                                 {truncateString(
                                   htmlToText(post?.description),
                                   10
                                 )}
-                              </div>
+                              </Link>
                             </td>
                             <td className='font-medium'>
                               $ {post?.thisMonthEarnings || 0}
@@ -97,7 +100,7 @@ const DashboardPosts = () => {
                               {new Date(post.createdAt).toDateString()}
                             </td>
                             <td>
-                              <span className='inline-block py-1 px-2 text-white bg-green-900 rounded-full'>
+                              <span className='inline-block py-1 px-2 text-black font-medium lg:text-white lg:bg-green-900 rounded-full'>
                                 {new Date(post.nextEarningDate).toDateString()}
                               </span>
                             </td>

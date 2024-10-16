@@ -39,6 +39,7 @@ import {
   UserDashboard,
   UsersList,
 } from './components';
+import UpdateProfile from './components/User/Settings/UpdateProfile/UpdateProfile';
 
 const App = () => {
   //! User Query
@@ -102,6 +103,15 @@ const App = () => {
               </AuthRoute>
             }
             path='upload-profile-picture'
+          />
+          {/* Update Profile Data */}
+          <Route
+            element={
+              <AuthRoute>
+                <UpdateProfile />
+              </AuthRoute>
+            }
+            path='update-profile'
           />
           {/* Update Email */}
           <Route

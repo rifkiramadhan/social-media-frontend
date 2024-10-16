@@ -1,4 +1,3 @@
-import './Profile.css';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import {
@@ -8,6 +7,8 @@ import {
 import { useEffect } from 'react';
 import { isAuthenticated } from '../../../../redux/slices/authSlices';
 import { AiOutlineUser } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { FaEdit, FaUserEdit } from 'react-icons/fa';
 
 const Profile = () => {
   const { data } = useQuery({
@@ -29,8 +30,8 @@ const Profile = () => {
   }, [data, dispatch]);
 
   return (
-    <div className='jumbotron-profile lg:px-6 rounded-t-lg h-auto min-h-[13rem] md:min-h-[16rem]'>
-      <div className='px-4 pt-14 mt-2 absolute z-10 w-full'>
+    <div className='rounded-t-lg shadow-4xl h-auto min-h-[13rem] md:min-h-[16rem]'>
+      <div className='pt-6 mt-2 p-6 w-full'>
         <div className='flex flex-wrap'>
           <div className='relative w-16 h-16 md:w-28 md:h-28 flex-shrink-0'>
             {data?.profilePicture ? (
@@ -65,30 +66,62 @@ const Profile = () => {
             )}
           </div>
           <div className='flex-grow ml-4 mt-2 md:mt-0'>
-            <div className='font-mono text-xl md:text-2xl text-gray-300'>
-              <p>{profileData?.user?.fullName || 'User Profile'}</p>
-              <p className='text-sm'>
-                {profileData?.user?.email || 'email@gmail.com'}
-              </p>
-              <div className='my-2 flex space-x-4'>
-                {profileData?.user?.role === 'admin' ? (
-                  <span className='bg-orange-600 text-gray-200 text-xs px-2 py-1 rounded-full'>
-                    Admin
-                  </span>
-                ) : (
-                  <span className='bg-red-500 text-gray-200 text-xs px-2 py-1 rounded-full'>
-                    User
-                  </span>
-                )}
+            <div className='font-mono text-xl md:text-2xl text-gray-700'>
+              <div className='flex items-center gap-4'>
+                <p>{profileData?.user?.fullName || 'Fullname'}</p>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width={4}
+                  height={4}
+                  viewBox='0 0 4 4'
+                  fill='none'
+                >
+                  <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
+                </svg>
+                <span className='text-gray-500 text-xl items-center rounded-full'>
+                  {profileData?.user?.gender}
+                </span>
+              </div>
+              <div className='flex items-center lg:mt-2 gap-4'>
+                <p className='text-sm '>
+                  @{profileData?.user?.username || 'Username'}
+                </p>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width={4}
+                  height={4}
+                  viewBox='0 0 4 4'
+                  fill='none'
+                >
+                  <circle cx={2} cy={2} r={2} fill='#B8B8B8' />
+                </svg>
+                <span className='text-gray-500 text-sm items-center rounded-full'>
+                  {profileData?.user?.role}
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <div className='mt-2 text-white'>
-          <p>{profileData?.user?.bio || 'Your bio'}</p>
+        <div className='my-2 mt-4 mb-4 flex space-x-2 lg:space-x-4 '>
+          <Link
+            to='/dashboard/update-profile'
+            className='flex items-center px-2 py-1 gap-1 text-xs rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+          >
+            <FaEdit />
+            Update Profile
+          </Link>{' '}
+          <Link
+            to='/dashboard/upload-profile-picture'
+            className='flex items-center px-2 py-1 gap-1 text-xs rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
+          >
+            <FaUserEdit />
+            Update Photo
+          </Link>{' '}
+        </div>
+        <div className='container mt-2 text-gray-700 max-w-3xl'>
+          <p>{profileData?.user?.bio || 'My bio'}</p>
         </div>
       </div>
-      <div className='jumbotron-reset-styling mt-52 md:mt-64 rounded-b-lg h-12'></div>
     </div>
   );
 };

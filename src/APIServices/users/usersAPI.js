@@ -56,6 +56,15 @@ export const userProfileAPI = async () => {
   return response.data;
 };
 
+//---- Update User Profile ----//
+export const updateUserProfileAPI = async values => {
+  const response = await axios.put(`${BASE_URL}/update-profile`, values, {
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
 //---- Logout User ----//
 export const logoutAPI = async () => {
   const response = await axios.post(
