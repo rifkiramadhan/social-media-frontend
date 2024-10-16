@@ -30,7 +30,7 @@ const Profile = () => {
   }, [data, dispatch]);
 
   return (
-    <div className='rounded-t-lg shadow-4xl h-auto min-h-[13rem] md:min-h-[16rem]'>
+    <div className='rounded-t-lg shadow-4xl bg-white h-auto min-h-[13rem] md:min-h-[16rem]'>
       <div className='pt-6 mt-2 p-6 w-full'>
         <div className='flex flex-wrap'>
           <div className='relative w-16 h-16 md:w-28 md:h-28 flex-shrink-0'>
