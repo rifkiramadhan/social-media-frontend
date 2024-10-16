@@ -2,10 +2,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import {
-  updateUserProfileAPI,
-  userProfileAPI,
-} from '../../../../APIServices/users/usersAPI';
+import { updateUserProfileAPI } from '../../../../APIServices/users/usersAPI';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
 
 const UpdateProfile = () => {
