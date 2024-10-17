@@ -174,7 +174,7 @@ const UpdateProfile = () => {
         </div>
         <button
           type='submit'
-          className='w-full px-4 py-2 font-bold text-white bg-orange-500 rounded hover:bg-orange-700 focus:outline-none focus:shadow-outline'
+          className='w-full px-4 py-2 font-bold text-white bg-orange-500 rounded-full hover:bg-orange-700 focus:outline-none focus:shadow-outline'
         >
           Submit
         </button>

@@ -10,6 +10,8 @@ import { UsersVersion } from '../../../utils/baseEndpointVersion/usersVersion/us
 import Avatar from '../Avatar/Avatar';
 import NoDataFound from '../../Alert/NoDataFound/NoDataFound';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
+import UsersListSkeleton from './UsersListSkeleton';
+import { Fragment } from 'react';
 
 const BASE_URL = `${BASE_URL_API}/${UsersVersion}/${UsersGrouping}`;
 
@@ -47,49 +49,53 @@ const UsersList = () => {
 
   return (
     <div className='container mx-auto'>
-      <div className='txt-2xl font-semibold mb-4'>Users List</div>
       {data?.length <= 0 && <NoDataFound />}
       {isError && <AlertMessage type='error' message='Something happened!' />}
       {isLoading ? (
-        <AlertMessage type='loading' message='Loading please wait...' />
+        <UsersListSkeleton />
       ) : (
-        <div className='space-y-3'>
-          {data?.map(user => (
-            <div
-              key={user?._id}
-              className='flex items-center justify-between bg-gray-100 p-3 rounded-lg shadow-4xl'
-            >
-              <div className='flex items-center gap-2'>
-                {user?.profilePicture?.path ? (
-                  <img
-                    className='w-10 h-10 rounded-full object-cover'
-                    src={user.profilePicture?.path}
-                  />
-                ) : (
-                  <Avatar />
-                )}
-                <span className='font-bold'>
-                  {user?.username} -{' '}
-                  <span className='text-gray-400'>{user?.accountType}</span>
-                </span>
-              </div>
-
-              <button
-                className={`flex items-center gap-2 p-2 rounded text-white ${
-                  user.isBlocked ? 'bg-red-500' : 'bg-green-500'
-                }`}
-                onClick={() => toggleUserBlocking(user)}
+        <Fragment>
+          <div className='txt-xl font-bold mb-4'>Users List</div>
+          <div className='space-y-3'>
+            {data?.map(user => (
+              <div
+                key={user?._id}
+                className='flex items-center justify-between bg-gray-100 p-3 rounded-lg shadow-4xl'
               >
-                {user.isBlocked ? (
-                  <FiUserX className='text-xl' />
-                ) : (
-                  <FiUserCheck className='text-xl' />
-                )}
-                <span>{user.isBlocked ? 'Unblock' : 'Block'}</span>
-              </button>
-            </div>
-          ))}
-        </div>
+                <div className='flex items-center gap-2'>
+                  {user?.profilePicture?.path ? (
+                    <img
+                      className='w-10 h-10 rounded-full object-cover'
+                      src={user.profilePicture?.path}
+                    />
+                  ) : (
+                    <Avatar />
+                  )}
+                  <span className='font-bold'>
+                    {user?.username} -{' '}
+                    <span className='text-gray-400'>{user?.accountType}</span>
+                  </span>
+                </div>
+
+                <button
+                  className={`flex items-center gap-2 p-2 rounded-full text-white ${
+                    user.isBlocked
+                      ? 'bg-red-500'
+                      : 'text-green-100 bg-green-800'
+                  }`}
+                  onClick={() => toggleUserBlocking(user)}
+                >
+                  {user.isBlocked ? (
+                    <FiUserX className='text-xl' />
+                  ) : (
+                    <FiUserCheck className='text-xl' />
+                  )}
+                  <span>{user.isBlocked ? 'Unblock' : 'Block'}</span>
+                </button>
+              </div>
+            ))}
+          </div>
+        </Fragment>
       )}
     </div>
   );

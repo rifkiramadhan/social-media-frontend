@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FaDollarSign } from 'react-icons/fa';
 import { getMyEarningsAPI } from '../../../APIServices/earnings/earningsAPI';
 import AlertMessage from '../../Alert/AllertMessage/AllertMessage';
+import MyEarningsSkeleton from './MyEarningSkeleton';
 
 const MyEarnings = () => {
   const { data, isLoading, isError } = useQuery({
@@ -13,7 +14,7 @@ const MyEarnings = () => {
     <div>
       {isError && <AlertMessage type='error' message='Something happened!' />}
       {isLoading ? (
-        <AlertMessage type='loading' message='Loading please wait...' />
+        <MyEarningsSkeleton />
       ) : (
         <div className='flex justify-center items-center bg-gray-100'>
           <div className='max-w-md w-full md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/3 bg-white rounded-lg shadow-4xl overflow-hidden '>

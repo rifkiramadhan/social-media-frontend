@@ -80,7 +80,7 @@ const CheckoutForm = () => {
             message={paymentMutation?.error?.response?.data?.message}
           />
         )}
-        <button className='w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-red-500 to-orange-500 hover:from-indigo-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
+        <button className='w-full py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gradient-to-r from-red-500 to-orange-500 hover:from-indigo-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
           Pay
         </button>
         {errorMessage && (

@@ -87,10 +87,10 @@ const UserDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleNavigationClick = name => {
-    // Update localStorage dengan item yang diklik (opsional)
+    //! Update localStorage dengan item yang diklik (opsional)
     localStorage.setItem('activeItem', name);
 
-    // Update state untuk mencerminkan item yang aktif
+    //! Update state untuk mencerminkan item yang aktif
     setNavigation(prevNavigation =>
       prevNavigation.map(item =>
         item.name === name

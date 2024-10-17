@@ -89,7 +89,7 @@ const UpdateEmail = () => {
           )}
           <button
             type='submit'
-            className='w-full px-3 py-2 mt-4 text-white bg-orange-600 rounded-md focus:bg-orange-700 focus:outline-none'
+            className='w-full px-3 py-2 mt-4 text-white bg-orange-600 rounded-full focus:bg-orange-700 focus:outline-none'
           >
             Sent Email
           </button>

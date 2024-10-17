@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import CategoryListSkeleton from './CategoryListSkeleton';
 
 const CategoryList = ({ categories, onCategorySelect }) => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -107,8 +108,12 @@ const CategoryList = ({ categories, onCategorySelect }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [normalizedCategories]);
 
+  // if (isLoading) {
+  //   return <CategoryListSkeleton />;
+  // }
+
   if (normalizedCategories.length === 0) {
-    return null;
+    return <CategoryListSkeleton />;
   }
 
   return (
@@ -125,8 +130,7 @@ const CategoryList = ({ categories, onCategorySelect }) => {
                   ${
                     activeCategory === (category?._id || category?.id)
                       ? 'bg-orange-200 text-orange-800'
-                      : // : 'bg-white text-gray-800 hover:bg-gray-50 focus:ring focus:ring-orange-200'
-                        'bg-orange-500 text-white hover:bg-orange-600 focus:bg-orange-700 transition-colors duration-200'
+                      : 'bg-orange-500 text-white hover:bg-orange-600 focus:bg-orange-700 transition-colors duration-200'
                   }`}
                 onClick={() =>
                   handleCategoryClick(category?._id || category?.id)
@@ -140,10 +144,10 @@ const CategoryList = ({ categories, onCategorySelect }) => {
         </Slider>
       </div>
       {!isAtStart && (
-        <div className='absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none'></div>
+        <div className='absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent pointer-events-none'></div>
       )}
       {!isAtEnd && (
-        <div className='absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
+        <div className='absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none'></div>
       )}
     </div>
   );

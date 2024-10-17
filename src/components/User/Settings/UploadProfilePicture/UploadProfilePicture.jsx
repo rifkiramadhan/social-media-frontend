@@ -126,7 +126,7 @@ const UploadProfilePicture = () => {
               />
               <label
                 htmlFor='images'
-                className='cursor-pointer bg-orange-500 text-white px-4 py-2 rounded shadow hover:bg-orange-600'
+                className='cursor-pointer bg-orange-500 text-white px-4 py-2 rounded-full shadow hover:bg-orange-600'
               >
                 Choose a file
               </label>
@@ -161,7 +161,7 @@ const UploadProfilePicture = () => {
           {/* Submit Button - Button to submit the form */}
           <button
             type='submit'
-            className='w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-500 hover:from-indigo-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            className='w-full py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-500 hover:from-red-600 hover:to-orange-600 focus:outline-none'
           >
             Submit
           </button>

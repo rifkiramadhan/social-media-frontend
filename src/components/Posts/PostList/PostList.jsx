@@ -1,6 +1,6 @@
 import '../PostCss.css';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { fetchAllPosts } from '../../../APIServices/posts/postsAPI';
 import { Link } from 'react-router-dom';
 import NoDataFound from '../../Alert/NoDataFound/NoDataFound';
@@ -11,6 +11,8 @@ import { FaSearch } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
 import truncateString from '../../../utils/truncateString';
+import PostListSkeleton from './PostListSkeleton';
+import SkeletonSearchBar from './SkeletonSearchBar';
 
 const PostList = () => {
   //! Filtering State
@@ -69,40 +71,58 @@ const PostList = () => {
     <section className='bg-gray-100 overflow-hidden'>
       <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-4xl lg:text-6xl font-bold font-heading mb-6 mt-16'>
-          Media Satgasnas
+          {isLoading ? (
+            <div className='h-12 bg-gray-300 rounded w-2/3 mb-6 mt-16 animate-pulse'></div>
+          ) : (
+            <Fragment>
+              <u>Media</u> Satgasnas
+            </Fragment>
+          )}
         </h1>
         {/* featured post */}
         <h2 className='text-4xl font-bold font-heading mb-10'>
-          Latest articles
+          {isLoading ? (
+            <div className='h-12 bg-gray-300 rounded w-1/2 mb-6 mt-16 animate-pulse'></div>
+          ) : (
+            <Fragment>
+              <u>Latest</u> articles
+            </Fragment>
+          )}
         </h2>
         {/* Searching Feature */}
-        <form
-          onSubmit={handleSearchSubmit}
-          className='flex flex-grid items-center gap-2 mb-4'
-        >
-          <div className='flex-grow flex items-center border border-gray-200 rounded-full overflow-hidden'>
-            <input
-              type='text'
-              placeholder='Search Posts...'
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className='flex-grow p-2 text-sm focus:outline-orange-300 focus:rounded-tl-full focus:rounded-bl-full'
-            />
-            <button
-              type='submit'
-              className='whitespace-nowrap p-2 text-white bg-orange-500 hover:bg-orange-600 rounded-r-lg'
+        {isLoading ? (
+          <SkeletonSearchBar />
+        ) : (
+          <Fragment>
+            <form
+              onSubmit={handleSearchSubmit}
+              className='flex flex-grid items-center gap-2 mb-4'
             >
-              <FaSearch className='h-5 w-5' />
-            </button>
-          </div>
-          <button
-            onClick={clearFilters}
-            className='p-2 text-sm text-orange-500 border border-orange-500 rounded-full hover:bg-orange-100 flex items-center gap-1 active:bg-orange-500 active:text-white'
-          >
-            <MdClear className='h-4 w-4' />
-            Clear
-          </button>
-        </form>
+              <div className='flex-grow flex items-center border border-gray-200 rounded-full overflow-hidden'>
+                <input
+                  type='text'
+                  placeholder='Search Posts...'
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className='flex-grow p-2 text-sm focus:outline-orange-300 focus:rounded-tl-full focus:rounded-bl-full'
+                />
+                <button
+                  type='submit'
+                  className='whitespace-nowrap p-2 text-white bg-orange-500 hover:bg-orange-600 rounded-r-lg'
+                >
+                  <FaSearch className='h-5 w-5' />
+                </button>
+              </div>
+              <button
+                onClick={clearFilters}
+                className='p-2 text-sm text-orange-500 border border-orange-500 rounded-full hover:bg-orange-100 flex items-center gap-1 active:bg-orange-500 active:text-white'
+              >
+                <MdClear className='h-4 w-4' />
+                Clear
+              </button>
+            </form>
+          </Fragment>
+        )}
         {/* Post category */}
         <CategoryList
           categories={categoriesData}
@@ -116,11 +136,7 @@ const PostList = () => {
             <AlertMessage type='error' message='Something happened!' />
           </div>
         )}
-        {isLoading && (
-          <div className='flex items-start justify-center min-h-screen'>
-            <AlertMessage type='loading' message='Loading please wait...' />
-          </div>
-        )}
+        {isLoading && <PostListSkeleton />}
         <div className='flex flex-wrap mb-32 -mx-4'>
           {/* Posts */}
           {data?.posts?.map(post => (

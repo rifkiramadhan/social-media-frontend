@@ -9,6 +9,7 @@ import { isAuthenticated } from '../../../../redux/slices/authSlices';
 import { AiOutlineUser } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { FaEdit, FaUserEdit } from 'react-icons/fa';
+import ProfileSkeleton from './ProfileSkeleton';
 
 const Profile = () => {
   const { data } = useQuery({
@@ -16,7 +17,7 @@ const Profile = () => {
     queryFn: checkAuthStatusAPI,
   });
 
-  const { data: profileData } = useQuery({
+  const { data: profileData, isLoading } = useQuery({
     queryKey: ['profile-data'],
     queryFn: userProfileAPI,
   });
@@ -28,6 +29,10 @@ const Profile = () => {
       dispatch(isAuthenticated(data));
     }
   }, [data, dispatch]);
+
+  if (isLoading) {
+    return <ProfileSkeleton />;
+  }
 
   return (
     <div className='rounded-t-lg shadow-4xl bg-white h-auto min-h-[13rem] md:min-h-[16rem]'>

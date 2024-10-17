@@ -3,6 +3,7 @@ import { FaGift } from 'react-icons/fa';
 import { freePlanAPI } from '../../../../APIServices/stripe/stripeAPI';
 import { Link } from 'react-router-dom';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
+import { HiOutlineClipboardCheck } from 'react-icons/hi';
 
 const PayingFreePlan = () => {
   const { data, isError, isLoading, isSuccess } = useQuery({
@@ -35,8 +36,8 @@ const PayingFreePlan = () => {
             Proceed to activate your free plan.
           </p>
           <Link to='/dashboard/create-post'>
-            <button className='mt-8 w-full py-2 px-4 bg-green-900 text-white rounded hover:bg-green-600 hover:text-green-900 focus:outline-none'>
-              Start Creating
+            <button className='flex items-center justify-center gap-2 mt-8 w-full py-2 px-4 bg-green-900 text-white rounded-full hover:bg-green-600 hover:text-green-900 focus:outline-none'>
+              <HiOutlineClipboardCheck /> Start Creating
             </button>
           </Link>
         </div>

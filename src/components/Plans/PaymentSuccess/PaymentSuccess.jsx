@@ -41,7 +41,7 @@ const PaymentSuccess = () => {
             </p>
             <Link
               to='/dashboard/create-post'
-              className='w-full flex items-center justify-center py-2 px-4 bg-orange-500 text-white rounded hover:bg-orange-600 focus:outline-none'
+              className='w-full flex items-center justify-center gap-2 py-2 px-4 bg-orange-500 text-white rounded-full hover:bg-orange-600 focus:outline-none'
             >
               <HiOutlineClipboardCheck /> Start Creating
             </Link>

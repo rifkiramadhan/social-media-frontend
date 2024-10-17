@@ -1,20 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { fetchPlansAPI } from '../../../APIServices/plans/plansAPI';
+import PricingSkeleton from './PricingSkeleton';
 
 const Pricing = () => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['pricing-lists'],
     queryFn: fetchPlansAPI,
   });
-
-  console.log(data);
 
   //! Get Free Plan
   const freePlan = data?.plans?.filter(plan => plan.planName === 'Free');
 
   //! Get The Premium Plan
   const premiumPlan = data?.plans?.filter(plan => plan.planName === 'Premium');
+
+  if (isLoading) {
+    return <PricingSkeleton />;
+  }
 
   return (
     <section className='py-24 bg-gray-100'>

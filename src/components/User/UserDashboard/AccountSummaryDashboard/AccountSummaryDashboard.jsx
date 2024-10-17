@@ -15,9 +15,10 @@ import {
 } from '../../../../APIServices/users/usersAPI';
 import { getMyEarningsAPI } from '../../../../APIServices/earnings/earningsAPI';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
+import AccountSummaryDashboardSkeleton from './AccountSummaryDashboardSkeleton';
 
 const AccountSummaryDashboard = () => {
-  const { data } = useQuery({
+  const { data, isLoading: isUserProfileLoading } = useQuery({
     queryKey: ['profile'],
     queryFn: userProfileAPI,
   });
@@ -42,7 +43,7 @@ const AccountSummaryDashboard = () => {
     totalComments += post.comments.length;
   });
 
-  const { data: earnings } = useQuery({
+  const { data: earnings, isLoading: isEarningsLoading } = useQuery({
     queryKey: ['my-earnings'],
     queryFn: getMyEarningsAPI,
   });
@@ -107,6 +108,10 @@ const AccountSummaryDashboard = () => {
     mutationFn: sendEmailVerificationTokenAPI,
   });
 
+  if (isUserProfileLoading || isEarningsLoading) {
+    return <AccountSummaryDashboardSkeleton />;
+  }
+
   const handleSendVerificationEmail = async () => {
     verificationTokenMutation.mutate();
   };
@@ -118,7 +123,7 @@ const AccountSummaryDashboard = () => {
        font-bold text-2xl text-gray-800 mb-4
       '
       >
-        Welcome Back: {data?.user?.username} -{' '}
+        Hello, {data?.user?.username} -{' '}
         <span className='text-gray-400'>{data?.user?.accountType}</span>
       </p>
       {/* display account verification status */}

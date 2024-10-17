@@ -8,6 +8,8 @@ import { deletePostAPI } from '../../../../APIServices/posts/postsAPI';
 import Profile from '../../Settings/Profile/Profile';
 import NoDataFound from '../../../Alert/NoDataFound/NoDataFound';
 import AlertMessage from '../../../Alert/AllertMessage/AllertMessage';
+import DashboardPostsSkeleton from './DashboardPostsSkeleton';
+import MyPostSkeleton from './MyPostSkeleton';
 
 const DashboardPosts = () => {
   const { data, isLoading, isError, refetch } = useQuery({
@@ -46,9 +48,13 @@ const DashboardPosts = () => {
           <Profile />
           <div className='container mx-auto'>
             <div className='pt-20 bg-white shadow-4xl rounded-b-lg'>
-              <div className='flex px-4 pb-4 border-b'>
+              <div className='px-4 pb-4 border-b'>
                 <h3 className='text-xl font-bold'>
-                  My Posts ({userPosts?.length})
+                  {isLoading ? (
+                    <MyPostSkeleton />
+                  ) : (
+                    `My Posts (` + userPosts?.length + `)`
+                  )}
                 </h3>
               </div>
               {data?.length <= 0 && <NoDataFound />}
@@ -56,73 +62,107 @@ const DashboardPosts = () => {
                 <AlertMessage type='error' message='Something happened!' />
               )}
               {isLoading ? (
-                <AlertMessage type='loading' message='Loading please wait...' />
+                <DashboardPostsSkeleton />
               ) : (
-                <div className='p-4 overflow-x-auto'>
-                  <table className='table-auto w-full'>
-                    <thead>
-                      <tr className='text-xs text-gray-500 text-left'>
-                        <th className='pb-3 font-medium'>Post</th>
-                        <th className='pb-3 font-medium'>This Month Earning</th>
-                        <th className='pb-3 font-medium'>Total Earnings</th>
-                        <th className='pb-3 font-medium'>Date Created</th>
-                        <th className='pb-3 font-medium'>
+                <div className='overflow-x-auto'>
+                  <table className='min-w-full divide-y divide-gray-200'>
+                    <thead className='bg-gray-50'>
+                      <tr>
+                        <th
+                          scope='col'
+                          className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                        >
+                          Post
+                        </th>
+                        <th
+                          scope='col'
+                          className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                        >
+                          This Month Earning
+                        </th>
+                        <th
+                          scope='col'
+                          className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                        >
+                          Total Earnings
+                        </th>
+                        <th
+                          scope='col'
+                          className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                        >
+                          Date Created
+                        </th>
+                        <th
+                          scope='col'
+                          className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                        >
                           Upcoming Earning Date
+                        </th>
+                        <th
+                          scope='col'
+                          className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                        >
+                          Actions
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {userPosts?.map(post => {
-                        return (
-                          <tr key={post?._id} className='text-xs bg-gray-50'>
-                            <td className='font-medium flex items-center space-x-2'>
-                              <img
-                                src={post?.image?.path}
-                                className='w-10 h-10 object-cover rounded-md'
-                              />
-                              <Link
-                                className='hover:underline hover:font-semibold'
-                                to={`/posts/${post?._id}`}
-                              >
-                                {truncateString(
-                                  htmlToText(post?.description),
-                                  10
-                                )}
-                              </Link>
-                            </td>
-                            <td className='font-medium'>
-                              $ {post?.thisMonthEarnings || 0}
-                            </td>
-                            <td className='font-medium'>
-                              $ {post?.totalEarnings || 0}
-                            </td>
-                            <td className='font-medium'>
-                              {new Date(post.createdAt).toDateString()}
-                            </td>
-                            <td>
-                              <span className='inline-block py-1 px-2 text-black font-medium lg:text-white lg:bg-green-900 rounded-full'>
-                                {new Date(post.nextEarningDate).toDateString()}
-                              </span>
-                            </td>
-                            <td className='flex items-center mb-10 space-x-2'>
-                              <Link
-                                className='flex items-center gap-1 py-2 px-3 text-white bg-blue-500 rounded-full cursor-pointer'
-                                to={`/dashboard/update-post/${post._id}`}
-                              >
-                                <FiEdit />
-                                Edit
-                              </Link>
-                              <button
-                                className='flex items-center gap-1 py-2 px-3 text-white bg-red-500 rounded-full cursor-pointer'
-                                onClick={() => handleDelete(post._id)}
-                              >
-                                <FiTrash2 />
-                                Delete
-                              </button>
-                            </td>
-                          </tr>
-                        );
-                      })}
+                    <tbody className='bg-white divide-y divide-gray-200'>
+                      {userPosts?.map(post => (
+                        <tr key={post?._id}>
+                          <td className='px-6 py-4 whitespace-nowrap'>
+                            <div className='flex items-center'>
+                              <div className='flex-shrink-0 h-10 w-10'>
+                                <img
+                                  className='h-10 w-10 rounded-full object-cover'
+                                  src={post?.image?.path}
+                                  alt=''
+                                />
+                              </div>
+                              <div className='ml-4'>
+                                <Link
+                                  className='text-sm font-medium text-gray-900 hover:underline'
+                                  to={`/posts/${post?._id}`}
+                                >
+                                  {truncateString(
+                                    htmlToText(post?.description),
+                                    10
+                                  )}
+                                </Link>
+                              </div>
+                            </div>
+                          </td>
+                          <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                            $ {post?.thisMonthEarnings || 0}
+                          </td>
+                          <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                            $ {post?.totalEarnings || 0}
+                          </td>
+                          <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
+                            {new Date(post.createdAt).toDateString()}
+                          </td>
+                          <td className='px-6 py-4 whitespace-nowrap'>
+                            <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
+                              {new Date(post.nextEarningDate).toDateString()}
+                            </span>
+                          </td>
+                          <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
+                            <Link
+                              to={`/dashboard/update-post/${post._id}`}
+                              className='inline-flex gap-1 items-center text-indigo-600 hover:text-indigo-900 mr-4'
+                            >
+                              <FiEdit />
+                              Edit
+                            </Link>
+                            <button
+                              onClick={() => handleDelete(post._id)}
+                              className='inline-flex gap-1 items-center text-red-600 hover:text-red-900'
+                            >
+                              <FiTrash2 />
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
