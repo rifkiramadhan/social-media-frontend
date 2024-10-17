@@ -62,7 +62,7 @@ const PostList = () => {
   };
 
   //! Fetch Categories
-  const { data: categoriesData } = useQuery({
+  const { data: categoriesData, isLoading: fetchCategoriesLoading } = useQuery({
     queryKey: ['category-lists'],
     queryFn: fetchCategoriesAPI,
   });
@@ -71,7 +71,7 @@ const PostList = () => {
     <section className='bg-gray-100 overflow-hidden'>
       <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-4xl lg:text-6xl font-bold font-heading mb-6 mt-16'>
-          {isLoading ? (
+          {fetchCategoriesLoading ? (
             <div className='h-12 bg-gray-300 rounded w-2/3 mb-6 mt-16 animate-pulse'></div>
           ) : (
             <Fragment>
@@ -81,7 +81,7 @@ const PostList = () => {
         </h1>
         {/* featured post */}
         <h2 className='text-4xl font-bold font-heading mb-10'>
-          {isLoading ? (
+          {fetchCategoriesLoading ? (
             <div className='h-12 bg-gray-300 rounded w-1/2 mb-6 mt-16 animate-pulse'></div>
           ) : (
             <Fragment>
@@ -90,7 +90,7 @@ const PostList = () => {
           )}
         </h2>
         {/* Searching Feature */}
-        {isLoading ? (
+        {fetchCategoriesLoading ? (
           <SkeletonSearchBar />
         ) : (
           <Fragment>
