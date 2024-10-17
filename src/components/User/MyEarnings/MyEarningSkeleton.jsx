@@ -9,10 +9,10 @@ const MyEarningsSkeleton = () => {
         <ul className='divide-y divide-gray-200'>
           {[...Array(5)].map((_, index) => (
             <li key={index} className='p-4 flex justify-between items-center'>
-              <div className='h-5 bg-gray-300 rounded w-1/3'></div>
+              <div className='h-5 bg-gray-200 rounded w-1/3'></div>
               <div className='text-right'>
-                <div className='h-6 bg-gray-300 rounded w-24 mb-1'></div>
-                <div className='h-4 bg-gray-300 rounded w-20'></div>
+                <div className='h-6 bg-gray-200 rounded w-24 mb-1'></div>
+                <div className='h-4 bg-gray-200 rounded w-20'></div>
               </div>
             </li>
           ))}

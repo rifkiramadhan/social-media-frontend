@@ -72,7 +72,7 @@ const PostList = () => {
       <div className='mx-auto px-4 sm:px-8 lg:px-8'>
         <h1 className='text-4xl lg:text-6xl font-bold font-heading mb-6 mt-16'>
           {fetchCategoriesLoading ? (
-            <div className='h-12 bg-gray-300 rounded w-2/3 mb-6 mt-16 animate-pulse'></div>
+            <div className='h-12 bg-gray-200 rounded w-2/3 mb-6 mt-16 animate-pulse'></div>
           ) : (
             <Fragment>
               <u>Media</u> Satgasnas
@@ -82,7 +82,7 @@ const PostList = () => {
         {/* featured post */}
         <h2 className='text-4xl font-bold font-heading mb-10'>
           {fetchCategoriesLoading ? (
-            <div className='h-12 bg-gray-300 rounded w-1/2 mb-6 mt-16 animate-pulse'></div>
+            <div className='h-12 bg-gray-200 rounded w-1/2 mb-6 mt-16 animate-pulse'></div>
           ) : (
             <Fragment>
               <u>Latest</u> articles
