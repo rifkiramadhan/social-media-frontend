@@ -85,7 +85,7 @@ const PostList = () => {
             <div className='h-12 bg-gray-200 rounded w-1/2 mb-6 mt-16 animate-pulse'></div>
           ) : (
             <Fragment>
-              <u>Latest</u> articles
+              <u>Latest</u> Articles
             </Fragment>
           )}
         </h2>
